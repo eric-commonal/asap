@@ -324,21 +324,39 @@ blockquote {
   text-align: left;
   padding: 20px 0;
   position: relative;
+  overflow: hidden;
   width: 100vw;
   left: 50%;
   transform: translateX(-50%);
 }
 
+.header-ribbon::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 100%; /* Adjust width of SVG display area */
+  background-image: url('https://assets-staging.noviams.com/novi-file-uploads/asap/graphics/asap-hero-pattern.svg');
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-size: contain;
+  z-index: 1; /* Places behind text content */
+}
+
 .header-ribbon h1 {
   margin: 100px 0;
-  max-width: 1110px;
+  max-width: 1000px;
   margin-left: auto;
   margin-right: auto;
   text-align: left;
   color: #fff !important;
   font-family: neulis-neue, poppins, sans-serif !important;
   font-size: 3.5em !important;
+  position: relative;
+  z-index: 2;
 }
+
 .header-ribbon h2 {
   display: none;
 }
