@@ -494,6 +494,14 @@ label {
   --item-bg: #EFF6F5;
 }
 
+.grid-item.bg-white {
+  --item-bg: #fff;
+}
+
+.grid-item.bg-light {
+  --item-bg: #EFF6F5;
+}
+
 /* Typography inside grid items */
 .grid-item p {
   font-size: 0.8em;
