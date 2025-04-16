@@ -637,3 +637,6 @@ ol {
   color: #fff;
   background: #FF6C27;
 }
+.body-content.c-body-content__.c-body-content__blog > div.section:first-child {
+  display: none;
+}
