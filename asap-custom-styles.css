@@ -485,7 +485,7 @@ label {
   border-radius: 8px;
 }
 
-/* Background color variants */
+/* Background color variants - container level */
 .bg-white .grid-item {
   --item-bg: #fff;
 }
@@ -494,6 +494,7 @@ label {
   --item-bg: #EFF6F5;
 }
 
+/* Background color variants - individual item level */
 .grid-item.bg-white {
   --item-bg: #fff;
 }
