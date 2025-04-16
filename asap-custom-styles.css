@@ -438,46 +438,6 @@ label {
   color: #1a1c40;
 }
 
-.accordion-header {
-  padding: 15px 15px 15px 60px;
-  cursor: pointer;
-  position: relative;
-  transition: background-color 0.3s ease;
-}
-
-.accordion-header:hover {
-  background-color: #EFF6F5;
-}
-
-.accordion-header::before {
-  content: '+';
-  position: absolute;
-  left: 10px;
-  transition: transform 0.3s ease;
-}
-
-.accordion-item.active .accordion-header::before {
-  content: '−';
-}
-
-.accordion-content {
-  max-height: 0;
-  overflow: hidden;
-  padding: 0 20px;
-  transition: max-height 0.3s ease, padding 0.3s ease;
-}
-
-.accordion-item.active .accordion-content {
-  max-height: max-content;
-  padding: 20px;
-  border-top: 1px solid #EFF6F5;
-}
-
-h4.accordion-header {
-  margin-top: 0 !important;
-  margin-bottom: 0 !important;
-}
-
 .grid-container,
 .grid-container-2,
 .grid-container-4,
