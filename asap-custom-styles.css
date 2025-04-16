@@ -339,7 +339,9 @@ blockquote {
   font-family: neulis-neue, poppins, sans-serif !important;
   font-size: 3.5em !important;
 }
-
+.header-ribbon h2 {
+  display: none;
+}
 .c-nav-navigation__img {
   width: 130px;
   height: auto;
