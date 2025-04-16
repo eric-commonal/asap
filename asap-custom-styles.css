@@ -266,9 +266,9 @@ div.c-nav-centered__search > div {
 }
 
 .c-event-date-stub__event-name {
-  color: black;
+  color: #000B41;
   font-size: 24px;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .c-event-date-stub__event-wrapper a {
