@@ -10,7 +10,7 @@
   --dark-blue: #001062;
   --border-gray: #bababa;
   --highlight-orange: #ff7840;
-  --input-border: #0D2894;
+  --input-border: #0d2894;
 }
 
 /* Base fonts */
@@ -24,7 +24,11 @@ body {
 }
 
 /* Headings */
-h1, h2, h3, h4, h5 {
+h1,
+h2,
+h3,
+h4,
+h5 {
   font-family: "neulis-neue", var(--font-family);
   margin-top: 60px;
   margin-bottom: 20px;
@@ -81,7 +85,13 @@ h6::before {
 }
 
 .single-region {
-  h1, h2, h3, h4, h5, h6, p {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
     color: var(--primary-color);
   }
 }
@@ -120,8 +130,31 @@ code {
   padding-top: 100px;
 }
 
-.body-content, body {
+.body-content,
+body {
   background: none;
+}
+
+header {
+  .c-nav-centered {
+    .c-nav-centered__wrapper {
+      padding: 40px 0 0px;
+      .c-nav-centered__logo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .navbar__logo-wrapper {
+          display: inline-block;
+          text-align: center;
+          img {
+            width: 220px;
+            height: auto;
+            max-width: 100%;
+          }
+        }
+      }
+    }
+  }
 }
 
 /* Event title handling */
@@ -150,28 +183,14 @@ div.c-nav-centered__search > div {
   border: solid 1px var(--input-border) !important;
   margin: 0;
 
-  .search-go .novicon-arrow-right:before {
-    color: var(--input-border);
+  .search-go {
+    padding: 2px 0 0 0px;
+    .novicon-arrow-right:before {
+      color: var(--input-border);
+      font-size: 20px;
+      font-weight: 400;
+    }
   }
-}
-
-
-/* Logo styling */
-.c-nav-centered__logo {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.navbar__logo-wrapper {
-  display: inline-block;
-  text-align: center;
-}
-
-.c-nav-navigation__img {
-  width: 222px;
-  height: auto;
-  max-width: 100%;
 }
 
 /* Footer Styling */
@@ -219,7 +238,6 @@ div.c-nav-centered__search > div {
   color: var(--primary-color);
   border: 2px solid var(--primary-color);
 }
-
 
 .btn.btn-transparent,
 .btn.btn-secondary {
@@ -345,7 +363,6 @@ blockquote {
   margin-right: calc(50% - 50vw);
 }
 
-
 .header-ribbon {
   background-color: var(--primary-color);
   text-align: left;
@@ -364,7 +381,7 @@ blockquote {
   right: 0;
   height: 100%;
   width: 50%; /* Reduced width to not overlap too much */
-  background-image: url('https://assets-staging.noviams.com/novi-file-uploads/asap/graphics/asap-hero-pattern.svg');
+  background-image: url("https://assets-staging.noviams.com/novi-file-uploads/asap/graphics/asap-hero-pattern.svg");
   background-repeat: no-repeat;
   background-position: right center;
   background-size: contain;
@@ -437,6 +454,9 @@ h1 novi-content-wrapper {
 
 #search-panel .form-group input.form-control.search-text {
   border-style: none;
+  &::placeholder {
+    color: transparent;
+  }
 }
 
 label {
@@ -467,7 +487,13 @@ label {
 
 .navbar-nav > li > a {
   font: normal 1em var(--font-family);
-  color: var(--primary-color);
+  color: var(--text-color);
+  &:hover {
+    color: var(--primary-color);
+  }
+  &.active {
+    color: var(--primary-color);
+  }
 }
 
 /* Base grid container styles */
@@ -709,7 +735,7 @@ ol {
 /* Add 1px #ADAFAE bottom border to the entire accordion */
 .novi-accordion .panel {
   border: none;
-  border-bottom: 1px solid #ADAFAE;
+  border-bottom: 1px solid #adafae;
   border-radius: 0;
   box-shadow: none;
 }
@@ -730,7 +756,7 @@ ol {
 }
 
 .novi-accordion .panel-title a::after {
-  content: '\25BC';  /* Unicode down arrow */
+  content: "\25BC"; /* Unicode down arrow */
   position: absolute;
   right: 0;
   top: 50%;
@@ -740,7 +766,7 @@ ol {
 }
 
 .novi-accordion .panel-title a.collapsed::after {
-  transform: translateY(-50%) rotate(-90deg);  /* Rotate arrow for collapsed state */
+  transform: translateY(-50%) rotate(-90deg); /* Rotate arrow for collapsed state */
 }
 
 /* Remove default panel styling */
@@ -752,11 +778,10 @@ ol {
   padding: 15px 20px;
 }
 
-
 /* home hero styles */
 #top-featured-carousel {
   width: 100%;
-  
+
   .background {
     background-color: var(--primary-color);
     width: 100% !important;
