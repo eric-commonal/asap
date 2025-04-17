@@ -749,16 +749,26 @@ ol {
   width: 100%;
   
   .background {
+    background-color: var(--primary-color);
     width: 100% !important;
     height: 100% !important;
-    min-height: 100% !important;
-    max-height: 100% !important;
+    min-height: 732px !important;
+    max-height: 732px !important;
     padding: 2rem 0;
     .event-info {
+      background-color: var(--primary-color);
       right: auto;
       width: 30%;
       min-width: 30%;
       height: auto;
+      bottom: 4rem;
+      border-radius: 8px;
+
+      .date {
+        font-size: 16px;
+        font-weight: 300;
+        text-transform: uppercase;
+      }
     }
   }
 }
