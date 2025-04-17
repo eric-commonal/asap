@@ -148,8 +148,11 @@ div.c-nav-centered__search > div {
 #search-panel {
   background: var(--white-color);
   border: solid 1px var(--input-border) !important;
-  padding: 20px;
   margin: 0;
+
+  .search-go .novicon-arrow-right:before {
+    color: var(--input-border);
+  }
 }
 
 
