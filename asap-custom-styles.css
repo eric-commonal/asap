@@ -217,6 +217,8 @@ div.c-nav-centered__search > div {
   border: 2px solid var(--primary-color);
 }
 
+
+.btn.btn-transparent,
 .btn.btn-secondary {
   padding: 15px 30px;
   border-radius: 8px;
