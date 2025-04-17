@@ -653,3 +653,68 @@ ol {
 .body-content.c-body-content__.c-body-content__blog > div.section:first-child {
   display: none;
 }
+
+/* Remove background color */
+.novi-accordion .panel {
+  background-color: transparent;
+}
+
+/* Style the panel-heading with 24px bold font and #333 color */
+.novi-accordion .panel-heading {
+  padding: 15px 20px;
+  background-color: transparent;
+}
+
+.novi-accordion .panel-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  position: relative;
+  margin: 0;
+}
+
+/* Add 1px #ADAFAE bottom border to the entire accordion */
+.novi-accordion .panel {
+  border: none;
+  border-bottom: 1px solid #ADAFAE;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+/* Style the hover effect with #FF6C27 color */
+.novi-accordion .panel-heading:hover .panel-title a {
+  color: #FF6C27;
+  transition: color 0.3s ease;
+}
+
+/* Add an arrow to the right side of the accordion */
+.novi-accordion .panel-title a {
+  display: block;
+  text-decoration: none;
+  padding-right: 30px;
+  position: relative;
+  width: 100%;
+}
+
+.novi-accordion .panel-title a::after {
+  content: '\25BC';  /* Unicode down arrow */
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: transform 0.3s ease;
+  font-size: 14px;
+}
+
+.novi-accordion .panel-title a.collapsed::after {
+  transform: translateY(-50%) rotate(-90deg);  /* Rotate arrow for collapsed state */
+}
+
+/* Remove default panel styling */
+.novi-accordion .panel-default {
+  border-color: transparent;
+}
+
+.novi-accordion .panel-body {
+  padding: 15px 20px;
+}
