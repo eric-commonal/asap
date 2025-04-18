@@ -167,9 +167,9 @@ header {
 }
 
 /* Navigation */
-.navbar-nav > li > a {
+/* .navbar-nav > li > a {
   font: normal 1em Barlow, sans-serif;
-}
+} */
 
 /* Site Search */
 div.c-nav-centered__search > div {
@@ -197,6 +197,49 @@ div.c-nav-centered__search > div {
 .c-footer {
   background-color: var(--primary-color);
   padding-top: 64px;
+
+  .c-footer__top {
+    .c-footer__top-left {
+      width: 25%;
+      text-align: left;
+
+      .c-footer__logo-wrapper img {
+        content: url("https://assets-staging.noviams.com/novi-file-uploads/asap/structure/asap_logo_white_crop.svg");
+        width: 162px;
+        height: auto;
+        max-width: 100%;
+        margin: 0 0 1rem;
+      }
+
+      .c-footer__address,
+      .c-footer__phone {
+        text-align: left;
+      }
+
+      .c-footer__social-icons {
+        a.icon {
+          width: 44px;
+          height: 44px;
+        }
+      }
+    }
+    .grid-container {
+      .grid-item {
+        background: transparent;
+        h4 {
+          margin-top: 0;
+        }
+        ul {
+          list-style-type: none;
+          padding-left: 0;
+          margin: 0;
+          a {
+            font-weight: 400;
+          }
+        }
+      }
+    }
+  }
 }
 
 .c-footer,
@@ -213,12 +256,7 @@ div.c-nav-centered__search > div {
   color: var(--white-color);
 }
 
-.c-footer__logo-wrapper img {
-  content: url("https://assets-staging.noviams.com/novi-file-uploads/asap/structure/asap_logo_white_crop.svg");
-  width: 162px;
-  height: auto;
-  max-width: 100%;
-}
+
 
 /* Button styles - consolidated */
 .btn.btn-primary,
@@ -485,14 +523,21 @@ label {
   color: var(--white-color);
 }
 
-.navbar-nav > li > a {
-  font: normal 1em var(--font-family);
-  color: var(--text-color);
-  &:hover {
-    color: var(--primary-color);
+.navbar-nav > li {
+  &.c-nav-navigation__toggle-wrapper.open {
+    > a {
+      color: var(--primary-color);
+    }
   }
-  &.active {
-    color: var(--primary-color);
+  & > a {
+    font: normal 1em var(--font-family);
+    color: var(--text-color);
+    &:hover {
+      color: var(--primary-color);
+    }
+    &.active {
+      color: var(--primary-color);
+    }
   }
 }
 
