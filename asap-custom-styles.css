@@ -198,7 +198,32 @@ div.c-nav-centered__search > div {
   background-color: var(--primary-color);
   padding-top: 64px;
 
+  p {
+    text-align: left;
+    font-size: 16px;
+  }
+  
+  h4 {
+    margin-top: 0;
+    font-size: 20px;
+    font-weight: 600;
+  }
+  ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 0;
+    a {
+      font-weight: 400;
+      font-size: 16px;
+    }
+  }
+
   .c-footer__top {
+    display: flex;
+    .o-column {
+      float: none;
+      padding: 0;
+    }
     .c-footer__top-left {
       width: 25%;
       text-align: left;
@@ -223,20 +248,13 @@ div.c-nav-centered__search > div {
         }
       }
     }
+    .c-footer__top-right {
+      width: 75%;
+    }
     .grid-container {
       .grid-item {
         background: transparent;
-        h4 {
-          margin-top: 0;
-        }
-        ul {
-          list-style-type: none;
-          padding-left: 0;
-          margin: 0;
-          a {
-            font-weight: 400;
-          }
-        }
+      
       }
     }
   }
@@ -526,7 +544,7 @@ label {
 .navbar-nav > li {
   &.c-nav-navigation__toggle-wrapper.open {
     > a {
-      color: var(--primary-color);
+      color: var(--primary-color) !important;
     }
   }
   & > a {
