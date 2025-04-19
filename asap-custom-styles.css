@@ -389,7 +389,7 @@ div.c-nav-centered__search > div {
 }
 
 .col-md-4.event {
-  margin-bottom: 40px;
+  padding-bottom: 40px;
   .event-table {
     display: flex;
     justify-content: space-between;
@@ -409,6 +409,7 @@ div.c-nav-centered__search > div {
     }
 
     .c-event-date-stub__event-wrapper {
+      padding: 0;
       .c-event-date-stub__event-name {
         color: var(--dark-blue) !important;
         font-size: 24px;
