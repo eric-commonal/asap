@@ -1044,3 +1044,51 @@ ol {
   
 
 }
+
+/* Basic table styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+/* Table header styles */
+thead th {
+    background-color: #181D41;
+    color: white;
+    font-weight: bold;
+    padding: 12px 15px;
+    text-align: left;
+}
+
+/* First column background */
+td:first-child {
+    background-color: ##FBFFFE;
+    font-weight: bold;
+    border-right: 1px solid #ADAFAE;
+}
+
+/* Table cell styles */
+td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #ADAFAE;
+}
+
+/* Hover effect for rows */
+tbody tr:hover {
+    background-color: ##FBFFFE;
+}
+
+/* First column hover fix */
+tbody tr:hover td:first-child {
+    background-color: #EFF6F5;
+}
+
+     /* Responsive design */
+@media screen and (max-width: 600px) {
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+}
