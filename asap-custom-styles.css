@@ -1065,18 +1065,17 @@ thead th {
 td:first-child {
     background-color: ##FBFFFE;
     font-weight: bold;
-    border-right: 1px solid #ADAFAE;
 }
 
 /* Table cell styles */
 td {
     padding: 12px 15px;
-    border-bottom: 1px solid #ADAFAE;
+    border: 1px solid #ADAFAE;
 }
 
 /* Hover effect for rows */
 tbody tr:hover {
-    background-color: ##FBFFFE;
+    background-color: #FBFFFE;
 }
 
 /* First column hover fix */
