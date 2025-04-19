@@ -1075,11 +1075,6 @@ td {
 
 /* Hover effect for rows */
 tbody tr:hover {
-    background-color: #FBFFFE;
-}
-
-/* First column hover fix */
-tbody tr:hover td:first-child {
     background-color: #EFF6F5;
 }
 
