@@ -973,3 +973,14 @@ ol {
     display: none !important;
   }
 }
+
+
+/* widgets */
+#widgets {
+  min-height: 0;
+  .container {
+    background-color: transparent;
+    padding: 0;
+
+  }
+}
