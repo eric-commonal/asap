@@ -398,27 +398,33 @@ div.c-nav-centered__search > div {
       .date-stub,
       .date-stub strong,
       .c-event-date-stub__separator--slash {
-        font-size: 16px;
         color: var(--secondary-color);
+      }
+      .c-event-date-stub__separator--slash {
+        font-size: 60px;
+        padding: 0 5px;
       }
     }
 
     .c-event-date-stub__event-wrapper {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
       .c-event-date-stub__event-name {
         color: var(--dark-blue) !important;
         font-size: 24px;
         font-weight: 700;
       }
       a {
+        display: none;
         .c-event-date-stub__btn {
           float: none;
           top: auto;
           right: auto;
           position: relative;
         }
+      }
+      .time {
+        padding: 0 0 10px;
+        font-weight: 400;
+        color: var(--text-color)
       }
     }
   }
