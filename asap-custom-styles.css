@@ -735,7 +735,7 @@ label {
   font-size: 0.8em;
 }
 
-.grid-item h2 {
+.grid-item :is(h2, h3, h4, h5, h6) {
   margin-top: 20px !important;
 }
 
