@@ -592,6 +592,8 @@ blockquote {
   margin-right: calc(50% - 50vw);
 }
 
+
+/* hero */
 .header-ribbon {
   background-color: var(--primary-color);
   text-align: left;
@@ -1165,4 +1167,17 @@ tbody tr:hover {
         overflow-x: auto;
         white-space: nowrap;
     }
+}
+
+
+/* login/join */
+.c-nav-centered__login-out {
+  .c-nav-utility__span {
+    color: var(--dark-blue);
+    font-weight: 400;
+    text-decoration: underline;
+  }
+  #join-link::after {
+    color: var(--light-gray)
+  }
 }
