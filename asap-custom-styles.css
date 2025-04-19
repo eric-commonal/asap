@@ -389,6 +389,7 @@ div.c-nav-centered__search > div {
 }
 
 .col-md-4.event {
+  margin-bottom: 40px;
   .event-table {
     display: flex;
     justify-content: space-between;
@@ -398,6 +399,7 @@ div.c-nav-centered__search > div {
       .date-stub,
       .date-stub strong,
       .c-event-date-stub__separator--slash {
+        font-size: 16px;
         color: var(--secondary-color);
       }
       .c-event-date-stub__separator--slash {
@@ -413,8 +415,8 @@ div.c-nav-centered__search > div {
         font-weight: 700;
       }
       a {
-        display: none;
         .c-event-date-stub__btn {
+          display: none;
           float: none;
           top: auto;
           right: auto;
