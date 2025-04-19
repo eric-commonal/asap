@@ -1067,6 +1067,12 @@ td:first-child {
     font-weight: bold;
 }
 
+/* CSS-only approach: First column header when empty */
+thead th:first-child:empty {
+background-color: transparent;
+border-bottom: 1px solid transparent;
+}
+
 /* Table cell styles */
 td {
     padding: 12px 15px;
