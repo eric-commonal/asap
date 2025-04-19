@@ -398,11 +398,16 @@ div.c-nav-centered__search > div {
     align-items: center;
     .c-event-date-stub__wrapper {
       background-color: var(--light-gray);
+      
       .date-stub,
       .date-stub strong,
       .c-event-date-stub__separator--slash {
         font-size: 16px;
         color: var(--secondary-color);
+      }
+      
+      .date-stub strong {
+        font-size: 30px;
       }
       .c-event-date-stub__separator--slash {
         font-size: 60px;
@@ -448,13 +453,6 @@ div.c-nav-centered__search > div {
   justify-content: center;
   align-items: center;
   flex-shrink: 0;
-}
-
-#events .event .date-stub,
-#events .event .date-stub strong,
-.events .event .date-stub,
-.events .event .date-stub strong {
-  color: var(--highlight-orange);
 }
 
 #events .event,
