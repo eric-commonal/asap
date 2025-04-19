@@ -713,12 +713,12 @@ label {
 }
 
 /* Background color variants - container level */
-.bg-white > .grid-item:not([class*="bg-"]) {
-  --item-bg: #fff;
+.bg-white .grid-item {
+  --item-bg: var(--white-color);
 }
 
-.bg-light > .grid-item:not([class*="bg-"]) {
-  --item-bg: #EFF6F5;
+.bg-light .grid-item {
+  --item-bg: var(--light-gray);
 }
 
 /* Background color variants - individual item level */
