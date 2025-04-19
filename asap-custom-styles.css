@@ -1135,7 +1135,7 @@ thead th {
 
 /* First column background */
 td:first-child {
-    background-color: ##FBFFFE;
+    background-color: #FBFFFE;
     font-weight: bold;
 }
 
