@@ -1067,10 +1067,11 @@ td:first-child {
     font-weight: bold;
 }
 
-/* CSS-only approach: First column header when empty */
+/* First column header when empty */
 thead th:first-child:empty {
-background-color: transparent;
-border-bottom: 1px solid transparent;
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-bottom-color: #ADAFAE;
 }
 
 /* Table cell styles */
