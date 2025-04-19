@@ -707,18 +707,18 @@ label {
 
 /* Grid item styles */
 .grid-item {
-  padding: 0px;
-  /* background-color: var(--light-gray); */
+  padding: 20px;
+  background-color: var(--item-bg, #EFF6F5);
   border-radius: 8px;
 }
 
 /* Background color variants - container level */
-.bg-white .grid-item {
-  --item-bg: var(--white-color);
+.bg-white > .grid-item:not([class*="bg-"]) {
+  --item-bg: #fff;
 }
 
-.bg-light .grid-item {
-  --item-bg: var(--light-gray);
+.bg-light > .grid-item:not([class*="bg-"]) {
+  --item-bg: #EFF6F5;
 }
 
 /* Background color variants - individual item level */
