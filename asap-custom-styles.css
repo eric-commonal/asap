@@ -170,6 +170,7 @@ header {
 /* Event title handling */
 .body-content .main-event .event-info h1.long {
   display: -webkit-box;
+  line-clamp: 5;
   -webkit-line-clamp: 5;
   -webkit-box-orient: vertical;
   overflow: hidden;
