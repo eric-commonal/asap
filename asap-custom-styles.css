@@ -43,13 +43,11 @@ h1 {
 h2 {
   font-size: 44px;
   font-weight: 700;
-  color: var(--primary-color);
 }
 
 h3 {
   font-size: 40px;
   font-weight: 500;
-  color: var(--primary-color);
 }
 
 h4 {
@@ -65,7 +63,7 @@ h5 {
 }
 
 h6 {
-  color: var(--secondary-color);
+  color: var(--secondary-color) !important;
   font-family: var(--font-family);
   font-size: 16px;
   font-style: normal;
@@ -138,6 +136,10 @@ code {
 /* Layout */
 .inner-content {
   padding-top: 100px;
+}
+
+.intro {
+  padding: 60px 0 0;
 }
 
 .body-content,
