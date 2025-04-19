@@ -5,10 +5,338 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ASAP</title>
+  <link rel="stylesheet" href="asap-v2.css">
   <link rel="stylesheet" href="asap-custom-styles.css">
 </head>
 
 <body>
+
+  <div class="container event-list-container">
+    <div class="well box with-tab">
+
+
+
+
+
+        <span class="sr-only" role="alert" aria-live="polite" id="events-calendar-filter-alert"></span>
+        <div class="o-filter-bar clearfix">
+            <div class="o-filter-bar__quick-search">
+                <label for="search-box">Search</label>
+                <div class="search input-group">
+                    <input type="text" id="search-box" class="form-control" aria-label="Enter text to search events" placeholder="Search Events">
+                    <a href="javascript:void(0);" class="btn btn-primary input-group-addon" aria-label="Search" id="search-go" role="search">
+                        <span class="novicon novicon-arrow-right" aria-hidden="true"></span>
+                    </a>
+                </div>
+            </div>
+            <div class="o-filter-bar__quick-search">
+                <label for="category">Category</label>
+                <select class="form-control" id="Category" name="Category"><option value="">Category</option>
+<option value="events/conferences">Conferences</option>
+<option value="events/local-meet-ups">Local Meet Ups</option>
+<option value="events/online-series">Online Series</option>
+<option value="events/workshops-and-training">Workshops &amp; Training</option>
+</select>
+            </div>
+
+            <div class="o-filter-bar-toggle__wrapper">
+                <div class="o-filter-bar-toggle__wrapper-btn">
+                    <a class="o-filter-bar-toggle__btn o-filter-bar-toggle__btn--left o-filter-bar-toggle__btn--active" style="pointer-events: none" href="/events/?">
+                        <i class="fas fa-list"></i>&nbsp;&nbsp;List View
+                    </a>
+                </div>
+                <div class="o-filter-bar-toggle__wrapper-btn">
+                    <a class="o-filter-bar-toggle__btn o-filter-bar-toggle__btn--right " style="pointer-events: all" href="/events/?CalendarView=1">
+                        <i class="far fa-calendar-alt"></i>&nbsp;&nbsp;Calendar
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="o-column g-events__content">
+            <h2 class="line-after"> <span class="novicon novicon-future"></span>Upcoming Events</h2>
+                    <div class="events clearfix" role="list">
+                            <div class="event" role="listitem">
+                                
+
+<div class="event-table c-event-date-stub">
+    <div class="c-event-date-stub__wrapper">
+        <div class="date-stub c-event-date-stub__start" title="Starts May 5, 2025 at 8:00 AM">
+            May <strong>5</strong>
+        </div>
+
+            <div class="to-separator c-event-date-stub__separator">
+                to
+            </div>
+            <div class="c-event-date-stub__separator--slash" aria-label="OR">
+                /
+            </div>
+            <div class="date-stub end-date c-event-date-stub__end-date" title="Ends May 7, 2025 at 5:00 PM">
+                May <strong>7</strong>
+            </div>
+    </div>
+
+    <div class="title c-event-date-stub__event-wrapper">
+        <a href="https://www.asapsummit.org" data-aria-label="Event Details for 2025 ASAP Summit" target="_blank">
+            <strong class="c-event-date-stub__event-name" role="heading" aria-level="2">
+                2025 ASAP Summit
+            </strong>
+        </a>
+
+        <a href="https://www.asapsummit.org" data-aria-label="Event Details for 2025 ASAP Summit" target="_blank">
+            <span class="c-event-date-stub__btn">
+                Details
+            </span>
+        </a>
+    </div>
+</div>
+                            </div>
+                            <div class="event" role="listitem">
+                                
+
+<div class="event-table c-event-date-stub">
+    <div class="c-event-date-stub__wrapper">
+        <div class="date-stub c-event-date-stub__start" title="Starts May 5, 2025 at 9:00 AM">
+            May <strong>5</strong>
+        </div>
+
+    </div>
+
+    <div class="title c-event-date-stub__event-wrapper">
+        <a href="/events/ca-am-certification-exam-prep-workshop-face-to-face-may2025" data-aria-label="Event Details for CA-AM Certification Exam Prep Workshop (Face-to-Face)">
+            <strong class="c-event-date-stub__event-name" role="heading" aria-level="2">
+                CA-AM Certification Exam Prep Workshop (Face-to-Face)
+            </strong>
+        </a>
+            <span class="time c-event-date-stub__time">9:00 AM - 5:00 PM</span>
+               <span class="time c-event-date-stub__time"><small>MDT</small></span>
+
+        <a href="/events/ca-am-certification-exam-prep-workshop-face-to-face-may2025" data-aria-label="Event Details for CA-AM Certification Exam Prep Workshop (Face-to-Face)">
+            <span class="c-event-date-stub__btn">
+                Details
+            </span>
+        </a>
+    </div>
+</div>
+                            </div>
+                            <div class="event" role="listitem">
+                                
+
+<div class="event-table c-event-date-stub">
+    <div class="c-event-date-stub__wrapper">
+        <div class="date-stub c-event-date-stub__start" title="Starts May 5, 2025 at 9:00 AM">
+            May <strong>5</strong>
+        </div>
+
+    </div>
+
+    <div class="title c-event-date-stub__event-wrapper">
+        <a href="/events/csap-certification-exam-prep-workshop-may2025" data-aria-label="Event Details for CSAP Certification Exam Prep Workshop (Face-toFace)">
+            <strong class="c-event-date-stub__event-name" role="heading" aria-level="2">
+                CSAP Certification Exam Prep Workshop (Face-toFace)
+            </strong>
+        </a>
+            <span class="time c-event-date-stub__time">9:00 AM - 5:00 PM</span>
+               <span class="time c-event-date-stub__time"><small>MDT</small></span>
+
+        <a href="/events/csap-certification-exam-prep-workshop-may2025" data-aria-label="Event Details for CSAP Certification Exam Prep Workshop (Face-toFace)">
+            <span class="c-event-date-stub__btn">
+                Details
+            </span>
+        </a>
+    </div>
+</div>
+                            </div>
+                            <div class="event" role="listitem">
+                                
+
+<div class="event-table c-event-date-stub">
+    <div class="c-event-date-stub__wrapper">
+        <div class="date-stub c-event-date-stub__start" title="Starts May 5, 2025 at 9:00 AM">
+            May <strong>5</strong>
+        </div>
+
+    </div>
+
+    <div class="title c-event-date-stub__event-wrapper">
+        <a href="/events/pid-alliance-management-workshop" data-aria-label="Event Details for P.I.D. Alliance Management Workshop">
+            <strong class="c-event-date-stub__event-name" role="heading" aria-level="2">
+                P.I.D. Alliance Management Workshop
+            </strong>
+        </a>
+            <span class="time c-event-date-stub__time">9:00 AM - 5:00 PM</span>
+               <span class="time c-event-date-stub__time"><small>MDT</small></span>
+
+        <a href="/events/pid-alliance-management-workshop" data-aria-label="Event Details for P.I.D. Alliance Management Workshop">
+            <span class="c-event-date-stub__btn">
+                Details
+            </span>
+        </a>
+    </div>
+</div>
+                            </div>
+                            <div class="event" role="listitem">
+                                
+
+<div class="event-table c-event-date-stub">
+    <div class="c-event-date-stub__wrapper">
+        <div class="date-stub c-event-date-stub__start" title="Starts July 29, 2025 at 11:00 AM">
+            Jul <strong>29</strong>
+        </div>
+
+            <div class="to-separator c-event-date-stub__separator">
+                to
+            </div>
+            <div class="c-event-date-stub__separator--slash" aria-label="OR">
+                /
+            </div>
+            <div class="date-stub end-date c-event-date-stub__end-date" title="Ends July 30, 2025 at 3:30 PM">
+                Jul <strong>30</strong>
+            </div>
+    </div>
+
+    <div class="title c-event-date-stub__event-wrapper">
+        <a href="/events/ca-am-certification-exam-prep-workshop--live-online-instructor-led" data-aria-label="Event Details for CA-AM Certification Exam Prep Workshop – Live Online Instructor-led">
+            <strong class="c-event-date-stub__event-name" role="heading" aria-level="2">
+                CA-AM Certification Exam Prep Workshop – Live Online Instructor-led
+                    <i class="fa fa-laptop c-event-date-stub__virtual-offering-indicator" role="img" title="This is a virtual offering."></i>
+            </strong>
+        </a>
+
+        <a href="/events/ca-am-certification-exam-prep-workshop--live-online-instructor-led" data-aria-label="Event Details for CA-AM Certification Exam Prep Workshop – Live Online Instructor-led">
+            <span class="c-event-date-stub__btn">
+                Details
+            </span>
+        </a>
+    </div>
+</div>
+                            </div>
+                            <div class="event" role="listitem">
+                                
+
+<div class="event-table c-event-date-stub">
+    <div class="c-event-date-stub__wrapper">
+        <div class="date-stub c-event-date-stub__start" title="Starts September 17, 2025 at 9:00 AM">
+            Sep <strong>17</strong>
+        </div>
+
+            <div class="to-separator c-event-date-stub__separator">
+                to
+            </div>
+            <div class="c-event-date-stub__separator--slash" aria-label="OR">
+                /
+            </div>
+            <div class="date-stub end-date c-event-date-stub__end-date" title="Ends September 18, 2025 at 5:00 PM">
+                Sep <strong>18</strong>
+            </div>
+    </div>
+
+    <div class="title c-event-date-stub__event-wrapper">
+        <a href="https://asapeusummit.org/" data-aria-label="Event Details for 2025 ASAP European Summit" target="_blank">
+            <strong class="c-event-date-stub__event-name" role="heading" aria-level="2">
+                2025 ASAP European Summit
+            </strong>
+        </a>
+
+        <a href="https://asapeusummit.org/" data-aria-label="Event Details for 2025 ASAP European Summit" target="_blank">
+            <span class="c-event-date-stub__btn">
+                Details
+            </span>
+        </a>
+    </div>
+</div>
+                            </div>
+                            <div class="event" role="listitem">
+                                
+
+<div class="event-table c-event-date-stub">
+    <div class="c-event-date-stub__wrapper">
+        <div class="date-stub c-event-date-stub__start" title="Starts November 17, 2025 at 9:00 AM">
+            Nov <strong>17</strong>
+        </div>
+
+            <div class="to-separator c-event-date-stub__separator">
+                to
+            </div>
+            <div class="c-event-date-stub__separator--slash" aria-label="OR">
+                /
+            </div>
+            <div class="date-stub end-date c-event-date-stub__end-date" title="Ends November 19, 2025 at 5:00 PM">
+                Nov <strong>19</strong>
+            </div>
+    </div>
+
+    <div class="title c-event-date-stub__event-wrapper">
+        <a href="https://asapbiopharma.org/" data-aria-label="Event Details for 2025 ASAP BioPharma Conference" target="_blank">
+            <strong class="c-event-date-stub__event-name" role="heading" aria-level="2">
+                2025 ASAP BioPharma Conference
+            </strong>
+        </a>
+
+        <a href="https://asapbiopharma.org/" data-aria-label="Event Details for 2025 ASAP BioPharma Conference" target="_blank">
+            <span class="c-event-date-stub__btn">
+                Details
+            </span>
+        </a>
+    </div>
+</div>
+                            </div>
+                            <div class="event" role="listitem">
+                                
+
+<div class="event-table c-event-date-stub">
+    <div class="c-event-date-stub__wrapper">
+        <div class="date-stub c-event-date-stub__start" title="Starts November 17, 2025 at 9:00 AM">
+            Nov <strong>17</strong>
+        </div>
+
+    </div>
+
+    <div class="title c-event-date-stub__event-wrapper">
+        <a href="/events/ca-am-certification-exam-prep-workshop-face-to-face-boston" data-aria-label="Event Details for CA-AM Certification Exam Prep Workshop (Face-to-Face)">
+            <strong class="c-event-date-stub__event-name" role="heading" aria-level="2">
+                CA-AM Certification Exam Prep Workshop (Face-to-Face)
+            </strong>
+        </a>
+            <span class="time c-event-date-stub__time">9:00 AM - 5:00 PM</span>
+               <span class="time c-event-date-stub__time"><small>EST</small></span>
+
+        <a href="/events/ca-am-certification-exam-prep-workshop-face-to-face-boston" data-aria-label="Event Details for CA-AM Certification Exam Prep Workshop (Face-to-Face)">
+            <span class="c-event-date-stub__btn">
+                Details
+            </span>
+        </a>
+    </div>
+</div>
+                            </div>
+                    </div>
+                            <div style="text-align:center;margin-bottom: 5px;">
+                    <a class="btn btn-primary" href="/events/?PastEvents=1">
+                        View Past Events
+                    </a>
+                </div>
+        </div>
+        <div class="o-column g-events__sidebar extra-events">
+            <h3 class="ribbon">
+<novi-content-wrapper>Signature Events</novi-content-wrapper></h3>
+            <div class="clearfix"></div>
+            
+
+            <h3 class="ribbon">
+<novi-content-wrapper>Other Events</novi-content-wrapper></h3>
+            <div class="clearfix"></div>
+            <div class="other-events">
+                
+
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+
+
+
   <div class="container">
     <div class="title-copy-container">
       <div class="grid-container cols-1-2 container">
@@ -39,7 +367,7 @@
         </div>
       </div>
     </div>
-    
+
     <div class="grid-container">
       <div class="grid-item">
         <h4 style="text-align: left;">Navigation</h4>

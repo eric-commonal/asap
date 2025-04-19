@@ -465,7 +465,7 @@ div.c-nav-centered__search > div {
 
 /* Event list styling */
 
-.event-list-container {
+.event-list-container:not(.moved-up) {
   background-color: var(--light-gray);    
   padding: 20px;
   margin: 60px auto;
