@@ -109,7 +109,6 @@ h6::before {
 a {
   color: var(--tertiary-color);
   text-decoration: none;
-  font-weight: 500;
 }
 
 a:hover {
