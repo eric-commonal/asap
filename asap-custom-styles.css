@@ -807,16 +807,17 @@ label {
 }
 
 /* Typography inside grid items */
-.grid-item p {
-  font-size: 0.8em;
+.grid-container.small .grid-item p,
+.grid-container.small .grid-item ul,
+.grid-container.small .grid-item ol,
+.grid-container .grid-item.small p,
+.grid-container .grid-item.small ul,
+.grid-container .grid-item.small ol {
+    font-size: 0.8rem;
 }
 
 .grid-item :is(h2, h3, h4, h5, h6) {
   margin-top: 20px !important;
-}
-
-td p {
-  margin: 3px 10px !important;
 }
 
 .first {
