@@ -812,7 +812,7 @@ label {
 .grid-container .grid-item.small-text p,
 .grid-container .grid-item.small-text ul,
 .grid-container .grid-item.small-text ol {
-    font-size: 0.8rem;
+    font-size: 1.0rem;
 }
 
 .grid-item :is(h2, h3, h4, h5, h6) {
