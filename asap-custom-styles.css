@@ -806,12 +806,12 @@ label {
 }
 
 /* Typography inside grid items */
-.grid-container.small .grid-item p,
-.grid-container.small .grid-item ul,
-.grid-container.small .grid-item ol,
-.grid-container .grid-item.small p,
-.grid-container .grid-item.small ul,
-.grid-container .grid-item.small ol {
+.grid-container.small-text .grid-item p,
+.grid-container.small-text .grid-item ul,
+.grid-container.small-text .grid-item ol,
+.grid-container .grid-item.small-text p,
+.grid-container .grid-item.small-text ul,
+.grid-container .grid-item.small-text ol {
     font-size: 0.8rem;
 }
 
