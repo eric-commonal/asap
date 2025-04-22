@@ -658,6 +658,23 @@ h1 novi-content-wrapper {
   margin-right: 35%;
 }
 
+.header-ribbon h2 {
+  margin: 100px 0; /* Keep your vertical spacing */
+  max-width: 1110px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+  color: var(--white-color) !important;
+  font-family: neulis-neue, var(--font-family) !important;
+  font-size: 1.5em;
+  position: relative;
+  z-index: 2;
+}
+
+h2 novi-content-wrapper {
+  margin-right: 35%;
+}
+
 /* Media query for mobile screens */
 @media (max-width: 768px) {
   .header-ribbon::after {
@@ -668,6 +685,12 @@ h1 novi-content-wrapper {
     max-width: 100%;
     margin: 50px 0; /* Reduced vertical spacing for mobile */
     font-size: 2.5em !important; /* Smaller font for mobile */
+  }
+
+    .header-ribbon h2 {
+    max-width: 100%;
+    margin: 50px 0; /* Reduced vertical spacing for mobile */
+    font-size: 1.0em !important; /* Smaller font for mobile */
   }
 }
 
