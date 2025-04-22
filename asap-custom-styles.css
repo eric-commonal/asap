@@ -764,9 +764,6 @@ label {
     > a {
       color: var(--text-color) !important;
       font: normal 1em var(--font-family);
-      &:hover {
-        color: var(--primary-color) !important;
-      }
     }
   }
 }
