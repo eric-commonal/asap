@@ -208,6 +208,7 @@ div.c-nav-centered__search > div {
 }
 
 /* Footer Styling */
+/* TODO: weight on links */
 .c-footer {
   background-color: var(--primary-color);
   padding-top: 64px;
@@ -367,9 +368,11 @@ div.c-nav-centered__search > div {
   font-size: 16px;
 }
 
+.body-content .main-event .event-info .btn.btn.btn-transparent:hover,
+.btn.btn-transparent:hover,
 .btn.btn-secondary:hover {
-  background-color: var(--secondary-color);
-  color: var(--white-color);
+  background-color: var(--secondary-color) !important;
+  color: var(--white-color) !important;
 }
 
 /* About section */
@@ -467,6 +470,9 @@ div.c-nav-centered__search > div {
 
 /* Event list styling */
 
+/* active state on filters more pronounces  */
+/* consistency on cals in colors, pills */
+
 .event-list-container:not(.moved-up) {
   background-color: var(--light-gray);    
   padding: 20px;
@@ -497,17 +503,18 @@ div.c-nav-centered__search > div {
           }
         }
         .c-event-date-stub__event-name {
-          color: #000 !important;
+          color: var(--dark-blue) !important;
           font-size: 24px !important;
           font-weight: 600 !important;
           line-height: 1.60;
         }
 
         .time.c-event-date-stub__time {
-          display: inline-block;
+          display: block;
           text-transform: uppercase !important;
-          color: var(--secondary-color) !important;
-          padding: 8px 18px;
+          color: var(--text-color) !important;
+          background-color: transparent;
+          padding: 0;
           font-weight: 400 !important;
           font-size: 16px !important;
         }
@@ -596,6 +603,7 @@ blockquote {
 
 
 /* hero */
+/* TODO: adjust hero image bg */
 .header-ribbon {
   background-color: var(--primary-color);
   text-align: left;
@@ -605,6 +613,7 @@ blockquote {
   width: 100vw;
   left: 50%;
   transform: translateX(-50%);
+  border: none;
 }
 
 .header-ribbon::after {
@@ -718,6 +727,8 @@ label {
   color: var(--white-color);
 }
 
+/* menus colors */
+/* TODO: update teratiay mnues */
 .navbar-nav > li {
   &.c-nav-navigation__toggle-wrapper.open {
     > a {
@@ -735,6 +746,10 @@ label {
     }
   }
 }
+.navbar-nav>li>.dropdown-menu>li>a {
+
+}
+
 
 /* Base grid container styles */
 .grid-container {
@@ -807,17 +822,17 @@ label {
 }
 
 /* Typography inside grid items */
-.grid-item p {
+/* .grid-item p {
   font-size: 0.8em;
-}
+} */
 
 .grid-item :is(h2, h3, h4, h5, h6) {
   margin-top: 20px !important;
 }
 
-td p {
+/* td p {
   margin: 3px 10px !important;
-}
+} */
 
 .first {
   font-size: 1.4em !important;
