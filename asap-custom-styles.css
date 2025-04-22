@@ -648,13 +648,16 @@ blockquote {
 .header-ribbon {
   background-color: var(--primary-color);
   text-align: left;
-  padding: 20px 0;
+  padding: 20px;
   position: relative;
   overflow: hidden;
   width: 100vw;
   left: 50%;
   transform: translateX(-50%);
   border: none;
+  @media all and (min-width: 768px) {
+    padding: 20px 0;
+  }
 }
 
 .header-ribbon::after {
@@ -833,9 +836,11 @@ label {
   .navbar-nav {
     > li {
       /* first level */
-      &.c-nav-navigation__toggle-wrapper.open {
-        > a.active {
-          color: var(--secondary-color) !important;
+      &.c-nav-navigation__toggle-wrapper {
+        &.open {
+          > a.active {
+            color: var(--secondary-color) !important;
+          }
         }
         a {
           font-weight: 600;
