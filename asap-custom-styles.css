@@ -351,7 +351,8 @@ div.c-nav-centered__search > div {
 .btn.btn-primary,
 .c-event-date-stub__btn,
 .c-hp-about-association__p .btn.btn-primary,
-.btn-success {
+.btn-success,
+.btn-primary {
   padding: 15px 30px;
   border-radius: 8px;
   background-color: var(--dark-blue) !important;
@@ -361,6 +362,7 @@ div.c-nav-centered__search > div {
   transition: all 0.3s ease;
 }
 
+.btn-primary:hover,
 .btn.btn-primary:hover,
 .c-hp-about-association__p .btn.btn-primary:hover,
 .btn-success:hover {
@@ -644,6 +646,7 @@ blockquote {
   }
 }
 
+
 /* hero */
 .header-ribbon {
   background-color: var(--primary-color);
@@ -656,61 +659,56 @@ blockquote {
   transform: translateX(-50%);
   border: none;
   @media all and (min-width: 768px) {
-    padding: 20px 0;
+    padding: 100px 20px;
   }
-}
 
-.header-ribbon::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  height: 100%;
-  width: 30%; /* Reduced width to not overlap too much */
-  background-image: url("https://assets-staging.noviams.com/novi-file-uploads/asap/graphics/asap-hero-pattern.svg");
-  background-repeat: no-repeat;
-  background-position: left center;
-  background-size: cover;
-  z-index: 1;
-}
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 30%; /* Reduced width to not overlap too much */
+    background-image: url("https://assets-staging.noviams.com/novi-file-uploads/asap/graphics/asap-hero-pattern.svg");
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: cover;
+    z-index: 1;
+  }
 
-.header-ribbon h1 {
-  margin: 100px 0; /* Keep your vertical spacing */
-  max-width: 1110px;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: left;
-  color: var(--white-color) !important;
-  font-family: neulis-neue, var(--font-family) !important;
-  font-size: 3.5em;
-  position: relative;
-  z-index: 2;
-}
+  h1 {
+    max-width: 1140px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+    color: var(--white-color) !important;
+    font-family: neulis-neue, var(--font-family) !important;
+    font-size: 3.5em;
+    position: relative;
+    z-index: 2;
+    margin-bottom: 2rem;
+    padding-right: 20%;
+  }
 
-h1 novi-content-wrapper {
-  margin-right: 35%;
-}
 
-.header-ribbon h2.subtitle {
-  margin: 100px 0; /* Keep your vertical spacing */
-  max-width: 1110px;
-  margin-left: auto !important;
-  margin-right: auto !important;
-  text-align: left;
-  color: var(--white-color) !important;
-  font-family: neulis-neue, var(--font-family) !important;
-  font-size: 1.5em;
-  position: relative;
-  z-index: 2;
-}
-
-h2.subtitle novi-content-wrapper {
-  margin-right: 35% !important;
-}
-
-.header-ribbon {
+  .subtitle,
+  h2, 
   p {
-    color: var(--white-color);
+    max-width: 1140px;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    text-align: left;
+    color: var(--white-color) !important;
+    font-family: neulis-neue, var(--font-family) !important;
+    font-size: 1.5em;
+    line-height: 1.5;
+    position: relative;
+    z-index: 2;
+    padding-right: 0%;
+    @media all and (min-width: 768px) {
+      padding-right: 20%;
+
+    }
   }
 }
 
@@ -1365,6 +1363,11 @@ tbody tr:hover {
   #join-link::after {
     color: var(--light-gray);
   }
+
+  .items-in-cart {
+    background-color: var(--secondary-color) !important;
+    border-radius: 8px;
+  }
 }
 
 /* accordion */
@@ -1501,5 +1504,33 @@ tbody tr:hover {
     .listing-table .actions-bar__sort {
       position: relative;
     }
+  }
+}
+
+
+
+/* store */
+.product-list-container {
+  .products .product .btn:active, 
+  .products .product .btn:focus, 
+  .products .product .btn:hover {
+    border-color: var(--secondary-color);
+    border: 2px solid var(--secondary-color);
+    color: var(--white-color);
+    background: var(--secondary-color);
+  }
+
+  .g-product__content--feature {
+    width: 100%;
+
+    .product {
+      *:not(p):not(a) {
+        color: var(--text-color);
+      }
+    }
+  }
+
+  .g-product__sidebar {
+    display: none;
   }
 }
