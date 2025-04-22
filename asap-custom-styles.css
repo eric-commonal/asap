@@ -8,6 +8,7 @@
   --white-color: #ffffff;
   --light-gray: #eff6f5;
   --dark-blue: #001062;
+  --aqua: #52b5c2;
   --border-gray: #bababa;
   --highlight-orange: #ff7840;
   --input-border: #0d2894;
@@ -829,6 +830,18 @@ label {
   --item-bg: #eff6f5;
 }
 
+.bg-navy > .grid-item:not([class*="bg-"]) {
+  --item-bg: #fff;
+}
+
+.bg-aqua > .grid-item:not([class*="bg-"]) {
+  --item-bg: #52b5c2;
+}
+
+.bg-orange > .grid-item:not([class*="bg-"]) {
+  --item-bg: #FF7840;
+}
+
 /* Background color variants - individual item level */
 .grid-item.bg-white {
   --item-bg: var(--white-color);
@@ -836,6 +849,20 @@ label {
 
 .grid-item.bg-light {
   --item-bg: var(--light-gray);
+}
+
+.grid-item.bg-navy {
+  --item-bg: var(--primary-color);
+  color: var(--white-color);
+}
+
+.grid-item.bg-aqua {
+  --item-bg: var(--aqua);
+}
+
+.grid-item.bg-orange {
+  --item-bg: var(--highlight-orange);
+ color: var(--white-color);
 }
 
 /* Typography inside grid items */
