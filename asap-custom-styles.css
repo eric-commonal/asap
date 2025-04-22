@@ -109,7 +109,6 @@ h6::before {
 a {
   color: var(--tertiary-color);
   text-decoration: none;
-  font-weight: 500;
 }
 
 a:hover {
@@ -139,7 +138,7 @@ code {
   padding-top: 30px;
 }
 
-.intro {
+.well.box.intro {
   padding: 60px 0 0;
 }
 
@@ -622,11 +621,11 @@ blockquote {
   top: 0;
   right: 0;
   height: 100%;
-  width: 50%; /* Reduced width to not overlap too much */
+  width: 30%; /* Reduced width to not overlap too much */
   background-image: url("https://assets-staging.noviams.com/novi-file-uploads/asap/graphics/asap-hero-pattern.svg");
   background-repeat: no-repeat;
-  background-position: right center;
-  background-size: contain;
+  background-position: left center;
+  background-size: cover;
   z-index: 1;
 }
 
@@ -730,6 +729,7 @@ label {
 /* menus colors */
 /* TODO: update teratiay mnues */
 .navbar-nav > li {
+  /* first level */
   &.c-nav-navigation__toggle-wrapper.open {
     > a {
       color: var(--primary-color) !important;
@@ -745,8 +745,21 @@ label {
       color: var(--primary-color);
     }
   }
-}
-.navbar-nav>li>.dropdown-menu>li>a {
+
+  /* secondary */
+  >.dropdown-menu>li{
+    &:hover {
+      color: var(--white-color) !important;
+    }
+    >a { 
+    color: var(--text-color) !important;
+    font: normal 1em var(--font-family);
+    &:hover {
+      color: var(--primary-color) !important;
+    }
+  }}
+
+
 
 }
 
@@ -822,17 +835,18 @@ label {
 }
 
 /* Typography inside grid items */
-/* .grid-item p {
-  font-size: 0.8em;
-} */
+.grid-container.small-text .grid-item p,
+.grid-container.small-text .grid-item ul,
+.grid-container.small-text .grid-item ol,
+.grid-container .grid-item.small-text p,
+.grid-container .grid-item.small-text ul,
+.grid-container .grid-item.small-text ol {
+    font-size: 1.0rem;
+}
 
 .grid-item :is(h2, h3, h4, h5, h6) {
   margin-top: 20px !important;
 }
-
-/* td p {
-  margin: 3px 10px !important;
-} */
 
 .first {
   font-size: 1.4em !important;
@@ -864,9 +878,9 @@ ol {
     background: var(--secondary-color) !important;
   }
 
-  .navbar-nav > li > .dropdown-menu > li > a:hover {
+  /* .navbar-nav > li > .dropdown-menu > li > a:hover {
     color: var(--white-color) !important;
-  }
+  } */
 }
 
 .c-member-badge__leadership-role-banner {
