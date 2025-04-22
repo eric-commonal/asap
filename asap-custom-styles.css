@@ -1408,11 +1408,14 @@ tbody tr:hover {
       }
       a {
         background-color: var(--primary-color);
+        &:hover {
+          color: var(--white-color);
+        }
       }
     }
 
     a {
-      color: var(--primary-color) !important;
+      color: var(--primary-color);
     }
   }
 
