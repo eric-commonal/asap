@@ -1235,6 +1235,17 @@ tbody tr:hover {
           position: absolute;
         }
       }
+
+      .bootstrap-accordion-title {
+        color: var(--secondary-color);
+        transition: color .2s ease;
+        &.collapsed {
+          color: var(--text-color);
+        }
+        &:hover{ 
+          color: var(--secondary-color);
+        }
+      }
     }
   }
 
