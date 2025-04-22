@@ -661,8 +661,8 @@ h1 novi-content-wrapper {
 .header-ribbon h2 {
   margin: 100px 0; /* Keep your vertical spacing */
   max-width: 1110px;
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: auto !important;
+  margin-right: auto !important;
   text-align: left;
   color: var(--white-color) !important;
   font-family: neulis-neue, var(--font-family) !important;
@@ -672,7 +672,7 @@ h1 novi-content-wrapper {
 }
 
 h2 novi-content-wrapper {
-  margin-right: 35%;
+  margin-right: 35% !important;
 }
 
 /* Media query for mobile screens */
@@ -688,7 +688,7 @@ h2 novi-content-wrapper {
   }
 
     .header-ribbon h2 {
-    max-width: 100%;
+    max-width: 100% !important;
     margin: 50px 0; /* Reduced vertical spacing for mobile */
     font-size: 1.0em !important; /* Smaller font for mobile */
   }
