@@ -140,7 +140,6 @@ hr {
   color: var(--primary-color) !important;
 }
 
-
 /* icons fontawesome */
 .fa,
 .fas {
@@ -148,8 +147,6 @@ hr {
 }
 
 /* novi icon */
-
-
 
 /* Layout */
 .inner-content {
@@ -756,7 +753,9 @@ h2.subtitle novi-content-wrapper {
   border-style: none;
 }
 
-.form-control:not(.search-text):not(#search-box):not(#Category):not(#eventSearchInput) {
+.form-control:not(.search-text):not(#search-box):not(#Category):not(
+    #eventSearchInput
+  ) {
   border-radius: 4px;
   border: solid 1px var(--input-border) !important;
   padding: 20px;
@@ -796,14 +795,16 @@ label {
   color: var(--white-color);
 }
 
-/* menus colors */
+/* desktop menus colors */
 .navbar-nav > li {
   /* first level */
   &.c-nav-navigation__toggle-wrapper.open {
-    > a {
+    > a,
+    > a.active {
       color: var(--primary-color) !important;
     }
   }
+  .c-nav-utility__span,
   & > a {
     font: normal 1em var(--font-family);
     color: var(--text-color);
@@ -823,6 +824,35 @@ label {
     > a {
       color: var(--text-color) !important;
       font: normal 1em var(--font-family);
+    }
+  }
+}
+
+@media all and (max-width: 768px) {
+  /* mobile menus colors */
+  .navbar-nav {
+    > li {
+      /* first level */
+      &.c-nav-navigation__toggle-wrapper.open {
+        > a.active {
+          color: var(--secondary-color) !important;
+        }
+        a {
+          font-weight: 600;
+          padding: 5px 0;
+        }
+      }
+    }
+    #search-panel-mobile .form-group .search-text {
+      border-color: var(--input-border);
+      border-radius: 26px;
+      color: var(--text-color);
+      &::placeholder {
+        color: var(--text-color);
+      }
+    }
+    #search-panel-mobile .form-group .search-go {
+      padding: 6px 10px;
     }
   }
 }
@@ -1438,7 +1468,7 @@ tbody tr:hover {
         }
       }
       .member-since,
-      .for-border{
+      .for-border {
         background-color: var(--primary-color) !important;
       }
     }
@@ -1448,7 +1478,6 @@ tbody tr:hover {
     }
   }
 
-    
   .c-member-compass-well {
     .batch-actions {
       .novicon {
@@ -1468,5 +1497,4 @@ tbody tr:hover {
       position: relative;
     }
   }
-
 }
