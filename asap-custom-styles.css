@@ -1406,6 +1406,9 @@ tbody tr:hover {
       .novicon {
         color: var(--white-color);
       }
+      a {
+        background-color: var(--primary-color);
+      }
     }
 
     a {
@@ -1424,7 +1427,7 @@ tbody tr:hover {
       }
       .member-since,
       .for-border{
-        background-color: var(--primary-color);
+        background-color: var(--primary-color) !important;
       }
     }
 
