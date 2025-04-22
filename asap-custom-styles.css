@@ -391,6 +391,7 @@ div.c-nav-centered__search > div {
 .btn-secondary:hover {
   background-color: var(--secondary-color) !important;
   color: var(--white-color) !important;
+  border: none;
 }
 
 /* About section */
@@ -705,6 +706,12 @@ h1 novi-content-wrapper {
 
 h2.subtitle novi-content-wrapper {
   margin-right: 35% !important;
+}
+
+.header-ribbon {
+  p {
+    color: var(--white-color);
+  }
 }
 
 /* Media query for mobile screens */
@@ -1411,6 +1418,7 @@ tbody tr:hover {
         background-color: var(--primary-color);
         &:hover {
           color: var(--white-color);
+          background-color: var(--primary-color);
         }
       }
     }
