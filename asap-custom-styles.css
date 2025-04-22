@@ -758,7 +758,7 @@ label {
 
   /* secondary */
   > .dropdown-menu > li {
-    &:hover a {
+    &:hover > a {
       color: var(--white-color) !important;
     }
     > a {
