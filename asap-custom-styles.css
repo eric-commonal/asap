@@ -479,7 +479,6 @@ div.c-nav-centered__search > div {
 
 /* Event list styling */
 
-/* active state on filters more pronounces  */
 /* consistency on cals in colors, pills */
 
 .event-list-container:not(.moved-up) {
@@ -504,6 +503,9 @@ div.c-nav-centered__search > div {
         &.o-filter-bar-toggle__btn--active {
           background-color: var(--dark-blue) !important;
           color: var(--white-color) !important;
+          .fa, .fas {
+            color: var(--white-color) !important;
+          }
         }
       }
 
@@ -513,6 +515,7 @@ div.c-nav-centered__search > div {
           border: 1px solid var(--dark-blue);
           border-radius: 0 20px 20px 0;
           color: var(--secondary-color);
+          padding: 4px 8px;
           &:hover {
             background-color: var(--secondary-color);
             border: 1px solid var(--secondary-color);
@@ -551,7 +554,7 @@ div.c-nav-centered__search > div {
           text-transform: uppercase !important;
           color: var(--text-color) !important;
           background-color: transparent;
-          padding: 0;
+          padding-left: 0;
           font-weight: 400 !important;
           font-size: 16px !important;
         }
@@ -597,9 +600,9 @@ div.c-nav-centered__search > div {
   border-radius: 8px;
   padding: 4px 8px;
   display: inline-block;
-  color: var(--secondary-color);
+  color: var(--text-color) !important;
   font-size: 16px;
-  font-weight: 400;
+  font-weight: 400 !important;
   line-height: 1;
   text-transform: capitalize;
 }
@@ -646,10 +649,6 @@ blockquote {
   }
 }
 
-/* homeepage hero */
-.slick-slide .overlay .container .event-info h1 {
-  color: var(--white-color) !important;
-}
 
 .slick-slide .overlay .date {
   display: none;
