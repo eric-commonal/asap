@@ -655,8 +655,21 @@ blockquote {
   display: none;
 }
 
+.slick-slide .overlay .name {
+  background: transparent;
+}
+
+.slick-slide {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.slick-slide .background {
+  border-radius: 8px;
+}
+
 .section.featured-slider {
-margin-top: 40px;
+padding-top: 100px;
 background: var(--light-gray);
 }
 
