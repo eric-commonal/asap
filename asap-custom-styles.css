@@ -648,6 +648,10 @@ blockquote {
 
 
 /* hero */
+.slick-slide[data-slick-index="0"] .overlay .container .event-info h1 {
+  color: var(--white-color) !important;
+}
+
 .header-ribbon {
   background-color: var(--primary-color);
   text-align: left;
