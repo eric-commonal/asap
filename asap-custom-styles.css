@@ -646,12 +646,21 @@ blockquote {
   }
 }
 
-
-/* hero */
+/* homeepage hero */
 .slick-slide .overlay .container .event-info h1 {
   color: var(--white-color) !important;
 }
 
+.slick-slide .overlay .date {
+  display: none;
+}
+
+.section.featured-slider {
+margin-top: 40px;
+background: var(--light-gray);
+}
+
+/* page hero */
 .header-ribbon {
   background-color: var(--primary-color);
   text-align: left;
