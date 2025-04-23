@@ -646,8 +646,34 @@ blockquote {
   }
 }
 
+/* homeepage hero */
+.slick-slide .overlay .container .event-info h1 {
+  color: var(--white-color) !important;
+}
 
-/* hero */
+.slick-slide .overlay .date {
+  display: none;
+}
+
+.slick-slide .overlay .name {
+  background: transparent;
+}
+
+.slick-slide {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.slick-slide .background {
+  border-radius: 8px;
+}
+
+.section.featured-slider {
+padding-top: 50px;
+background: var(--light-gray);
+}
+
+/* page hero */
 .header-ribbon {
   background-color: var(--primary-color);
   text-align: left;
