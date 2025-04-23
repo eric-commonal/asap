@@ -648,7 +648,7 @@ blockquote {
 
 
 /* hero */
-.slick-slide[data-slick-index="0"] .overlay .container .event-info h1 {
+.slick-slide .overlay .container .event-info h1 {
   color: var(--white-color) !important;
 }
 
