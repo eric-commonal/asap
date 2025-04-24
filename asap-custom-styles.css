@@ -710,6 +710,7 @@ background: var(--light-gray);
     color: var(--white-color) !important;
     font-family: neulis-neue, var(--font-family) !important;
     font-size: 3.5em;
+    font-weight: 600 !important;
     position: relative;
     z-index: 2;
     margin-bottom: 2rem;
