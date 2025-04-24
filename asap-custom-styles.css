@@ -742,6 +742,20 @@ background: var(--light-gray);
 background-color: var(--aqua);
 }
 
+.c-body-content__asap-biopharma-conference .header-ribbon h1,
+.c-body-content__asap-biopharma-conference .header-ribbon h2.subtitle {
+color: var(--primary-color);
+}
+
+.c-body-content__asap-summit .header-ribbon {
+background-color: var(--light-grey);
+}
+
+.c-body-content__asap-summit .header-ribbon h1,
+.c-body-content__asap-summit .header-ribbon h2.subtitle {
+color: var(--primary-color);
+}
+
 /* Media query for mobile screens */
 @media (max-width: 768px) {
   .header-ribbon::after {
