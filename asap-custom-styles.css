@@ -737,6 +737,11 @@ background: var(--light-gray);
   }
 }
 
+/* Custom header ribbon colors */
+.c-body-content__asap-biopharma-conference .header-ribbon {
+background-color: var(--aqua);
+}
+
 /* Media query for mobile screens */
 @media (max-width: 768px) {
   .header-ribbon::after {
