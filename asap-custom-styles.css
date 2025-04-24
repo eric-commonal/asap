@@ -8,7 +8,8 @@
   --white-color: #ffffff;
   --light-gray: #eff6f5;
   --dark-blue: #001062;
-  --aqua: #52b5c2;
+  --teal: #52b5c2;
+  --aqua: #95F1F1;
   --border-gray: #bababa;
   --highlight-orange: #ff7840;
   --input-border: #0d2894;
@@ -737,13 +738,45 @@ background: var(--light-gray);
   }
 }
 
-/* Custom header ribbon colors */
+/* Custom header ribbons */
 .c-body-content__asap-biopharma-conference .header-ribbon {
-background-color: var(--aqua);
+background-color: var(--teal);
+}
+
+@media all and (min-width: 768px) {
+.c-body-content__asap-biopharma-conference .header-ribbon::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 30%; /* Reduced width to not overlap too much */
+    background-image: url("https://assets-staging.noviams.com/novi-file-uploads/asap/graphics/asap-hero-pattern-teal.svg");
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: cover;
+    z-index: 1;
+  }
 }
 
 .c-body-content__asap-summit .header-ribbon {
-background-color: var(--highlight-orange);
+background-color: var(--aqua);
+}
+
+@media all and (min-width: 768px) {
+.c-body-content__asap-summit .header-ribbon::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 30%; /* Reduced width to not overlap too much */
+    background-image: url("https://assets-staging.noviams.com/novi-file-uploads/asap/graphics/asap-hero-pattern-aqua-orange.svg");
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: cover;
+    z-index: 1;
+  }
 }
 
 .c-body-content__asap-biopharma-conference h1,
