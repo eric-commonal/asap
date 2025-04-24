@@ -751,7 +751,7 @@ background-color: var(--teal);
     right: 0;
     height: 100%;
     width: 30%; /* Reduced width to not overlap too much */
-    background-image: url("https://assets-staging.noviams.com/novi-file-uploads/asap/graphics/asap-hero-pattern-teal.svg");
+    background-image: url("https://assets-staging.noviams.com/novi-file-uploads/asap/graphics/asap-hero-pattern-teal-bg.svg");
     background-repeat: no-repeat;
     background-position: left center;
     background-size: cover;
@@ -771,7 +771,7 @@ background-color: var(--aqua);
     right: 0;
     height: 100%;
     width: 30%; /* Reduced width to not overlap too much */
-    background-image: url("https://assets-staging.noviams.com/novi-file-uploads/asap/graphics/asap-hero-pattern-aqua-orange.svg");
+    background-image: url("https://assets-staging.noviams.com/novi-file-uploads/asap/graphics/asap-hero-pattern-aqua-bg.svg");
     background-repeat: no-repeat;
     background-position: left center;
     background-size: cover;
