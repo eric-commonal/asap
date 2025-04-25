@@ -380,6 +380,7 @@ div.c-nav-centered__search > div {
   padding: 15px 30px;
   border-radius: 8px;
   background-color: var(--background-color) !important;
+  border: 2px solid var(--secondary-color) !important;
   color: var(--secondary-color) !important;
   border: none;
   font-size: 16px !important;
