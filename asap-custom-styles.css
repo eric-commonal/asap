@@ -762,7 +762,7 @@ background-color: var(--teal);
 }
 
 .c-body-content__asap-summit .header-ribbon {
-background-color: var(--aqua);
+background-color: var(--secondary-color);
 }
 
 @media all and (min-width: 768px) {
@@ -773,7 +773,7 @@ background-color: var(--aqua);
     right: 0;
     height: 100%;
     width: 30%; /* Reduced width to not overlap too much */
-    background-image: url("https://assets-staging.noviams.com/novi-file-uploads/asap/graphics/asap-hero-pattern-aqua-bg.svg");
+    background-image: url("https://assets-staging.noviams.com/novi-file-uploads/asap/graphics/asap-hero-pattern-orange-bg.svg");
     background-repeat: no-repeat;
     background-position: left center;
     background-size: cover;
