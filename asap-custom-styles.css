@@ -1622,7 +1622,7 @@ tbody tr:hover {
 .carousel {
       position: relative;
       background: transparent;
-      margin-bottom: 20px;
+      padding-bottom: 40px;
       overflow: hidden;
     }
     
