@@ -1652,11 +1652,16 @@ tbody tr:hover {
     }
 
 .arrow .arrow-icon {
+  color: #FF6C27 !important;
+  display: block;
+}
+
+.arrow:hover .arrow-icon {
   color: white !important;
   display: block;
 }
-    
-    .arrow-left {
+
+.arrow-left {
       left: 20px;
     }
     
