@@ -9,7 +9,7 @@
   --light-gray: #eff6f5;
   --dark-blue: #001062;
   --teal: #52b5c2;
-  --aqua: #95F1F1;
+  --aqua: #95f1f1;
   --border-gray: #bababa;
   --highlight-orange: #ff7840;
   --input-border: #0d2894;
@@ -505,7 +505,8 @@ div.c-nav-centered__search > div {
         &.o-filter-bar-toggle__btn--active {
           background-color: var(--dark-blue) !important;
           color: var(--white-color) !important;
-          .fa, .fas {
+          .fa,
+          .fas {
             color: var(--white-color) !important;
           }
         }
@@ -651,7 +652,6 @@ blockquote {
   }
 }
 
-
 .slick-slide .overlay .date {
   display: none;
 }
@@ -670,8 +670,8 @@ blockquote {
 }
 
 .section.featured-slider {
-padding-top: 50px;
-background: var(--light-gray);
+  padding-top: 50px;
+  background: var(--light-gray);
 }
 
 /* page hero */
@@ -718,9 +718,8 @@ background: var(--light-gray);
     padding-right: 20%;
   }
 
-
   .subtitle,
-  h2, 
+  h2,
   p {
     max-width: 1140px;
     margin-left: auto !important;
@@ -735,18 +734,17 @@ background: var(--light-gray);
     padding-right: 0%;
     @media all and (min-width: 768px) {
       padding-right: 20%;
-
     }
   }
 }
 
 /* Custom header ribbons */
 .c-body-content__asap-biopharma-conference .header-ribbon {
-background-color: var(--teal);
+  background-color: var(--teal);
 }
 
 @media all and (min-width: 768px) {
-.c-body-content__asap-biopharma-conference .header-ribbon::after {
+  .c-body-content__asap-biopharma-conference .header-ribbon::after {
     content: "";
     position: absolute;
     top: 0;
@@ -762,11 +760,11 @@ background-color: var(--teal);
 }
 
 .c-body-content__asap-summit .header-ribbon {
-background-color: var(--secondary-color);
+  background-color: var(--secondary-color);
 }
 
 @media all and (min-width: 768px) {
-.c-body-content__asap-summit .header-ribbon::after {
+  .c-body-content__asap-summit .header-ribbon::after {
     content: "";
     position: absolute;
     top: 0;
@@ -785,7 +783,7 @@ background-color: var(--secondary-color);
 .c-body-content__asap-biopharma-conference h2.subtitle,
 .c-body-content__asap-summit .header-ribbon h1,
 .c-body-content__asap-summit .header-ribbon h2.subtitle {
-color: var(--primary-color) !important;
+  color: var(--primary-color) !important;
 }
 
 /* Media query for mobile screens */
@@ -1605,12 +1603,10 @@ tbody tr:hover {
   }
 }
 
-
-
 /* store */
 .product-list-container {
-  .products .product .btn:active, 
-  .products .product .btn:focus, 
+  .products .product .btn:active,
+  .products .product .btn:focus,
   .products .product .btn:hover {
     border-color: var(--secondary-color);
     border: 2px solid var(--secondary-color);
@@ -1635,35 +1631,35 @@ tbody tr:hover {
 
 /* Video Carousel */
 .carousel {
-      position: relative;
-      background: transparent;
-      padding-bottom: 40px;
-      overflow: hidden;
-    }
-    
-    /* Arrow Navigation */
-    .arrow {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 50px;
-      height: 50px;
-      background: transparent;
-      color: white;
-      border-radius: 50%;
-      text-align: center;
-      line-height: 50px;
-      font-size: 24px;
-      font-weight: bold;
-      cursor: pointer;
-      z-index: 100;
-      transition: background 0.3s ease;
-      display: none;
-    }
-    
+  position: relative;
+  background: transparent;
+  padding-bottom: 40px;
+  overflow: hidden;
+}
+
+/* Arrow Navigation */
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  background: transparent;
+  color: white;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 50px;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 100;
+  transition: background 0.3s ease;
+  display: none;
+}
+
 .arrow:hover {
-    background: #FF6C27;
-  }
+  background: #ff6c27;
+}
 
 .arrow:hover .arrow-icon {
   color: white !important;
@@ -1671,106 +1667,135 @@ tbody tr:hover {
 }
 
 .arrow .arrow-icon {
-  color: #FF6C27 !important;
+  color: #ff6c27 !important;
   display: block;
 }
 
 .arrow-left {
-      left: 20px;
-    }
-    
-    .arrow-right {
-      right: 20px;
-    }
-    
-        .slide {
-      display: none;
-      width: 100%;
-      height: 500px;
-    }
-    
-        .slide iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
-    
-        .slide-control {
-      display: none;
-    }
-    
-    #slide1:checked ~ .slides #slide1-content,
-    #slide2:checked ~ .slides #slide2-content,
-    #slide3:checked ~ .slides #slide3-content {
-      display: block;
-    }
-    
-    /* Navigation Dots */
-    .dots {
-      text-align: center;
-      margin-top: 15px;
-    }
-    
-    .dot-label {
-      display: inline-block;
-      width: 15px;
-      height: 15px;
-      background: #fff;
-      border-radius: 50%;
-      margin: 0 5px;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
-    
-    /* Active dot state */
-    #slide1:checked ~ .dots .dot-1,
-    #slide2:checked ~ .dots .dot-2,
-    #slide3:checked ~ .dots .dot-3 {
-      background: #FF6C27;
-    }
-    
-    /* Show/hide appropriate arrows based on active slide */
-    #slide1:checked ~ #arrow-1-left,
-    #slide1:checked ~ #arrow-1-right,
-    #slide2:checked ~ #arrow-2-left,
-    #slide2:checked ~ #arrow-2-right,
-    #slide3:checked ~ #arrow-3-left, 
-    #slide3:checked ~ #arrow-3-right {
-      display: block;
-    }
-    
-    #slide1:checked ~ #arrow-2-left,
-    #slide1:checked ~ #arrow-2-right,
-    #slide1:checked ~ #arrow-3-left,
-    #slide1:checked ~ #arrow-3-right,
-    #slide2:checked ~ #arrow-1-left,
-    #slide2:checked ~ #arrow-1-right,
-    #slide2:checked ~ #arrow-3-left,
-    #slide2:checked ~ #arrow-3-right,
-    #slide3:checked ~ #arrow-1-left,
-    #slide3:checked ~ #arrow-1-right,
-    #slide3:checked ~ #arrow-2-left,
-    #slide3:checked ~ #arrow-2-right {
-      display: none;
-    }
-    
-    /* Responsive adjustments */
-    @media (max-width: 768px) {
-      .slide {
-        height: 350px;
+  left: 20px;
+}
+
+.arrow-right {
+  right: 20px;
+}
+
+.slide {
+  display: none;
+  width: 100%;
+  height: 500px;
+}
+
+.slide iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.slide-control {
+  display: none;
+}
+
+#slide1:checked ~ .slides #slide1-content,
+#slide2:checked ~ .slides #slide2-content,
+#slide3:checked ~ .slides #slide3-content {
+  display: block;
+}
+
+/* Navigation Dots */
+.dots {
+  text-align: center;
+  margin-top: 15px;
+}
+
+.dot-label {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  background: #fff;
+  border-radius: 50%;
+  margin: 0 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+/* Active dot state */
+#slide1:checked ~ .dots .dot-1,
+#slide2:checked ~ .dots .dot-2,
+#slide3:checked ~ .dots .dot-3 {
+  background: #ff6c27;
+}
+
+/* Show/hide appropriate arrows based on active slide */
+#slide1:checked ~ #arrow-1-left,
+#slide1:checked ~ #arrow-1-right,
+#slide2:checked ~ #arrow-2-left,
+#slide2:checked ~ #arrow-2-right,
+#slide3:checked ~ #arrow-3-left,
+#slide3:checked ~ #arrow-3-right {
+  display: block;
+}
+
+#slide1:checked ~ #arrow-2-left,
+#slide1:checked ~ #arrow-2-right,
+#slide1:checked ~ #arrow-3-left,
+#slide1:checked ~ #arrow-3-right,
+#slide2:checked ~ #arrow-1-left,
+#slide2:checked ~ #arrow-1-right,
+#slide2:checked ~ #arrow-3-left,
+#slide2:checked ~ #arrow-3-right,
+#slide3:checked ~ #arrow-1-left,
+#slide3:checked ~ #arrow-1-right,
+#slide3:checked ~ #arrow-2-left,
+#slide3:checked ~ #arrow-2-right {
+  display: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .slide {
+    height: 350px;
+  }
+}
+
+@media (max-width: 480px) {
+  .slide {
+    height: 250px;
+  }
+  .arrow {
+    display: none;
+  }
+
+  .dot-label {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+
+.g-article__content,
+.g-search__content {
+  width: 100%;
+  .header-ribbon h1 {
+    max-width: 1140px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-right: 20%;
+    .subtitle {
+      .post-date {
+        color: var(--white-color) !important;
+      }
+      .post-extra-info a {
+        color: var(--teal) !important;
       }
     }
-    
-    @media (max-width: 480px) {
-      .slide {
-        height: 250px;
-      }
-      .arrow {
-        display: none;
-      }
-      
-      .dot-label {
-        width: 12px;
-        height: 12px;
-      }
-    }
+  }
+}
+
+
+.search-results {
+  .search-result {
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    padding: 2rem;
+  }
+}
