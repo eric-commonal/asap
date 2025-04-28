@@ -1840,4 +1840,31 @@ tbody tr:hover {
   }
 }
 
+h6 + h2,
+h6 + h3,
+h6 + h4,
+h6 + h5 {
+  margin-top: 0.5rem;
+}
 
+/* Photo banner overlay styles */
+.photo-banner {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+}
+   
+.banner {
+  position: absolute;
+  background-color: #FF6C27;
+  color: white;
+  padding: 5px 10px;
+  font-weight: bold;
+  font-size: 14px;
+  text-align: center;
+  z-index: 1;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  box-sizing: border-box;
+}
