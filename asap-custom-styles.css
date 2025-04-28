@@ -1771,7 +1771,6 @@ tbody tr:hover {
   }
 }
 
-
 /* search and blog */
 .g-article__content,
 .g-search__content {
@@ -1819,6 +1818,13 @@ tbody tr:hover {
   }
 }
 
-.pagination .page-numbers li {
-  border-color: var(--dark-blue);
+.pagination {
+  .page-numbers li {
+    border-color: var(--dark-blue);
+  }
+
+  a.next,
+  a.prev {
+    color: var(--dark-blue);
+  }
 }
