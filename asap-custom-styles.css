@@ -1771,6 +1771,8 @@ tbody tr:hover {
   }
 }
 
+
+/* search and blog */
 .g-article__content,
 .g-search__content {
   width: 100%;
@@ -1799,6 +1801,9 @@ tbody tr:hover {
       &:hover {
         background-color: var(--light-gray);
       }
+      .novicon {
+        color: var(--dark-blue);
+      }
       .info {
         .novicon,
         .name,
@@ -1812,4 +1817,8 @@ tbody tr:hover {
       }
     }
   }
+}
+
+.pagination .page-numbers li {
+  border-color: var(--dark-blue);
 }
