@@ -1771,7 +1771,6 @@ tbody tr:hover {
   }
 }
 
-
 .g-article__content,
 .g-search__content {
   width: 100%;
@@ -1791,11 +1790,23 @@ tbody tr:hover {
   }
 }
 
-
 .search-results {
   .search-result {
     border-radius: 8px;
     margin-bottom: 2rem;
     padding: 2rem;
+    &:hover {
+      background-color: var(--light-gray);
+    }
+    .info {
+      .novicon,
+      .name,
+      .summary {
+        color: var(--dark-blue);
+      }
+      .link {
+        color: var(--teal) !important;
+      }
+    }
   }
 }
