@@ -284,7 +284,11 @@ div.c-nav-centered__search > div {
         a.icon {
           width: 44px;
           height: 44px;
+          &:hover {
+            background-color: #ffffff69 !important;
+          }
         }
+        
       }
     }
     .c-footer__top-right {
@@ -1829,3 +1833,5 @@ tbody tr:hover {
     color: var(--dark-blue);
   }
 }
+
+
