@@ -1784,13 +1784,13 @@ tbody tr:hover {
     margin-left: auto;
     margin-right: auto;
     padding-right: 20%;
-    .subtitle {
-      .post-date {
-        color: var(--white-color) !important;
-      }
-      .post-extra-info a {
-        color: var(--teal) !important;
-      }
+  }
+  .subtitle {
+    .post-date {
+      color: var(--white-color) !important;
+    }
+    .post-extra-info a {
+      color: var(--teal) !important;
     }
   }
 }
