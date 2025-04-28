@@ -135,10 +135,14 @@ code {
   border-radius: 4px;
 }
 
-select,
-hr {
+select {
   border-color: var(--primary-color) !important;
   color: var(--primary-color) !important;
+}
+
+hr {
+  border-color: var(--border-gray) !important;
+  color: var(--border-gray) !important;
 }
 
 /* icons fontawesome */
