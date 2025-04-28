@@ -1790,22 +1790,24 @@ tbody tr:hover {
   }
 }
 
-.search-results {
-  .search-result {
-    border-radius: 8px;
-    margin-bottom: 2rem;
-    padding: 2rem;
-    &:hover {
-      background-color: var(--light-gray);
-    }
-    .info {
-      .novicon,
-      .name,
-      .summary {
-        color: var(--dark-blue);
+.search-container {
+  .search-results {
+    .search-result {
+      border-radius: 8px;
+      margin-bottom: 2rem;
+      padding: 2rem;
+      &:hover {
+        background-color: var(--light-gray);
       }
-      .link {
-        color: var(--teal) !important;
+      .info {
+        .novicon,
+        .name,
+        .summary {
+          color: var(--dark-blue);
+        }
+        .link {
+          color: var(--teal) !important;
+        }
       }
     }
   }
