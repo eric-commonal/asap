@@ -1823,6 +1823,7 @@ tbody tr:hover {
     border-color: var(--dark-blue);
   }
 
+  li a,
   a.next,
   a.prev {
     color: var(--dark-blue);
