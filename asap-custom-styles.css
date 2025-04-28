@@ -1856,7 +1856,7 @@ h6 + h5 {
    
 .banner {
   position: absolute;
-  background-color: #FF6C27;
+  background-color: var(--highlight-orange);
   color: white;
   padding: 5px 10px;
   font-weight: bold;
@@ -1868,3 +1868,6 @@ h6 + h5 {
   right: 0;
   box-sizing: border-box;
 }
+
+.banner.teal { background-color: var(--teal); }
+.banner.navy { background-color: var(--primary-color); }
