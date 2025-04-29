@@ -1817,7 +1817,7 @@ tbody tr:hover {
     }
     .c-article-widget__h5 {
       background-color: var(--primary-color);
-      color: var(--white-color);
+      color: var(--white-color) !important;
     }
 
     .c-article-widget__categories-list {
