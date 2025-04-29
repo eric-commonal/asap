@@ -135,10 +135,14 @@ code {
   border-radius: 4px;
 }
 
-select,
-hr {
+select {
   border-color: var(--primary-color) !important;
   color: var(--primary-color) !important;
+}
+
+hr {
+  border-color: var(--border-gray) !important;
+  color: var(--border-gray) !important;
 }
 
 /* icons fontawesome */
@@ -1874,4 +1878,34 @@ tbody tr:hover {
   }
 }
 
+h6 + h2,
+h6 + h3,
+h6 + h4,
+h6 + h5 {
+  margin-top: 0.5rem;
+}
 
+/* Photo banner overlay styles */
+.photo-banner {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+}
+   
+.banner {
+  position: absolute;
+  background-color: var(--highlight-orange);
+  color: white;
+  padding: 5px 10px;
+  font-weight: bold;
+  font-size: 14px;
+  text-align: center;
+  z-index: 1;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  box-sizing: border-box;
+}
+
+.banner.teal { background-color: var(--teal); }
+.banner.navy { background-color: var(--primary-color); }
