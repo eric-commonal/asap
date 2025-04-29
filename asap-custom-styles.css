@@ -1241,8 +1241,8 @@ ol {
 }
 
 /* Remove background color */
-.novi-accordion .panel {
-  background-color: transparent;
+.panel {
+  background-color: transparent !important;
 }
 
 /* Style the panel-heading with 24px bold font and #333 color */
@@ -1313,8 +1313,8 @@ ol {
     background-color: var(--primary-color);
     width: 100% !important;
     height: 100% !important;
-    min-height: 732px !important;
-    max-height: 732px !important;
+    min-height: 632px !important;
+    max-height: 632px !important;
     padding: 2rem 0;
     .event-info {
       background-color: var(--primary-color);
