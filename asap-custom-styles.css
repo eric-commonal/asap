@@ -1241,8 +1241,8 @@ ol {
 }
 
 /* Remove background color */
-.novi-accordion .panel {
-  background-color: transparent;
+.panel {
+  background-color: transparent !important;
 }
 
 /* Style the panel-heading with 24px bold font and #333 color */
