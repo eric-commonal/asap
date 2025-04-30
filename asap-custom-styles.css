@@ -1921,14 +1921,20 @@ h6 + h5 {
 .is-sticky--desktop-menu {
   @media all and (min-width: 768px) {
     position: sticky;
-    z-index: 100;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    z-index: 1001;
     top: 0;
     padding: 1rem 0;
     background-color: var(--white-color);
   }
 
   /* on mobile, adjust spacing if also grid */
-  &.grid-container {
+  .grid-container {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
     @media all and (max-width: 768px) {
       gap: 0;
       .grid-item {
@@ -1939,7 +1945,11 @@ h6 + h5 {
       }
     }
   }
+}
 
+#content:has(.is-sticky--desktop-menu) {
+  position: relative;
+  z-index: 100;
 }
 
 /* back to top functionality */
