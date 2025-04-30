@@ -156,6 +156,9 @@ hr {
 /* Layout */
 .inner-content {
   padding-top: 60px;
+  a {
+    word-wrap: break-word;
+  }
 }
 
 .well.box.intro {
@@ -292,7 +295,6 @@ div.c-nav-centered__search > div {
             background-color: #ffffff69 !important;
           }
         }
-        
       }
     }
     .c-footer__top-right {
@@ -989,13 +991,6 @@ label {
 .cols-2-6 {
   --grid-cols-mobile: 2;
   --grid-cols-desktop: 6;
-}
-
-/* Desktop layout */
-@media (min-width: 768px) {
-  .grid-container {
-    grid-template-columns: repeat(var(--grid-cols-desktop), 1fr);
-  }
 }
 
 /* Column span classes for desktop */
@@ -1800,7 +1795,7 @@ tbody tr:hover {
 }
 
 /* blog sidebar */
-.article-content-container{
+.article-content-container {
   .g-article__sidebar {
     width: 100%;
     display: flex;
@@ -1823,7 +1818,7 @@ tbody tr:hover {
     .c-article-widget__categories-list {
       li {
         a {
-          color : var(--dark-blue);
+          color: var(--dark-blue);
         }
       }
     }
@@ -1891,7 +1886,7 @@ h6 + h5 {
   display: inline-block;
   overflow: hidden;
 }
-   
+
 .banner {
   position: absolute;
   background-color: var(--highlight-orange);
@@ -1907,5 +1902,59 @@ h6 + h5 {
   box-sizing: border-box;
 }
 
-.banner.teal { background-color: var(--teal); }
-.banner.navy { background-color: var(--primary-color); }
+.banner.teal {
+  background-color: var(--teal);
+}
+.banner.navy {
+  background-color: var(--primary-color);
+}
+
+/* sticky menu */
+.is-sticky--desktop-menu {
+  @media all and (min-width: 768px) {
+    position: sticky;
+    z-index: 100;
+    top: 0;
+    padding: 1rem 0;
+    background-color: var(--white-color);
+  }
+
+  /* on mobile, adjust spacing if also grid */
+  &.grid-container {
+    @media all and (max-width: 768px) {
+      gap: 0;
+      .grid-item {
+        padding: 0;
+        ul {
+          margin-bottom: 0 !important;
+        }
+      }
+    }
+  }
+
+}
+
+/* back to top functionality */
+.back-to-top {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  opacity: 0;
+  background-color: var(--white-color);
+  font-weight: 500;
+  padding: 10px;
+  translate: calc(100% + 10px);
+  transition: all 0.5s;
+}
+
+body:has(h2:target) .back-to-top {
+  opacity: 1;
+  translate: 0px;
+}
+
+h2:target {
+  padding-top: 3rem;
+  @media all and (min-width: 768px) {
+    padding-top: 11rem;
+  }
+}
