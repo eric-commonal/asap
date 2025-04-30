@@ -52,6 +52,10 @@ h3 {
   font-weight: 500;
 }
 
+h3.modal-title {
+  color: #fff;
+}
+
 h4 {
   font-size: 30px;
   font-weight: 500;
