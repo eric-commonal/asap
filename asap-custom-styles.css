@@ -1949,9 +1949,13 @@ h6 + h5 {
     margin-right: calc(50% - 50vw);
     z-index: 1001;
     top: 0;
-    padding: 5rem 0 0;
+    padding: 3rem 0 0;
     background-color: var(--white-color);
+    h6 {
+      padding-left: 3rem;
+    }
   }
+  
 
   /* on mobile, adjust spacing if also grid */
   .grid-container {
