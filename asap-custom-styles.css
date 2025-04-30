@@ -1322,7 +1322,6 @@ ol {
     @media all and (min-width: 768px) {
       min-height: 632px !important;
       max-height: 632px !important;
-      background-size: contain;
     }
     .event-info {
       background-color: var(--primary-color);
