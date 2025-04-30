@@ -447,6 +447,11 @@ div.c-nav-centered__search > div {
     }
     .c-event-date-stub__wrapper {
       background-color: var(--light-gray);
+      margin-bottom: 2rem;
+
+      @media all and (min-width: 768px) {
+        margin-bottom: 0;
+      }
 
       .date-stub,
       .date-stub strong,
@@ -1944,7 +1949,7 @@ h6 + h5 {
     margin-right: calc(50% - 50vw);
     z-index: 1001;
     top: 0;
-    padding: 1rem 0;
+    padding: 5rem 0 0;
     background-color: var(--white-color);
   }
 
@@ -1963,11 +1968,6 @@ h6 + h5 {
       }
     }
   }
-}
-
-#content:has(.is-sticky--desktop-menu) {
-  position: relative;
-  z-index: 1000;
 }
 
 /* back to top functionality */
