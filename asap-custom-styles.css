@@ -1949,7 +1949,7 @@ h6 + h5 {
 
 #content:has(.is-sticky--desktop-menu) {
   position: relative;
-  z-index: 100;
+  z-index: 1000;
 }
 
 /* back to top functionality */
