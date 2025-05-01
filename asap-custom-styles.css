@@ -2002,7 +2002,7 @@ h2:target {
   bottom: 10px;
   right: 10px;
   opacity: 0;
-  z-index: -2;
+  /* z-index: ; */
   background-color: var(--white-color);
   font-weight: 500;
   padding: 10px;
@@ -2010,17 +2010,12 @@ h2:target {
   transition: all 0.5s;
 }
 
-/* .back-to-top:hover,
-.inner-content:has(.back-to-top):hover .back-to-top{ 
-  opacity: 1; 
-} */
-
 body:has(h2:target) .back-to-top {
   opacity: 1;
   translate: 0px;
 }
 
-body::before {
+/* body::before {
   content: "";
   background: white;
   position: absolute;
@@ -2028,9 +2023,9 @@ body::before {
   left: 0;
   width: 100%; 
   height: 10em;
-  z-index: -1; /* Behind the body */
+  z-index: -1;
 }
 
 main {
   position: relative;
-}
+} */
