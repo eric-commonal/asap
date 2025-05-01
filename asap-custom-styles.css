@@ -397,9 +397,9 @@ div.c-nav-centered__search > div {
 .btn-secondary {
   padding: 15px 30px;
   border-radius: 8px;
-  background-color: var(--background-color) !important;
+  background-color: var(--secondary-color) !important;
   border: 2px solid var(--secondary-color) !important;
-  color: var(--secondary-color) !important;
+  color: var(--white-color) !important;
   border: none;
   font-size: 16px !important;
 }
@@ -408,8 +408,8 @@ div.c-nav-centered__search > div {
 .btn.btn-transparent:hover,
 .btn.btn-secondary:hover,
 .btn-secondary:hover {
-  background-color: var(--secondary-color) !important;
-  color: var(--white-color) !important;
+  background-color: var(--white-color) !important;
+  color: var(--secondary-color) !important;
   border: none;
 }
 
