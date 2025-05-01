@@ -689,6 +689,10 @@ blockquote {
   .name:hover {
     color: var(--primary-color);
   }
+
+  .background {
+    background-size: 140% !important;
+  }
 }
 
 .slick-slide .overlay .date {
