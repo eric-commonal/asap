@@ -693,12 +693,12 @@ blockquote {
 }
 
 .slick-slide {
-  border-radius: 8px;
+  border-radius: 0px;
   overflow: hidden;
 }
 
 .slick-slide .background {
-  border-radius: 8px;
+  border-radius: 0px;
 }
 
 .section.featured-slider {
