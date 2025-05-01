@@ -413,6 +413,13 @@ div.c-nav-centered__search > div {
   border: none;
 }
 
+/* Member Compass Menu Buttons */
+.profile-link-container .profile-menu .inner .log-out-btn {
+    border-radius: 8px;
+    line-height: 20px;
+    padding: 10px 5px;
+}
+
 /* About section */
 #about-association .container {
   background-color: var(--white-color);
