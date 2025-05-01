@@ -1984,7 +1984,7 @@ h6 + h5 {
 h2:target {
   padding-top: 3rem;
   @media all and (min-width: 768px) {
-    padding-top: 11rem;
+    padding-top: 12rem;
   }
 }
 
