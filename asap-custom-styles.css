@@ -1190,6 +1190,10 @@ ol {
   text-decoration: underline;
 }
 
+.primary-call-out a.btn {
+  text-decoration: none;
+}
+
 .body-content.c-body-content__job-board .section {
   display: none;
 }
@@ -1675,6 +1679,11 @@ tbody tr:hover {
   .g-product__sidebar {
     display: none;
   }
+}
+
+/* Hide Back to Publications Breadcrumb */
+.product-detail-container a.back-btn {
+display: none;
 }
 
 /* Video Carousel */
