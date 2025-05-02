@@ -1677,6 +1677,11 @@ tbody tr:hover {
   }
 }
 
+/* Hide Back to Publications Breadcrumb */
+.product-detail-container a.back-btn {
+display: none;
+}
+
 /* Video Carousel */
 .carousel {
   position: relative;
