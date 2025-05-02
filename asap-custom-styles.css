@@ -1870,6 +1870,14 @@ tbody tr:hover {
   }
 }
 
+/* blog details */
+
+body > div.body-content {
+  >.section>.background {
+    display: none;
+  }
+}
+
 /* search results */
 .search-container {
   .search-results {
