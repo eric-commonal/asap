@@ -1872,7 +1872,7 @@ display: none;
     .c-article-widget__categories-list {
       li {
         a {
-          color: var(--dark-blue);
+          color: var (--dark-blue);
         }
       }
     }
@@ -2046,3 +2046,20 @@ body:has(h2:target) .back-to-top {
 main {
   position: relative;
 } */
+
+
+.icon-wrapper{ 
+  flex: 1;
+  background-color: #eff6f5;
+  border-radius: 8px;
+  padding: 10px;
+    svg {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+.icon-wrapper svg .cls-1 {
+  fill: #ff6c27;
+  fill-rule: evenodd;
+}
