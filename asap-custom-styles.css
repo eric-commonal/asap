@@ -2048,13 +2048,16 @@ main {
 
 
 .icon-wrapper{ 
-  flex: 1;
   background-color: #eff6f5;
   border-radius: 8px;
   padding: 10px;
-    svg {
+  width: 90px;
+  height: 90px;
+  svg {
     width: 60px;
     height: 60px;
+    margin: auto;
+    display: block;
   }
 }
 
