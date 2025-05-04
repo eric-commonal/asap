@@ -2065,3 +2065,14 @@ main {
   fill: #ff6c27;
   fill-rule: evenodd;
 }
+
+.c-stepper__step-title p {
+    color: var(--primary-color);
+    margin: 5px;
+    font-size: 1.3em;
+    font-weight: 600
+}
+
+.c-stepper__step--active .c-stepper__step-circle i {
+    background-color: var(--teal);
+}
