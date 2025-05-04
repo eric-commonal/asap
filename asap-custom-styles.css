@@ -668,6 +668,12 @@ blockquote {
   line-height: 1.7;
 }
 
+blockquote cite {
+  display: block;
+  margin-top: 10px;
+  font-size: 1.0em;
+}
+
 .primary-call-out,
 .secondary-call-out {
   background-color: var(--light-gray);
