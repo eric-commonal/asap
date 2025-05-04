@@ -2076,3 +2076,25 @@ main {
 .c-stepper__step--active .c-stepper__step-circle i {
     background-color: var(--teal);
 }
+
+.c-event-details__back-btn {
+  color: var(--tertiary-color);
+}
+
+.c-event-details__back-btn:hover {
+  color: var(--tertiary-color);
+  text-decoration: underline;
+}
+
+.rrssb-buttons li.rrssb-email a,.rrssb-buttons li.rrssb-facebook a,.rrssb-buttons li.rrssb-linkedin a,.rrssb-buttons li.rrssb-twitter a {
+    margin-right: 10px;
+    border: 2px solid var(--highlight-orange) !important;
+    color: #fff;
+    background: var(--highlight-orange) !important
+}
+
+.rrssb-buttons li.rrssb-email a:hover,.rrssb-buttons li.rrssb-facebook a:hover,.rrssb-buttons li.rrssb-linkedin a:hover,.rrssb-buttons li.rrssb-twitter a:hover {
+    border: 2px solid var(--highlight-orange) !important;
+    color: var(--highlight-orange) !important;
+    background: #fff !important
+}
