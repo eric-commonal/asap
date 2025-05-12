@@ -891,6 +891,10 @@ blockquote cite {
     color: transparent;
   }
 }
+.selectize-input {
+    border: none;
+    border-radius: 8px;
+}
 
 label {
   color: var(--dark-blue) !important;
