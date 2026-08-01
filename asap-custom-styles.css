@@ -1337,6 +1337,7 @@ ol {
 
 #top-featured-carousel {
   width: 100%;
+  margin-bottom: 0;
   .background {
     background-color: var(--primary-color);
     width: 100% !important;
@@ -1378,9 +1379,7 @@ ol {
     display: none !important;
   }
   .slick-slide > div {
-    vertical-align: top; /* closes the ~12px navy gap under .background —
-      Slick wraps each slide's content in an inline-block div that sits on
-      the text baseline by default, reserving descender space it never uses */
+    vertical-align: top;
   }
 }
 /* widgets */
