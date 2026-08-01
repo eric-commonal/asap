@@ -149,7 +149,7 @@
    ------------------------------------------------------------------------- */
 .asap-topbar{
   position:fixed;
-  top:0; left:0;
+  top:0; left:0; right:0;
   z-index:500; /* below .is-sticky--desktop-menu's 1001, above ordinary content */
   background:var(--asap-navy-deep);
   color:#c9cde6;
