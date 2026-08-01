@@ -148,9 +148,11 @@
    you'd rather have it scroll away after the first screen.
    ------------------------------------------------------------------------- */
 .asap-topbar{
-  position:fixed;
-  top:0; left:0; right:0;
-  z-index:500; /* below .is-sticky--desktop-menu's 1001, above ordinary content */
+  /* Not fixed/sticky by design — scrolls away with the page. It's moved to
+     sit directly before <header> in the DOM by a script (see
+     asap-fullbleed-fix.html), so it renders above the header in normal
+     document flow without needing position:fixed or a space-reservation
+     hack. */
   background:var(--asap-navy-deep);
   color:#c9cde6;
   font-size:.83rem;
