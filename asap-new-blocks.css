@@ -53,7 +53,13 @@
 /* Sitewide: h1,h2,h3,h4,h5{color:var(--dark-blue) !important}
    The hero title sits on a dark photo/scrim and must stay white. Only an
    !important of equal-or-higher specificity can beat that rule. */
-.asap-hero__title{ color:#fff !important; }
+/* Doubled class (not a typo) — raises specificity above
+   ".single-region h1,h2,...{color:var(--dark-blue)!important}", which the
+   hero's <h2> title picks up whenever it's placed inside Novi's
+   .single-region wrapper (confirmed on the homepage: #about-association is
+   .section.single-region). A plain single-class rule loses to that
+   ancestor+tag selector since both are !important. */
+.asap-hero__title.asap-hero__title{ color:#fff !important; }
 
 /* Sitewide: h1,h2,h3,h4,h5{margin-top:60px}
    Not !important, but nothing in the original design set a margin-top on
@@ -143,7 +149,7 @@
    ------------------------------------------------------------------------- */
 .asap-topbar{
   position:fixed;
-  top:0; left:0; right:0;
+  top:0; left:0;
   z-index:500; /* below .is-sticky--desktop-menu's 1001, above ordinary content */
   background:var(--asap-navy-deep);
   color:#c9cde6;
