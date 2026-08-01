@@ -1337,24 +1337,20 @@ ol {
   padding: 15px 20px;
 }
 
-/* home hero styles */
 #top-featured-carousel {
   width: 100%;
-
   .background {
     background-color: var(--primary-color);
     width: 100% !important;
     height: 100% !important;
     padding: 2rem 0;
     background-size: cover;
-
     @media all and (min-width: 768px) {
       min-height: 632px !important;
       max-height: 632px !important;
     }
     .event-info {
-      background-color: var(--primary-color);
-      opacity: 0.7;
+      background-color: color-mix(in srgb, var(--primary-color) 70%, transparent);
       right: auto;
       top: auto;
       width: 100%;
@@ -1364,18 +1360,15 @@ ol {
       bottom: 0;
       border-radius: 0;
       justify-content: flex-end;
-
       @media all and (min-width: 768px) {
         width: 33%;
         max-width: 350px;
         bottom: 4rem;
         border-radius: 8px;
       }
-
       h1 {
         color: var(--white-color) !important;
       }
-
       .date {
         font-size: 16px;
         font-weight: 300;
@@ -1383,12 +1376,15 @@ ol {
       }
     }
   }
-
   .slick-dots {
     display: none !important;
   }
+  .slick-slide > div {
+    vertical-align: top; /* closes the ~12px navy gap under .background —
+      Slick wraps each slide's content in an inline-block div that sits on
+      the text baseline by default, reserving descender space it never uses */
+  }
 }
-
 /* widgets */
 #widgets {
   min-height: 0;
