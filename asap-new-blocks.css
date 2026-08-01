@@ -89,6 +89,34 @@
    is silently blocked by the sitewide !important on h3 color. */
 .asap-news__link:hover .asap-news__title{ color:#2E6E9C !important; }
 
+/* Template compatibility: some Novi page templates (verified on
+   /content-block-suite) wrap injected HTML in Novi's own centered
+   .container (~1170px, 15px side padding). Sections meant to be full-bleed
+   would otherwise render as a narrow inset column instead of edge-to-edge.
+   This uses the exact same breakout technique asap-custom-styles.css
+   already relies on elsewhere (.header-ribbon, .secondary-call-out,
+   .title-copy-container), so it's a proven-safe pattern on this site, and
+   it makes every section immune to whatever container width the
+   surrounding template imposes. Each section's own .asap-wrap still
+   centers and constrains its *content* to a readable width. .asap-topbar
+   isn't listed here — it's position:fixed (see below), which already
+   escapes any container on its own. */
+.asap-hero,
+.asap-mission,
+.asap-who,
+.asap-stats,
+.asap-feat,
+.asap-events,
+.asap-quote,
+.asap-news-section,
+.asap-watch,
+.asap-logos,
+.asap-cta{
+  width:100vw;
+  margin-left:calc(50% - 50vw);
+  margin-right:calc(50% - 50vw);
+}
+
 /* -------------------------------------------------------------------------
    3. Shared utilities (used across multiple blocks below)
    ------------------------------------------------------------------------- */
@@ -111,6 +139,33 @@
 .asap-btn--ghost:hover{ background:var(--asap-navy); color:#fff; }
 .asap-btn--ghost-light{ background:transparent; border-color:rgba(255,255,255,.5); color:#fff; }
 .asap-btn--ghost-light:hover{ background:#fff; color:var(--asap-navy); border-color:#fff; }
+
+/* -------------------------------------------------------------------------
+   Topbar (announcement bar)
+   Not part of Novi's native header — this is new content that must render
+   visually above the header even though it can only be pasted into the
+   body content area, below the header in the DOM. Verified live on
+   /content-block-suite: body already carries a sitewide 40px top padding
+   with nothing rendered in it (header starts at y:40, unchanged), so a
+   position:fixed bar pinned to top:0 slots into that existing reserved
+   band exactly, without covering the header and without needing to touch
+   header/body CSS at all. Side effect: because it's fixed, it stays
+   visible while scrolling (persistent, not a one-time banner) — flag if
+   you'd rather have it scroll away after the first screen.
+   ------------------------------------------------------------------------- */
+.asap-topbar{
+  position:fixed;
+  top:0; left:0;
+  z-index:500; /* below .is-sticky--desktop-menu's 1001, above ordinary content */
+  background:var(--asap-navy-deep);
+  color:#c9cde6;
+  font-size:.83rem;
+}
+.asap-topbar .asap-wrap{ display:flex; align-items:center; justify-content:center; gap:12px; padding:9px 24px; flex-wrap:wrap; text-align:center; min-height:22px; }
+.asap-topbar__pill{ background:var(--asap-orange); color:#fff; font-family:var(--asap-sans); font-weight:700; font-size:.62rem; letter-spacing:.09em; padding:3px 9px; border-radius:5px; }
+.asap-topbar b{ color:#fff; }
+.asap-topbar a{ color:#fff; font-weight:600; text-decoration:none; }
+.asap-topbar a:hover{ text-decoration:underline; }
 
 /* -------------------------------------------------------------------------
    4. Hero carousel
