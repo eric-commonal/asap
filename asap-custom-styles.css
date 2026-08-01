@@ -1354,6 +1354,7 @@ ol {
     }
     .event-info {
       background-color: var(--primary-color);
+      opacity: 0.7;
       right: auto;
       top: auto;
       width: 100%;
