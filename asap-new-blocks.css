@@ -89,33 +89,21 @@
    is silently blocked by the sitewide !important on h3 color. */
 .asap-news__link:hover .asap-news__title{ color:#2E6E9C !important; }
 
-/* Template compatibility: some Novi page templates (verified on
-   /content-block-suite) wrap injected HTML in Novi's own centered
-   .container (~1170px, 15px side padding). Sections meant to be full-bleed
-   would otherwise render as a narrow inset column instead of edge-to-edge.
-   This uses the exact same breakout technique asap-custom-styles.css
-   already relies on elsewhere (.header-ribbon, .secondary-call-out,
-   .title-copy-container), so it's a proven-safe pattern on this site, and
-   it makes every section immune to whatever container width the
-   surrounding template imposes. Each section's own .asap-wrap still
-   centers and constrains its *content* to a readable width. .asap-topbar
-   isn't listed here — it's position:fixed (see below), which already
-   escapes any container on its own. */
-.asap-hero,
-.asap-mission,
-.asap-who,
-.asap-stats,
-.asap-feat,
-.asap-events,
-.asap-quote,
-.asap-news-section,
-.asap-watch,
-.asap-logos,
-.asap-cta{
-  width:100vw;
-  margin-left:calc(50% - 50vw);
-  margin-right:calc(50% - 50vw);
-}
+/* Template compatibility: full-bleed sections.
+   Originally tried the calc(50% - 50vw) breakout asap-custom-styles.css
+   uses elsewhere (.header-ribbon, .secondary-call-out) — but verified live
+   on /content-block-suite that it doesn't hold up here: that trick only
+   works when the element's *immediate* parent is itself centered in the
+   viewport. On this template, Novi wraps injected HTML several levels deep
+   (novi-content-wrapper > .well.box.inner-content > .o-column > .row),
+   each level adding its own Bootstrap-style padding/negative margins, so
+   "50%" no longer lines up with the true viewport center. Measured result:
+   .asap-mission rendered from x:-153.75 to x:1766.25 in a 1920px-wide
+   viewport — overflowing off-screen on the left, short of the edge on the
+   right. That's the CSS approach removed below in favor of a small
+   position-measuring script (see asap-fullbleed-fix.html) that corrects
+   for whatever nesting a given template happens to use, instead of
+   assuming a specific one. */
 
 /* -------------------------------------------------------------------------
    3. Shared utilities (used across multiple blocks below)
