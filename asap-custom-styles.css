@@ -772,8 +772,6 @@ blockquote cite {
     line-height: 1.5;
     position: relative;
     z-index: 2;
-    @media all and (min-width: 768px) {
-      padding-right: 20%;
     }
   }
 }
