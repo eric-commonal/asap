@@ -743,23 +743,8 @@ blockquote cite {
   transform: translateX(-50%);
   border: none;
   @media all and (min-width: 768px) {
-    padding: 100px 20px;
+    padding: 70px 20px;
   }
-
-  &::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    height: 100%;
-    width: 30%; /* Reduced width to not overlap too much */
-    background-image: url("https://assets-staging.noviams.com/novi-file-uploads/asap/graphics/asap-hero-pattern.svg");
-    background-repeat: no-repeat;
-    background-position: left center;
-    background-size: cover;
-    z-index: 1;
-  }
-
   h1 {
     max-width: 1140px;
     margin-left: auto;
@@ -772,7 +757,6 @@ blockquote cite {
     position: relative;
     z-index: 2;
     margin-bottom: 2rem;
-    padding-right: 20%;
   }
 
   .subtitle,
@@ -788,7 +772,6 @@ blockquote cite {
     line-height: 1.5;
     position: relative;
     z-index: 2;
-    padding-right: 0%;
     @media all and (min-width: 768px) {
       padding-right: 20%;
     }
