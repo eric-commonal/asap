@@ -772,7 +772,6 @@ blockquote cite {
     line-height: 1.5;
     position: relative;
     z-index: 2;
-    }
   }
 }
 
@@ -1378,9 +1377,12 @@ ol {
   .slick-dots {
     display: none !important;
   }
-  .slick-slide > div {
-    vertical-align: top;
-  }
+.slick-slide > div > div {
+  vertical-align: top;
+}
+}
+#about-association {
+  padding-top: 0;
 }
 /* widgets */
 #widgets {
