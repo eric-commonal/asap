@@ -95,6 +95,29 @@
    is silently blocked by the sitewide !important on h3 color. */
 .asap-news__link:hover .asap-news__title{ color:#2E6E9C !important; }
 
+/* Sitewide: a{color:var(--tertiary-color)} / a:hover{color:var(--tertiary-color)}
+   Every button below is an <a>. None of their :hover rules originally set
+   color explicitly, so on hover the sitewide a:hover rule (element+pseudo-
+   class beats a plain single-class rule) won a teal text color nobody
+   wanted — QA'd as "weird teal" on the hero/news buttons, and as an
+   inconsistency in Who We Are where .asap-btn--ghost:hover happened to
+   already set color (no leak) right next to .asap-btn--navy:hover, which
+   didn't (leaked). Fixed by giving every button's :hover state its own
+   explicit color — see each rule below. */
+
+/* Sitewide: p has some margin-bottom rule (from Novi's base theme, not
+   visible in this override file) that silently wins over a plain single-
+   class margin-bottom — QA'd as "no padding above the buttons" in Who We
+   Are and Latest News, since both sit right after a <p>. Needs !important
+   to win; applied to every <p>-based lead/copy element in this file for
+   consistency, not just the two reported. */
+.asap-who__p{ margin-bottom:26px !important; }
+.asap-news__lead{ margin-bottom:24px !important; }
+.asap-watch__lead{ margin-bottom:22px !important; }
+.asap-cta__box p{ margin-bottom:30px !important; }
+.asap-ecard p{ margin-bottom:16px !important; }
+.asap-feat__head p{ margin-bottom:0 !important; }
+
 /* Template compatibility: full-bleed sections.
    Originally tried the calc(50% - 50vw) breakout asap-custom-styles.css
    uses elsewhere (.header-ribbon, .secondary-call-out) — but verified live
@@ -123,12 +146,22 @@
 
 .asap-sec-title{ font-family:var(--asap-sans); font-weight:800; color:var(--asap-navy); font-size:clamp(1.7rem,3.4vw,2.5rem); line-height:1.14; }
 
+/* Hover language, applied consistently across every solid-fill button
+   below (.asap-btn--orange, .asap-btn--navy, .asap-hero__btn,
+   .asap-news__btn): invert to a white body with the button's own color as
+   an outline + text on hover — orange outline/white body/orange text for
+   the orange family, matching what the rest of the site's "secondary"
+   button style does. Outline-at-rest buttons (.asap-btn--ghost*) already
+   do the mirror-image version (invert to filled), so they're left as-is.
+   Every :hover rule below sets color explicitly — without it, the
+   sitewide a:hover{color:var(--tertiary-color)} rule wins instead (teal),
+   which is what QA caught. */
 .asap-btn{ display:inline-flex; align-items:center; gap:10px; font-family:var(--asap-sans); font-weight:600; font-size:.95rem; text-decoration:none; padding:13px 26px; border-radius:10px; transition:background .2s,transform .2s,color .2s,border-color .2s; cursor:pointer; border:2px solid transparent; }
 .asap-btn svg{ width:16px; height:16px; }
 .asap-btn--orange{ background:var(--asap-orange); color:#fff; }
-.asap-btn--orange:hover{ background:var(--asap-orange-2); transform:translateY(-2px); }
+.asap-btn--orange:hover{ background:#fff; border-color:var(--asap-orange-2); color:var(--asap-orange-2); transform:translateY(-2px); }
 .asap-btn--navy{ background:var(--asap-navy); color:#fff; }
-.asap-btn--navy:hover{ background:var(--asap-navy-2); transform:translateY(-2px); }
+.asap-btn--navy:hover{ background:#fff; border-color:var(--asap-navy); color:var(--asap-navy); transform:translateY(-2px); }
 .asap-btn--ghost{ background:transparent; border-color:var(--asap-navy); color:var(--asap-navy); }
 .asap-btn--ghost:hover{ background:var(--asap-navy); color:#fff; }
 .asap-btn--ghost-light{ background:transparent; border-color:rgba(255,255,255,.5); color:#fff; }
@@ -185,8 +218,8 @@
 .asap-hero__eyebrow::before{ content:""; width:40px; height:2px; background:#ff7a3d; flex:0 0 auto; }
 .asap-hero__title{ font-family:var(--asap-sans); font-weight:800; font-size:clamp(1.7rem,4.2vw,3rem); line-height:1.08; letter-spacing:-.01em; margin:0 0 26px; }
 .asap-hero__tint{ color:var(--teal,#52b5c2); }
-.asap-hero__btn{ display:inline-flex; align-items:center; gap:14px; background:var(--asap-orange); color:#fff; font-family:var(--asap-sans); font-weight:600; font-size:clamp(.86rem,1.3vw,1rem); text-decoration:none; padding:14px 26px; border-radius:10px; transition:background .2s,transform .2s,box-shadow .2s; }
-.asap-hero__btn:hover{ background:var(--asap-orange-2); transform:translateY(-2px); }
+.asap-hero__btn{ display:inline-flex; align-items:center; gap:14px; background:var(--asap-orange); color:#fff; font-family:var(--asap-sans); font-weight:600; font-size:clamp(.86rem,1.3vw,1rem); text-decoration:none; padding:14px 26px; border-radius:10px; border:2px solid transparent; transition:background .2s,transform .2s,box-shadow .2s,color .2s,border-color .2s; }
+.asap-hero__btn:hover{ background:#fff; border-color:var(--asap-orange-2); color:var(--asap-orange-2); transform:translateY(-2px); }
 .asap-hero__btn svg{ width:18px; height:18px; }
 .asap-hero__nav{ position:absolute; top:50%; transform:translateY(-50%); z-index:4; width:52px; height:52px; border-radius:50%; border:1px solid rgba(255,255,255,.35); background:rgba(12,16,40,.35); color:#fff; display:grid; place-items:center; cursor:pointer; transition:background .2s,border-color .2s; backdrop-filter:blur(4px); }
 .asap-hero__nav:hover{ background:rgba(255,122,61,.9); border-color:transparent; }
@@ -294,6 +327,7 @@
 .asap-ecard h3{ font-family:var(--asap-sans); font-weight:700; color:var(--asap-navy); font-size:1.08rem; line-height:1.3; margin-bottom:10px; }
 .asap-ecard p{ color:var(--asap-muted); font-size:.9rem; line-height:1.55; margin:0 0 16px; }
 .asap-ecard__link{ margin-top:auto; display:inline-flex; align-items:center; gap:7px; font-family:var(--asap-sans); font-weight:600; font-size:.85rem; color:var(--asap-tert); }
+.asap-ecard__link:hover{ color:var(--asap-tert); } /* explicit, not just coincidentally teal already — see hover-color note above */
 .asap-ecard__link svg{ width:15px; height:15px; }
 
 @media(max-width:980px){ .asap-events__grid{ grid-template-columns:1fr; } }
@@ -322,8 +356,8 @@
 .asap-news__eyebrow::before{ content:""; width:40px; height:2px; background:var(--asap-orange-2); flex:0 0 auto; }
 .asap-news__h{ margin:0 0 14px; font-family:var(--asap-sans); color:#001062; font-size:clamp(1.7rem,3.2vw,2.4rem); line-height:1.1; }
 .asap-news__lead{ margin:0 0 24px; font-family:var(--asap-body); color:var(--asap-muted); font-size:.98rem; line-height:1.6; max-width:34ch; }
-.asap-news__btn{ display:inline-flex; align-items:center; gap:10px; background:var(--asap-orange-2); color:#fff; font-family:var(--asap-sans); font-weight:600; font-size:.9rem; text-decoration:none; padding:12px 22px; border-radius:10px; transition:background .2s,transform .2s,box-shadow .2s; }
-.asap-news__btn:hover{ background:var(--asap-orange); transform:translateY(-2px); }
+.asap-news__btn{ display:inline-flex; align-items:center; gap:10px; background:var(--asap-orange-2); color:#fff; font-family:var(--asap-sans); font-weight:600; font-size:.9rem; text-decoration:none; padding:12px 22px; border-radius:10px; border:2px solid transparent; transition:background .2s,transform .2s,box-shadow .2s,color .2s,border-color .2s; }
+.asap-news__btn:hover{ background:#fff; border-color:var(--asap-orange-2); color:var(--asap-orange-2); transform:translateY(-2px); }
 .asap-news__btn svg{ width:16px; height:16px; }
 .asap-news__list{ list-style:none; margin:0; padding:0; border-top:1px solid var(--asap-line); }
 .asap-news__item{ border-bottom:1px solid var(--asap-line); }
