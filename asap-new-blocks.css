@@ -384,7 +384,7 @@
    ------------------------------------------------------------------------- */
 .asap-watch{ background:var(--asap-light); }
 .asap-watch .asap-wrap{ padding:70px 24px; display:grid; grid-template-columns:1.05fr 1fr; gap:50px; align-items:center; }
-.asap-watch__video{ position:relative; border-radius:14px; overflow:hidden; aspect-ratio:16/10; background:linear-gradient(135deg,#12183a,#243a63 55%,#6f4433); }
+.asap-watch__video{ position:relative; border-radius:14px; overflow:hidden; aspect-ratio:16/9; background:linear-gradient(135deg,#12183a,#243a63 55%,#6f4433); } /* 16/9 to match Vimeo's actual video ratio (confirmed via oEmbed: 426x240) — was 16/10, which left a letterboxed gap around the embedded iframe */
 .asap-watch__play{ position:absolute; inset:0; display:grid; place-items:center; }
 .asap-watch__play span{ width:74px; height:74px; border-radius:50%; background:#fff; display:grid; place-items:center; box-shadow:0 10px 30px rgba(0,0,0,.3); }
 .asap-watch__play svg{ width:26px; height:26px; color:var(--asap-orange); margin-left:5px; }
