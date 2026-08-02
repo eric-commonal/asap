@@ -426,3 +426,89 @@
 .asap-cta__box h2{ font-family:var(--asap-sans); font-weight:800; font-size:clamp(1.7rem,3.6vw,2.6rem); margin:0 0 16px; color:#fff !important; }
 .asap-cta__box p{ color:#c3c8e0; max-width:620px; margin:0 auto 30px; line-height:1.6; }
 .asap-cta__btns{ display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+
+/* -------------------------------------------------------------------------
+   15. Strategic Alliance Roadmap
+   Interactive 7-step timeline (clickable "cube" icons that expand a detail
+   card). Originally supplied as a standalone page with its own <h1>/hint
+   text, a page-level background, and hardcoded "Segoe UI" fonts, plus
+   generic classes (.item, .detail, .cube, raw h1/body/*). Converted to a
+   section-level block per Eric:
+     - Dropped the <h1>"Strategic Alliance Roadmap" and "Tap or click..."
+       hint entirely — this sits inside pages that already have their own
+       page title, so a second <h1> would be redundant and would also lose
+       a specificity fight with asap-custom-styles.css's sitewide
+       h1,h2,h3,h4,h5{color:var(--dark-blue)!important} rule anyway.
+     - No font-family is set anywhere below (unlike every other block in
+       this file, which explicitly sets var(--asap-sans)/var(--asap-body)) —
+       intentional, so labels and detail text inherit whatever font the
+       surrounding page is already using instead of forcing one. Safe to do
+       here specifically because every text element is a <div>/<span>, never
+       a heading tag, so it isn't subject to the sitewide h1-h5 !important
+       font-family override that the other blocks have to work around.
+     - Every class namespaced asap-roadmap__* (the source's plain .item
+       collides with Bootstrap 3's .carousel .item, which this Bootstrap-
+       flavored Novi theme could plausibly still reference elsewhere).
+     - Page-shell rules (*{margin:0;padding:0}, body background/layout,
+       header/h1/.hint) removed — a block only owns its own subtree, not the
+       page chrome. box-sizing reset is scoped to .asap-roadmap descendants
+       instead of the universal selector.
+     - Its own --ink token swapped for var(--asap-navy) so step labels match
+       the site's existing dark-navy heading color instead of a slightly
+       different one-off hex.
+     - Script relocated to asap-fullbleed-fix.html — Novi strips inline
+       <script> tags from pasted blocks (same reason the hero carousel's
+       script lives there). This version auto-inits every .asap-roadmap
+       found on the page, so it's safe if the block is reused on more than
+       one page.
+   ------------------------------------------------------------------------- */
+.asap-roadmap{ --cw: clamp(104px, 12.4vw, 150px); --step: calc(var(--cw) * 1.06); }
+.asap-roadmap, .asap-roadmap *{ box-sizing:border-box; }
+.asap-roadmap .asap-wrap{ padding-top:56px; padding-bottom:56px; }
+
+/* ---------- DESKTOP: horizontal row, zigzag labels ---------- */
+.asap-roadmap__timeline{ width:100%; overflow-x:auto; overflow-y:hidden; padding:6px 4px; }
+.asap-roadmap__items{ display:flex; justify-content:center; align-items:stretch; min-width:min-content; padding:0; margin:0; list-style:none; }
+.asap-roadmap__item{ position:relative; display:flex; flex-direction:column; align-items:center; width:var(--step); flex:0 0 auto;
+  opacity:0; transform:translateY(14px); animation:asapRoadmapPop .5s cubic-bezier(.2,.8,.2,1) forwards; animation-delay:calc(var(--i)*.09s); }
+@keyframes asapRoadmapPop{ to{ opacity:1; transform:none; } }
+
+.asap-roadmap__lbl{ width:calc(var(--cw)*1.32); height:calc(var(--cw)*1.18); display:flex; flex-direction:column; align-items:center; text-align:center; gap:6px; pointer-events:none; margin:0; }
+.asap-roadmap__lbl--top{ justify-content:flex-end; }
+.asap-roadmap__lbl--bottom{ justify-content:flex-start; }
+.asap-roadmap__ttl{ font-size:calc(var(--cw)*0.116); font-weight:800; letter-spacing:.3px; text-transform:uppercase; line-height:1.2; color:var(--asap-navy); max-width:100%; }
+.asap-roadmap__ico{ width:calc(var(--cw)*0.26); height:calc(var(--cw)*0.26); flex:0 0 auto; }
+.asap-roadmap__ico svg{ width:100%; height:100%; display:block; }
+.asap-roadmap__stem{ width:2px; height:calc(var(--cw)*0.18); opacity:.85; }
+
+.asap-roadmap__cube{ position:relative; width:var(--cw); flex:0 0 var(--cw); cursor:pointer; outline:none; z-index:1;
+  transition:transform .25s cubic-bezier(.2,.8,.2,1), filter .25s; }
+.asap-roadmap__cube-svg{ display:block; width:100%; height:auto; filter:drop-shadow(0 8px 12px rgba(20,35,70,.16)); }
+.asap-roadmap__cube:hover, .asap-roadmap__cube:focus-visible{ transform:translateY(-8px) scale(1.04); z-index:60; }
+.asap-roadmap__cube:hover .asap-roadmap__cube-svg, .asap-roadmap__cube:focus-visible .asap-roadmap__cube-svg{ filter:drop-shadow(0 14px 20px rgba(20,35,70,.26)); }
+
+.asap-roadmap__m-label{ display:none; }
+
+/* ---------- MOBILE: vertical stack, no overlap ---------- */
+@media (max-width:760px){
+  .asap-roadmap__timeline{ overflow:visible; }
+  .asap-roadmap__items{ flex-direction:column; align-items:stretch; min-width:0; padding:0; }
+  .asap-roadmap__item{ flex-direction:row; align-items:center; width:100% !important; gap:14px; }
+  .asap-roadmap__item + .asap-roadmap__item{ margin-top:10px; }   /* clear gap — no overlay */
+  .asap-roadmap__item .asap-roadmap__cube{ width:clamp(104px,27vw,140px); flex:0 0 auto; }
+  .asap-roadmap__lbl--top, .asap-roadmap__lbl--bottom{ display:none; }
+  .asap-roadmap__m-label{ display:flex; align-items:center; gap:12px; }
+  .asap-roadmap__m-label .asap-roadmap__ico{ width:34px; height:34px; }
+  .asap-roadmap__m-label .asap-roadmap__ttl{ font-size:15px; text-align:left; }
+}
+.asap-roadmap__m-label .asap-roadmap__ttl{ font-weight:800; letter-spacing:.3px; text-transform:uppercase; line-height:1.22; color:var(--asap-navy); }
+
+/* detail card */
+.asap-roadmap__detail{ width:100%; max-width:680px; margin:22px auto 0; background:#fff; border-radius:16px; border:1px solid var(--asap-line); box-shadow:0 12px 30px rgba(20,35,70,.10); padding:0 24px; max-height:0; overflow:hidden; opacity:0; transition:max-height .4s ease, opacity .3s ease, padding .4s ease; }
+.asap-roadmap__detail.is-open{ max-height:280px; opacity:1; padding:20px 24px; }
+.asap-roadmap__d-head{ display:flex; align-items:center; gap:14px; margin-bottom:8px; }
+.asap-roadmap__d-badge{ width:44px; height:44px; border-radius:11px; display:flex; align-items:center; justify-content:center; color:#fff; font-weight:800; font-size:17px; flex:0 0 auto; }
+.asap-roadmap__d-title{ font-size:17px; font-weight:800; letter-spacing:.4px; text-transform:uppercase; }
+.asap-roadmap__d-body{ color:var(--asap-muted); font-size:15px; line-height:1.55; }
+.asap-roadmap__d-close{ float:right; border:none; margin:0; background:#f1f4f8; color:var(--asap-muted); width:30px; height:30px; border-radius:50%; cursor:pointer; font-size:16px; font:inherit; }
+.asap-roadmap__d-close:hover{ background:#e6ebf1; }
