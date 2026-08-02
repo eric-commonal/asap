@@ -461,38 +461,63 @@
        script lives there). This version auto-inits every .asap-roadmap
        found on the page, so it's safe if the block is reused on more than
        one page.
-     - Cube/label sizing (--cw) and the mobile stacked-layout breakpoint
-       switched from viewport units (vw) / @media to CSS container queries
-       (cqw / @container) — QA'd on /content-block-suite: that template
-       drops the block into a Bootstrap content column narrower than the
-       full viewport, but 12.4vw is relative to the viewport regardless, so
-       cubes sized themselves as if they had the full screen width and
-       overflowed the actual column, forcing a horizontal scrollbar that
-       cropped items 6-7 off-screen. Sizing from the container's own width
-       instead means it always fits the space it's actually given, and a
-       narrow column now correctly triggers the vertical mobile stack even
-       on a wide desktop viewport, instead of scrolling.
+     - Reworked a second time (Eric: this block will appear on several pages
+       — /alliance-lifecycle, the homepage, etc — with different column
+       widths, and needs to "work anywhere within reason" rather than being
+       re-tuned per page). The first pass (--cw sized from a vw/cqw clamp
+       formula, items at a fixed calculated width) improved things on
+       /content-block-suite but still overflowed on the homepage — because
+       a formula that guesses "here's roughly how wide the container
+       probably is" can always be wrong by a few px in either direction,
+       and once cw hits its own clamp ceiling, growing the container
+       further no longer shrinks anything to compensate.
+       Replaced with a design that can't overflow by construction instead
+       of by estimation: items are flex:1 1 0 (grow/shrink to fill
+       whatever width the row actually has, floored/ceilinged by min-/
+       max-width) so the 7 of them always sum to exactly the container's
+       width — no guessing. Each item is its own container-query context
+       (container-type:inline-size), so the cube/icon/font sizing inside
+       it scales off that item's own real rendered width, not an estimate
+       of the outer wrap's width. Below the items' min-width floor
+       (7 * 108px = 756px), the @container breakpoint switches to the
+       vertical mobile stack before anything is forced to overflow.
    ------------------------------------------------------------------------- */
-.asap-roadmap .asap-wrap{ container-type:inline-size; container-name:asap-roadmap; padding-top:56px; padding-bottom:56px; }
-.asap-roadmap{ --cw: clamp(104px, 12.4cqw, 150px); --step: calc(var(--cw) * 1.06); }
+/* No default background — this block appears on multiple pages
+   (/alliance-lifecycle, homepage, etc.), so the background is opt-in per
+   instance via a modifier class on the <section> in the HTML, not fixed
+   here. Add asap-roadmap--light on pages that need separation from
+   adjacent white sections; leave it off on pages that don't. */
+.asap-roadmap--light{ background:var(--asap-light); } /* #eff6f5 — matches the site's --light-gray token, same background .asap-mission/.asap-events/.asap-watch use */
+.asap-roadmap .asap-wrap{ padding-top:56px; padding-bottom:56px; }
 .asap-roadmap, .asap-roadmap *{ box-sizing:border-box; }
 
 /* ---------- DESKTOP: horizontal row, zigzag labels ---------- */
 .asap-roadmap__timeline{ width:100%; overflow-x:auto; overflow-y:hidden; padding:6px 4px; }
-.asap-roadmap__items{ display:flex; justify-content:center; align-items:stretch; min-width:min-content; padding:0; margin:0; list-style:none; }
-.asap-roadmap__item{ position:relative; display:flex; flex-direction:column; align-items:center; width:var(--step); flex:0 0 auto;
-  opacity:0; transform:translateY(14px); animation:asapRoadmapPop .5s cubic-bezier(.2,.8,.2,1) forwards; animation-delay:calc(var(--i)*.09s); }
+.asap-roadmap__items{ display:flex; justify-content:center; align-items:stretch; padding:0; margin:0; list-style:none; }
+.asap-roadmap__item{
+  container-type:inline-size;                 /* cube/icon/font below scale off THIS box's real width */
+  position:relative; display:flex; flex-direction:column; align-items:center;
+  flex:1 1 0; min-width:108px; max-width:160px;  /* 7 items always sum to the row's actual width — no overflow, no guessing */
+  opacity:0; transform:translateY(14px); animation:asapRoadmapPop .5s cubic-bezier(.2,.8,.2,1) forwards; animation-delay:calc(var(--i)*.09s);
+}
 @keyframes asapRoadmapPop{ to{ opacity:1; transform:none; } }
 
-.asap-roadmap__lbl{ width:calc(var(--cw)*1.32); height:calc(var(--cw)*1.18); display:flex; flex-direction:column; align-items:center; text-align:center; gap:6px; pointer-events:none; margin:0; }
+/* Percentages below (124.5% / 94.3%) reproduce the original design's
+   proportions — label intentionally wider than its own item slot (the
+   "zigzag" look, each item's z-index makes earlier labels sit on top of
+   later cubes), cube slightly narrower than the slot (small gap between
+   adjacent cubes). Plain % of the item's own box, not cqw — cqw is only
+   needed below for properties (font-size, icon height) that can't be
+   expressed as a width-relative %. */
+.asap-roadmap__lbl{ width:124.5%; aspect-ratio:1.32/1.18; display:flex; flex-direction:column; align-items:center; text-align:center; gap:6px; pointer-events:none; margin:0; }
 .asap-roadmap__lbl--top{ justify-content:flex-end; }
 .asap-roadmap__lbl--bottom{ justify-content:flex-start; }
-.asap-roadmap__ttl{ font-size:calc(var(--cw)*0.116); font-weight:800; letter-spacing:.3px; text-transform:uppercase; line-height:1.2; color:var(--asap-navy); max-width:100%; }
-.asap-roadmap__ico{ width:calc(var(--cw)*0.26); height:calc(var(--cw)*0.26); flex:0 0 auto; }
+.asap-roadmap__ttl{ font-size:clamp(11.5px, 10.9cqw, 17.5px); font-weight:800; letter-spacing:.3px; text-transform:uppercase; line-height:1.2; color:var(--asap-navy); max-width:100%; }
+.asap-roadmap__ico{ width:clamp(26px, 24.5cqw, 39px); height:clamp(26px, 24.5cqw, 39px); flex:0 0 auto; }
 .asap-roadmap__ico svg{ width:100%; height:100%; display:block; }
-.asap-roadmap__stem{ width:2px; height:calc(var(--cw)*0.18); opacity:.85; }
+.asap-roadmap__stem{ width:2px; height:clamp(17px, 17cqw, 26px); opacity:.85; }
 
-.asap-roadmap__cube{ position:relative; width:var(--cw); flex:0 0 var(--cw); cursor:pointer; outline:none; z-index:1;
+.asap-roadmap__cube{ position:relative; width:94.3%; cursor:pointer; outline:none; z-index:1;
   transition:transform .25s cubic-bezier(.2,.8,.2,1), filter .25s; }
 .asap-roadmap__cube-svg{ display:block; width:100%; height:auto; filter:drop-shadow(0 8px 12px rgba(20,35,70,.16)); }
 .asap-roadmap__cube:hover, .asap-roadmap__cube:focus-visible{ transform:translateY(-8px) scale(1.04); z-index:60; }
@@ -503,13 +528,17 @@
 /* ---------- NARROW CONTAINER: vertical stack, no overlap ----------
    @container, not @media — triggers off the block's own column width, not
    the viewport, so this also fires when the block is placed in a narrow
-   template column on an otherwise-wide desktop screen (see note above). */
-@container asap-roadmap (max-width:760px){
+   template column on an otherwise-wide desktop screen. Threshold (800px)
+   sits just above 7 * 108px (the items' min-width floor, 756px) so the row
+   always switches to the vertical stack before it would ever need to
+   shrink items past their floor. */
+.asap-roadmap .asap-wrap{ container-type:inline-size; container-name:asap-roadmap; }
+@container asap-roadmap (max-width:800px){
   .asap-roadmap__timeline{ overflow:visible; }
-  .asap-roadmap__items{ flex-direction:column; align-items:stretch; min-width:0; padding:0; }
-  .asap-roadmap__item{ flex-direction:row; align-items:center; width:100% !important; gap:14px; }
+  .asap-roadmap__items{ flex-direction:column; align-items:stretch; padding:0; }
+  .asap-roadmap__item{ container-type:normal; flex-direction:row; align-items:center; width:100% !important; max-width:none; gap:14px; }
   .asap-roadmap__item + .asap-roadmap__item{ margin-top:10px; }   /* clear gap — no overlay */
-  .asap-roadmap__item .asap-roadmap__cube{ width:clamp(104px,27cqw,140px); flex:0 0 auto; }
+  .asap-roadmap__item .asap-roadmap__cube{ width:clamp(104px,27cqw,140px); flex:0 0 auto; }  /* prevent shrink against the label's text */
   .asap-roadmap__lbl--top, .asap-roadmap__lbl--bottom{ display:none; }
   .asap-roadmap__m-label{ display:flex; align-items:center; gap:12px; }
   .asap-roadmap__m-label .asap-roadmap__ico{ width:34px; height:34px; }
