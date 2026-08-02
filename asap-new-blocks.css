@@ -492,7 +492,17 @@
 .asap-roadmap, .asap-roadmap *{ box-sizing:border-box; }
 
 /* ---------- DESKTOP: horizontal row, zigzag labels ---------- */
-.asap-roadmap__timeline{ width:100%; overflow-x:auto; overflow-y:hidden; padding:6px 4px; }
+/* Horizontal padding sized to the label overhang: .lbl is 124.5% of its
+   item, centered, so it bleeds ~12.25% of the item's width past each edge
+   (up to ~19.6px at the 160px item max-width) — that's fine for interior
+   items (a neighbor's slot absorbs it), but item 1's label bleeds left of
+   the row's own edge and item 7's bleeds right of it. Timeline is a scroll
+   container (overflow-x:auto), and content before its own scroll-start
+   position is unreachable in LTR (can't scroll negative) — QA'd on
+   /alliance-lifecycle: the "A" of item 1's "Alliance-Specific Strategy"
+   was getting clipped for exactly this reason. This padding gives both
+   ends room to bleed into without leaving the visible/scrollable box. */
+.asap-roadmap__timeline{ width:100%; overflow-x:auto; overflow-y:hidden; padding:6px 24px; }
 .asap-roadmap__items{ display:flex; justify-content:center; align-items:stretch; padding:0; margin:0; list-style:none; }
 .asap-roadmap__item{
   container-type:inline-size;                 /* cube/icon/font below scale off THIS box's real width */
