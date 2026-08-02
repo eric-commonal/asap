@@ -461,10 +461,21 @@
        script lives there). This version auto-inits every .asap-roadmap
        found on the page, so it's safe if the block is reused on more than
        one page.
+     - Cube/label sizing (--cw) and the mobile stacked-layout breakpoint
+       switched from viewport units (vw) / @media to CSS container queries
+       (cqw / @container) — QA'd on /content-block-suite: that template
+       drops the block into a Bootstrap content column narrower than the
+       full viewport, but 12.4vw is relative to the viewport regardless, so
+       cubes sized themselves as if they had the full screen width and
+       overflowed the actual column, forcing a horizontal scrollbar that
+       cropped items 6-7 off-screen. Sizing from the container's own width
+       instead means it always fits the space it's actually given, and a
+       narrow column now correctly triggers the vertical mobile stack even
+       on a wide desktop viewport, instead of scrolling.
    ------------------------------------------------------------------------- */
-.asap-roadmap{ --cw: clamp(104px, 12.4vw, 150px); --step: calc(var(--cw) * 1.06); }
+.asap-roadmap .asap-wrap{ container-type:inline-size; container-name:asap-roadmap; padding-top:56px; padding-bottom:56px; }
+.asap-roadmap{ --cw: clamp(104px, 12.4cqw, 150px); --step: calc(var(--cw) * 1.06); }
 .asap-roadmap, .asap-roadmap *{ box-sizing:border-box; }
-.asap-roadmap .asap-wrap{ padding-top:56px; padding-bottom:56px; }
 
 /* ---------- DESKTOP: horizontal row, zigzag labels ---------- */
 .asap-roadmap__timeline{ width:100%; overflow-x:auto; overflow-y:hidden; padding:6px 4px; }
@@ -489,13 +500,16 @@
 
 .asap-roadmap__m-label{ display:none; }
 
-/* ---------- MOBILE: vertical stack, no overlap ---------- */
-@media (max-width:760px){
+/* ---------- NARROW CONTAINER: vertical stack, no overlap ----------
+   @container, not @media — triggers off the block's own column width, not
+   the viewport, so this also fires when the block is placed in a narrow
+   template column on an otherwise-wide desktop screen (see note above). */
+@container asap-roadmap (max-width:760px){
   .asap-roadmap__timeline{ overflow:visible; }
   .asap-roadmap__items{ flex-direction:column; align-items:stretch; min-width:0; padding:0; }
   .asap-roadmap__item{ flex-direction:row; align-items:center; width:100% !important; gap:14px; }
   .asap-roadmap__item + .asap-roadmap__item{ margin-top:10px; }   /* clear gap — no overlay */
-  .asap-roadmap__item .asap-roadmap__cube{ width:clamp(104px,27vw,140px); flex:0 0 auto; }
+  .asap-roadmap__item .asap-roadmap__cube{ width:clamp(104px,27cqw,140px); flex:0 0 auto; }
   .asap-roadmap__lbl--top, .asap-roadmap__lbl--bottom{ display:none; }
   .asap-roadmap__m-label{ display:flex; align-items:center; gap:12px; }
   .asap-roadmap__m-label .asap-roadmap__ico{ width:34px; height:34px; }
