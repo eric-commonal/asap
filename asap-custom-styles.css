@@ -711,20 +711,64 @@ div.c-nav-centered__search > div {
 /* Date badge: 120x120 fixed square -> a smaller pill. Frees width back
    to the title column and reads lighter, matching the new blocks'
    generally smaller-footprint card chrome. */
+/* Fixed height, flexible width — not fixed on both axes. Height fixed
+   because that's what actually drives row-to-row visual consistency
+   (caught live: single-day and multi-day badges were different heights,
+   84px vs ~96px, which is what read as mismatched). Width left flexible
+   on purpose: multi-day content ("Sep 1 / Sep 3") is genuinely wider
+   than single-day ("Aug 20") — forcing one fixed width means either the
+   multi-day date cramps/wraps inside it, or every single-day badge
+   wastes space matching the multi-day one. min-width keeps single-day
+   badges from looking too skinny; height is the one that's truly fixed. */
 .upcoming .c-event-date-stub__wrapper {
   width: auto;
-  height: auto;
+  height: 84px;
   min-width: 76px;
   padding: 12px 14px;
   border-radius: 10px;
 }
-.upcoming .c-event-date-stub__wrapper .date-stub {
+
+/* Gap between title and time/details: was ~33px (visible text bottom to
+   time top), not the 8px the margin-bottom alone would suggest — the
+   title's wrapping <a> has no font-size/line-height of its own, so it
+   inherits the sitewide body value (20px / 1.7 = 34px line-height) as
+   its line-box "strut," which doesn't match the 21px/1.3 the title text
+   itself actually uses (see the event-name rule above) — the mismatch
+   between the two is what was rendering as extra invisible space.
+   :has() (already used elsewhere in this file) targets the title anchor
+   specifically without relying on DOM-order assumptions like :first-child. */
+.upcoming .c-event-date-stub__event-wrapper > a:has(.c-event-date-stub__event-name) {
+  line-height: 1.3;
+  margin-bottom: 4px;
+}
+
+/* Details link vertical centering: it's position:absolute with a fixed
+   top:40px (base theme, not in this file — confirmed live via
+   getComputedStyle, not visible in any rule here). A fixed pixel offset
+   doesn't adapt to row height, so it only *looks* aligned with the date
+   badge today by coincidence, at this specific badge height — it'll
+   drift out of alignment again the next time row height changes for any
+   reason. Overriding to true 50%/translateY centering so it stays
+   vertically centered on the row regardless of content height. */
+.upcoming .c-event-date-stub__btn {
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+}
+/* Full ancestor chain repeated here (with .upcoming prepended), not just
+   ".upcoming .c-event-date-stub__wrapper .date-stub" — the original rule
+   this overrides is nested 5 classes deep in SCSS
+   (.event.col-md-4 .event-table .c-event-date-stub__wrapper .date-stub),
+   which a shorter selector doesn't have the specificity to beat. Confirmed
+   live on staging: without this fuller chain, these three still computed
+   at their original 16px/30px/60px despite the rule being "correct" on
+   its own. */
+.upcoming .event.col-md-4 .event-table .c-event-date-stub__wrapper .date-stub {
   font-size: 13px;
 }
-.upcoming .c-event-date-stub__wrapper .date-stub strong {
+.upcoming .event.col-md-4 .event-table .c-event-date-stub__wrapper .date-stub strong {
   font-size: 24px;
 }
-.upcoming .c-event-date-stub__wrapper .c-event-date-stub__separator--slash {
+.upcoming .event.col-md-4 .event-table .c-event-date-stub__wrapper .c-event-date-stub__separator--slash {
   font-size: 40px;
 }
 
@@ -733,7 +777,7 @@ div.c-nav-centered__search > div {
    ".body-content .main-event .event-info h1.long" above) rather than
    relying on width alone to keep it to 2 lines. Font size trimmed one
    notch to fit more of each title before the clamp's ellipsis kicks in. */
-.upcoming .c-event-date-stub__event-name {
+.upcoming .event.col-md-4 .event-table .c-event-date-stub__event-wrapper .c-event-date-stub__event-name {
   font-size: 21px !important;
   line-height: 1.3;
   display: -webkit-box;
@@ -755,11 +799,20 @@ div.c-nav-centered__search > div {
   display: inline-block !important;
 }
 .upcoming .c-event-date-stub__time:has(small) {
+  /* Deliberate muted gray, not opacity — opacity on top of the same
+     color (var(--text-color)) read as a stray/inconsistent color rather
+     than an intentional secondary style (caught live: "looks like a
+     different font color" — it wasn't a different color, just faded).
+     margin-right explicitly zeroed too: the base .c-event-date-stub__time
+     rule (above) sets margin-right:5px unconditionally, which was
+     stacking with this element's own margin-left and reads as a bigger
+     gap than intended (caught live: "spaced pretty far from the time"). */
   background: none;
   padding: 0;
-  margin-left: 4px;
+  margin-left: 2px;
+  margin-right: 0;
   font-size: 13px;
-  opacity: 0.7;
+  color: #767676;
 }
 .upcoming .c-event-date-stub__time:not(:has(small)) {
   padding: 3px 9px;
