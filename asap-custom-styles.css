@@ -13,6 +13,8 @@
   --border-gray: #bababa;
   --highlight-orange: #ff7840;
   --input-border: #0d2894;
+  --navy-card: #20244d;
+  --navy-box: #161936;
 }
 
 /* Base fonts */
@@ -198,14 +200,6 @@ header {
       }
     }
   }
-}
-
-/* Added from bward's live version — kept per decision on 2026-08-01 */
-.sponsor-row {
-  display: flex;
-  gap: 20px;
-  align-items: center;
-  /*justify-content: center;*/
 }
 
 /* Event title handling */
@@ -743,8 +737,23 @@ blockquote cite {
   transform: translateX(-50%);
   border: none;
   @media all and (min-width: 768px) {
-    padding: 70px 20px;
+    padding: 100px 20px;
   }
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 30%; /* Reduced width to not overlap too much */
+    background-image: url("https://assets-staging.noviams.com/novi-file-uploads/asap/graphics/asap-hero-pattern.svg");
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: cover;
+    z-index: 1;
+  }
+
   h1 {
     max-width: 1140px;
     margin-left: auto;
@@ -757,15 +766,7 @@ blockquote cite {
     position: relative;
     z-index: 2;
     margin-bottom: 2rem;
-  }
-  /* When there's no subtitle, h1 is the ribbon's only/last child and its
-     2rem margin-bottom just adds to the 70px bottom padding with nothing
-     to justify it — the ribbon looks bottom-heavy/unbalanced (QA'd on
-     /certifications). Zeroing it only when h1 has no following sibling
-     leaves pages with a real subtitle untouched (h1 is no longer
-     :last-child there, so this rule doesn't match). */
-  h1:last-child {
-    margin-bottom: 0;
+    padding-right: 20%;
   }
 
   .subtitle,
@@ -781,6 +782,10 @@ blockquote cite {
     line-height: 1.5;
     position: relative;
     z-index: 2;
+    padding-right: 0%;
+    @media all and (min-width: 768px) {
+      padding-right: 20%;
+    }
   }
 }
 
@@ -805,31 +810,22 @@ blockquote cite {
   }
 }
 
-.c-body-content__asap-summit .header-ribbon {
-  background-color: var(--secondary-color);
-}
+/* All ASAP event/summit pages now use the .asap-event-hero Main Content
+   block (see asap-new-blocks.css) instead of the header-ribbon — the
+   ribbon is hidden per page rather than restyled. The old page-specific
+   ribbon color/pattern overrides (teal for biopharma, orange for summit)
+   are removed since the ribbon they targeted no longer renders on these
+   pages.
 
-@media all and (min-width: 768px) {
-  .c-body-content__asap-summit .header-ribbon::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    height: 100%;
-    width: 30%; /* Reduced width to not overlap too much */
-    background-image: url("https://assets-staging.noviams.com/novi-file-uploads/asap/graphics/asap-hero-pattern-orange-bg.svg");
-    background-repeat: no-repeat;
-    background-position: left center;
-    background-size: cover;
-    z-index: 1;
-  }
-}
-
-.c-body-content__asap-biopharma-conference h1,
-.c-body-content__asap-biopharma-conference h2.subtitle,
-.c-body-content__asap-summit .header-ribbon h1,
-.c-body-content__asap-summit .header-ribbon h2.subtitle {
-  color: var(--primary-color) !important;
+   Confirmed page-slug classes: asap-summit, asap-biopharma-conference.
+   asap-european-alliance-summit (Summit London) is inferred from the
+   live strategic-alliances.org DOM, not confirmed against this staging
+   site — verify before relying on it. Summit NYC and ASAP Locals slugs
+   are still unknown; add their display:none rules here once confirmed. */
+.c-body-content__asap-summit .header-ribbon,
+.c-body-content__asap-biopharma-conference .header-ribbon,
+.c-body-content__asap-european-alliance-summit .header-ribbon /* unconfirmed on staging */ {
+  display: none;
 }
 
 /* Media query for mobile screens */
@@ -1343,24 +1339,23 @@ ol {
   padding: 15px 20px;
 }
 
-#top-featured-carousel {
-  display: none;
-}
+/* home hero styles */
 #top-featured-carousel {
   width: 100%;
-  margin-bottom: 0;
+
   .background {
     background-color: var(--primary-color);
     width: 100% !important;
     height: 100% !important;
     padding: 2rem 0;
     background-size: cover;
+
     @media all and (min-width: 768px) {
       min-height: 632px !important;
       max-height: 632px !important;
     }
     .event-info {
-      background-color: color-mix(in srgb, var(--primary-color) 70%, transparent);
+      background-color: var(--primary-color);
       right: auto;
       top: auto;
       width: 100%;
@@ -1370,15 +1365,18 @@ ol {
       bottom: 0;
       border-radius: 0;
       justify-content: flex-end;
+
       @media all and (min-width: 768px) {
         width: 33%;
         max-width: 350px;
         bottom: 4rem;
         border-radius: 8px;
       }
+
       h1 {
         color: var(--white-color) !important;
       }
+
       .date {
         font-size: 16px;
         font-weight: 300;
@@ -1386,16 +1384,12 @@ ol {
       }
     }
   }
+
   .slick-dots {
     display: none !important;
   }
-.slick-slide > div > div {
-  vertical-align: top;
 }
-}
-#about-association {
-  padding-top: 0;
-}
+
 /* widgets */
 #widgets {
   min-height: 0;
