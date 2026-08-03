@@ -424,7 +424,7 @@
 .asap-cta .asap-wrap{ padding:18px 24px 70px; }
 .asap-cta__box{ background:var(--asap-navy); border-radius:18px; padding:clamp(40px,6vw,66px) 24px; text-align:center; color:#fff; }
 .asap-cta__box h2{ font-family:var(--asap-sans); font-weight:800; font-size:clamp(1.7rem,3.6vw,2.6rem); margin:0 0 16px; color:#fff !important; }
-.asap-cta__box p{ color:#c3c8e0; max-width:620px; margin:0 auto 30px; line-height:1.6; }
+.asap-cta__box p{ color:#c3c8e0 !important; max-width:620px; margin:0 auto 30px; line-height:1.6; } /* !important to beat .single-region p{color:var(--dark-blue)!important} — same fight as .asap-hero__title, this block just hadn't been QA'd inside a .single-region wrapper yet (present on the homepage, absent on /content-block-suite, which is why it only showed up there) */
 .asap-cta__btns{ display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
 
 /* -------------------------------------------------------------------------
@@ -538,12 +538,23 @@
 /* ---------- NARROW CONTAINER: vertical stack, no overlap ----------
    @container, not @media — triggers off the block's own column width, not
    the viewport, so this also fires when the block is placed in a narrow
-   template column on an otherwise-wide desktop screen. Threshold (800px)
+   template column on an otherwise-wide desktop screen. Threshold (758px)
    sits just above 7 * 108px (the items' min-width floor, 756px) so the row
    always switches to the vertical stack before it would ever need to
-   shrink items past their floor. */
+   shrink items past their floor.
+   QA'd on /content-block-suite (wide desktop, 1920px viewport): that
+   template's column nests .asap-wrap down to 817.5px border-box — but
+   @container conditions are evaluated against the CONTENT box (border-box
+   minus the wrap's own 24px+24px padding), i.e. 769.5px, not the 817.5px
+   you'd see in devtools/getBoundingClientRect. The original 800px
+   breakpoint had ~44px of extra safety margin baked in on top of the true
+   756px floor, which was enough to push this specific page (769.5px
+   content-box, comfortably above the true floor) into the vertical stack
+   even though it had room to lay out horizontally. Tightened to right
+   above the real floor so pages like this one get the horizontal layout,
+   without changing the guarantee that nothing overflows below it. */
 .asap-roadmap .asap-wrap{ container-type:inline-size; container-name:asap-roadmap; }
-@container asap-roadmap (max-width:800px){
+@container asap-roadmap (max-width:758px){
   .asap-roadmap__timeline{ overflow:visible; }
   .asap-roadmap__items{ flex-direction:column; align-items:stretch; padding:0; }
   .asap-roadmap__item{ container-type:normal; flex-direction:row; align-items:center; width:100% !important; max-width:none; gap:14px; }
