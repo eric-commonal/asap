@@ -615,10 +615,16 @@
    only forces color on h1–h6 and p (see asap-custom-styles.css), so
    anything that isn't one of those tags is unaffected by construction.
 
-   Buttons reuse .asap-btn/.asap-btn--orange/.asap-btn--ghost-light as-is
-   — both already exist above and their hover states are already covered
-   by the file's own compatibility fix (.asap-btn:hover{text-decoration:
-   none}), so no new button CSS is needed here.
+   Buttons reuse existing .asap-btn variants as-is, no new button CSS:
+   navy variant → .asap-btn--orange (primary) + .asap-btn--ghost-light
+   (secondary, white outline — reads fine against dark navy).
+   teal variant → .asap-btn--navy (primary) + .asap-btn--ghost (secondary,
+   navy outline — .asap-btn--ghost already exists above and is exactly
+   this; ghost-light's white outline has less definition against the
+   lighter teal, per review). Hover states for all of these are already
+   covered by the file's own compatibility fix (.asap-btn:hover{text-
+   decoration:none}). See asap-event-hero-snippet.html for which class
+   pair goes with which section modifier.
    ------------------------------------------------------------------------- */
 .asap-event-hero{
   --aeh-bg: var(--asap-navy);
@@ -644,6 +650,16 @@
   --aeh-stat-bg: var(--asap-navy-deep);
   --aeh-accent: var(--asap-navy);
 }
+/* Teal's mid-tone background means the light-on-navy text colors used for
+   the eyebrow/lead/partner-label above (chosen for contrast against dark
+   navy) read too low-contrast here — caught in review on the actual
+   rendered page, not guessed. All three flip to navy for this variant.
+   Title/date/venue are left alone (stay white in both variants) — per
+   Eric, bold/large enough to hold contrast against teal without a swap. */
+.asap-event-hero--teal .asap-eyebrow{ color:var(--asap-navy); }
+.asap-event-hero--teal .asap-eyebrow::before{ background:var(--asap-navy); }
+.asap-event-hero--teal .asap-event-hero__lead.asap-event-hero__lead{ color:var(--asap-navy) !important; }
+.asap-event-hero--teal .asap-event-hero__partner-label{ color:var(--asap-navy); }
 
 .asap-event-hero .asap-wrap{ display:grid; grid-template-columns:1fr; gap:clamp(28px,5vw,56px); align-items:center; max-width:1240px; padding:0 clamp(22px,5vw,56px); }
 @media(min-width:900px){ .asap-event-hero .asap-wrap{ grid-template-columns:1.08fr .92fr; } }
@@ -670,14 +686,26 @@
   margin-bottom: 28px !important;
 }
 
-.asap-event-hero__date{ font-family:var(--asap-sans); font-weight:700; font-size:1.15rem; margin-bottom:4px; }
-.asap-event-hero__venue{ color:#a9adc9; font-size:.98rem; margin-bottom:32px; }
+/* Venue matched to date's weight/color (was a lighter, non-bold gray) —
+   per review, the lighter treatment read as less legible than intended;
+   both are now the same style, just different spacing below. */
+.asap-event-hero__date,
+.asap-event-hero__venue{ font-family:var(--asap-sans); font-weight:700; color:#fff; font-size:1.15rem; }
+.asap-event-hero__date{ margin-bottom:4px; }
+.asap-event-hero__venue{ margin-bottom:32px; }
 
 .asap-event-hero__btns{ display:flex; gap:14px; flex-wrap:wrap; margin-bottom:40px; }
 
 .asap-event-hero__partner{ display:flex; align-items:center; gap:20px; flex-wrap:wrap; }
 .asap-event-hero__partner-label{ color:#9298b8; font-size:.9rem; }
-.asap-event-hero__plogo{ background:var(--asap-light); color:var(--asap-navy); font-family:var(--asap-sans); font-weight:700; font-size:.95rem; padding:15px 26px; border-radius:8px; display:inline-block; }
+/* No background/padding "chip" here anymore — with just placeholder text
+   in it, that read as a third button (caught in review). Sized to hold a
+   real <img> logo instead: capped height so partner logos of different
+   aspect ratios all sit at the same visual scale, width left auto. The
+   "Partner Logo" placeholder text just inherits ordinary text styling
+   until a real image replaces it. */
+.asap-event-hero__plogo{ display:inline-flex; align-items:center; font-family:var(--asap-sans); font-weight:700; font-size:.95rem; color:#fff; }
+.asap-event-hero__plogo img{ display:block; max-height:36px; width:auto; }
 
 .asap-event-hero__card{ background:var(--aeh-card-bg); border:1px solid rgba(255,255,255,.09); border-radius:18px; padding:20px; box-shadow:0 24px 60px rgba(0,0,0,.28); }
 
