@@ -667,7 +667,12 @@
 .asap-event-hero__eyebrow{ margin-bottom:20px; } /* color/line accent inherited from .asap-eyebrow */
 
 .asap-event-hero__title.asap-event-hero__title{
-  font-family: var(--asap-sans) !important;
+  /* Neulis Neue, not Poppins/--asap-sans — matches the H1 everywhere else
+     on the site (see asap-custom-styles.css's sitewide h1-h5 rule and
+     .header-ribbon h1), per Eric. The rest of this block (eyebrow, date,
+     stats, etc.) stays on --asap-sans, consistent with every other block
+     in this file. */
+  font-family: "neulis-neue", var(--font-family) !important;
   color: #fff !important;
   font-weight: 800 !important;
   line-height: 1.05;
