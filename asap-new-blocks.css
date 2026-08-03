@@ -538,23 +538,28 @@
 /* ---------- NARROW CONTAINER: vertical stack, no overlap ----------
    @container, not @media — triggers off the block's own column width, not
    the viewport, so this also fires when the block is placed in a narrow
-   template column on an otherwise-wide desktop screen. Threshold (758px)
-   sits just above 7 * 108px (the items' min-width floor, 756px) so the row
-   always switches to the vertical stack before it would ever need to
-   shrink items past their floor.
-   QA'd on /content-block-suite (wide desktop, 1920px viewport): that
-   template's column nests .asap-wrap down to 817.5px border-box — but
-   @container conditions are evaluated against the CONTENT box (border-box
-   minus the wrap's own 24px+24px padding), i.e. 769.5px, not the 817.5px
-   you'd see in devtools/getBoundingClientRect. The original 800px
-   breakpoint had ~44px of extra safety margin baked in on top of the true
-   756px floor, which was enough to push this specific page (769.5px
-   content-box, comfortably above the true floor) into the vertical stack
-   even though it had room to lay out horizontally. Tightened to right
-   above the real floor so pages like this one get the horizontal layout,
-   without changing the guarantee that nothing overflows below it. */
+   template column on an otherwise-wide desktop screen.
+   Threshold math (804px), precisely: the 7 items' hard floor is 7*108 =
+   756px, but that floor applies to .asap-roadmap__items' own width, which
+   sits INSIDE .asap-roadmap__timeline's 24px+24px padding (added earlier
+   so item 1/7's overhanging labels don't clip — see .timeline's own
+   comment above). So the wrap's content-box actually needs 756 + 48 = 804px
+   before the row has enough room, not just 756px.
+   An earlier version of this breakpoint (758px) missed that 48px and only
+   accounted for the items' own floor — QA'd on /content-block-suite: its
+   content-box (769.5px, see below) is above 758px so the row went
+   horizontal, but only had 769.5-48=721.5px to actually give the items,
+   6px short of their 756px floor — a real, if small, overflow/scrollbar
+   that a quick glance at the rendered row didn't catch. 804px is the
+   correct number with no slack cut out of it.
+   Container query conditions are evaluated against the query container's
+   CONTENT box (border-box minus its own padding), not the border-box
+   width you'd see in devtools/getBoundingClientRect — e.g. on
+   /content-block-suite .asap-wrap is 817.5px border-box but 769.5px
+   content-box (817.5 minus its own 24px+24px padding); the 769.5px number
+   is what actually gets compared against this breakpoint. */
 .asap-roadmap .asap-wrap{ container-type:inline-size; container-name:asap-roadmap; }
-@container asap-roadmap (max-width:758px){
+@container asap-roadmap (max-width:804px){
   .asap-roadmap__timeline{ overflow:visible; }
   .asap-roadmap__items{ flex-direction:column; align-items:stretch; padding:0; }
   .asap-roadmap__item{ container-type:normal; flex-direction:row; align-items:center; width:100% !important; max-width:none; gap:14px; }
