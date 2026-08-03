@@ -1463,8 +1463,20 @@ ol {
   padding: 15px 20px;
 }
 
-/* home hero styles */
+/* home hero styles
+   #top-featured-carousel is Novi's native featured-event widget — the
+   custom .asap-hero carousel (asap-new-blocks.css) replaces it on the
+   homepage. Explicitly hidden below rather than relying on it having no
+   data to show: live-checked on asap.novistaging.com, this was rendering
+   at full height (644px) stacked directly above .asap-hero (640px) —
+   most likely because a featured event now exists in the events database
+   where none did before (this file, asap-new-blocks.css, and asap-
+   global-scripts.html were all checked and never hid this element, so
+   it wasn't a regression from anything edited in those three files).
+   The styling below is left in place, unused while hidden, as a
+   documented fallback in case this ever needs to show again. */
 #top-featured-carousel {
+  display: none;
   width: 100%;
 
   .background {
