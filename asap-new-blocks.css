@@ -581,3 +581,118 @@
 .asap-roadmap__d-body{ color:var(--asap-muted); font-size:15px; line-height:1.55; }
 .asap-roadmap__d-close{ float:right; border:none; margin:0; background:#f1f4f8; color:var(--asap-muted); width:30px; height:30px; border-radius:50%; cursor:pointer; font-size:16px; font:inherit; }
 .asap-roadmap__d-close:hover{ background:#e6ebf1; }
+
+/* -------------------------------------------------------------------------
+   16. Event Hero
+   Richer hero for event/summit landing pages (Biopharma, Summit NYC,
+   Summit London, and — pending a simpler cut, per Eric — ASAP Locals)
+   than header-ribbon's H1 + subtitle fields can reasonably support: two-
+   column layout, a photo card with a location pill, and a 3-up stat row.
+
+   This REPLACES the header-ribbon on the pages that use it, rather than
+   restyling it — hide that page's ribbon in asap-custom-styles.css:
+     .c-body-content__PAGE-SLUG .header-ribbon{ display:none; }
+   (already added there for asap-summit and asap-biopharma-conference;
+   Summit London's slug is inferred but unconfirmed on staging; Summit
+   NYC and ASAP Locals slugs are still unknown — see that file's comment).
+
+   Color: navy is the default (Summit NYC/London). Biopharma keeps its
+   signature teal (#52b5c2 — already var(--teal) sitewide) via the
+   .asap-event-hero--teal modifier below. Both variants are driven
+   entirely by the --aeh-* custom properties declared on .asap-event-hero
+   itself — to add a third variant later (e.g. a simpler Locals cut),
+   override those three-to-five properties on a new modifier class rather
+   than duplicating the block.
+
+   Title is a real <h1> — the header-ribbon it replaces would otherwise
+   own the page's only h1, and an event page's title is exactly what SEO
+   wants that h1 to be. Unlike .asap-hero__title above (which sidesteps
+   the whole h1/.single-region specificity fight by not being a heading
+   tag at all — see the file-level compatibility-fixes note on it), this
+   one pays the doubled-class tax below to stay a real, semantic h1.
+   Eyebrow/date/venue/partner label are plain <div>/<span> rather than
+   h6/p specifically so they DON'T need the same treatment — .single-region
+   only forces color on h1–h6 and p (see asap-custom-styles.css), so
+   anything that isn't one of those tags is unaffected by construction.
+
+   Buttons reuse .asap-btn/.asap-btn--orange/.asap-btn--ghost-light as-is
+   — both already exist above and their hover states are already covered
+   by the file's own compatibility fix (.asap-btn:hover{text-decoration:
+   none}), so no new button CSS is needed here.
+   ------------------------------------------------------------------------- */
+.asap-event-hero{
+  --aeh-bg: var(--asap-navy);
+  --aeh-card-bg: var(--asap-navy-2);
+  --aeh-stat-bg: var(--asap-navy-deep);
+  --aeh-accent: var(--aqua,#95f1f1);
+  background: var(--aeh-bg);
+  color: #fff;
+  font-family: var(--asap-body);
+  padding: clamp(48px,7vw,84px) 0;
+}
+/* Biopharma only. Card/stat tiles go navy instead of a darker teal so
+   the two brand colors pair directly (navy-on-teal) rather than needing
+   a third, invented shade — same two-color palette the rest of the site
+   already uses for teal contexts (e.g. .asap-playlist__icon is teal
+   against white, never a teal-on-teal tint). Eyebrow stays orange, same
+   as the navy variant — every eyebrow in this file is orange regardless
+   of section background (see .asap-hero__eyebrow, .asap-news__eyebrow),
+   so this doesn't special-case it. */
+.asap-event-hero--teal{
+  --aeh-bg: var(--teal,#52b5c2);
+  --aeh-card-bg: var(--asap-navy);
+  --aeh-stat-bg: var(--asap-navy-deep);
+  --aeh-accent: var(--asap-navy);
+}
+
+.asap-event-hero .asap-wrap{ display:grid; grid-template-columns:1fr; gap:clamp(28px,5vw,56px); align-items:center; max-width:1240px; padding:0 clamp(22px,5vw,56px); }
+@media(min-width:900px){ .asap-event-hero .asap-wrap{ grid-template-columns:1.08fr .92fr; } }
+
+.asap-event-hero__eyebrow{ margin-bottom:20px; } /* color/line accent inherited from .asap-eyebrow */
+
+.asap-event-hero__title.asap-event-hero__title{
+  font-family: var(--asap-sans) !important;
+  color: #fff !important;
+  font-weight: 800 !important;
+  line-height: 1.05;
+  letter-spacing: -.01em;
+  font-size: clamp(2.2rem,5vw,3.6rem);
+  margin: 0 0 22px !important;
+}
+.asap-event-hero__title .g{ color: var(--aeh-accent); }
+
+.asap-event-hero__lead.asap-event-hero__lead{
+  color: #c9cde6 !important;
+  font-family: var(--asap-body);
+  font-size: clamp(1rem,1.3vw,1.12rem);
+  line-height: 1.6;
+  max-width: 34ch;
+  margin-bottom: 28px !important;
+}
+
+.asap-event-hero__date{ font-family:var(--asap-sans); font-weight:700; font-size:1.15rem; margin-bottom:4px; }
+.asap-event-hero__venue{ color:#a9adc9; font-size:.98rem; margin-bottom:32px; }
+
+.asap-event-hero__btns{ display:flex; gap:14px; flex-wrap:wrap; margin-bottom:40px; }
+
+.asap-event-hero__partner{ display:flex; align-items:center; gap:20px; flex-wrap:wrap; }
+.asap-event-hero__partner-label{ color:#9298b8; font-size:.9rem; }
+.asap-event-hero__plogo{ background:var(--asap-light); color:var(--asap-navy); font-family:var(--asap-sans); font-weight:700; font-size:.95rem; padding:15px 26px; border-radius:8px; display:inline-block; }
+
+.asap-event-hero__card{ background:var(--aeh-card-bg); border:1px solid rgba(255,255,255,.09); border-radius:18px; padding:20px; box-shadow:0 24px 60px rgba(0,0,0,.28); }
+
+.asap-event-hero__photo{ position:relative; border-radius:12px; overflow:hidden; aspect-ratio:16/8.2; background:linear-gradient(160deg,#e9d9c2 0%,#c9a98a 42%,#4a5a74 100%); }
+.asap-event-hero__photo img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; }
+.asap-event-hero__loc{ position:absolute; left:14px; bottom:12px; display:inline-flex; align-items:center; gap:7px; background:rgba(14,18,42,.55); backdrop-filter:blur(3px); color:#fff; font-size:.82rem; padding:6px 12px; border-radius:20px; }
+.asap-event-hero__loc svg{ width:14px; height:14px; }
+
+.asap-event-hero__stats{ display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:16px; }
+.asap-event-hero__stat{ background:var(--aeh-stat-bg); border:1px solid rgba(255,255,255,.05); border-radius:12px; padding:20px 14px; text-align:center; }
+.asap-event-hero__stat b{ display:block; font-family:var(--asap-sans); font-weight:800; font-size:clamp(1.5rem,2.6vw,1.9rem); color:#fff; line-height:1; }
+.asap-event-hero__stat span{ display:block; color:#a9adc9; font-size:.85rem; margin-top:6px; }
+
+@media(max-width:899px){ .asap-event-hero__lead{ max-width:none; } }
+@media(max-width:420px){
+  .asap-event-hero__stats{ gap:10px; }
+  .asap-event-hero__stat{ padding:16px 8px; }
+}
