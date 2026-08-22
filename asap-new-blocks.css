@@ -65,14 +65,14 @@
    Not !important, but nothing in the original design set a margin-top on
    these headings, so the 60px was silently inheriting through. Zeroing it
    here keeps cards and section headers at their intended spacing. */
-.asap-fcard h3,
-.asap-ecard h3,
+.asap-icon-card h3,
+.asap-media-card h3,
 .asap-sec-title{ margin-top:0; }
 
 /* Sitewide: ul,ol{margin-bottom:14px !important}
    Adds an unwanted gap under the feature-card list and the news list;
    needs !important to win against another !important rule. */
-.asap-fcard ul,
+.asap-icon-card ul,
 .asap-news__list{ margin-bottom:0 !important; }
 
 /* Sitewide: blockquote{margin:40px 0;padding:0 0 0 40px;
@@ -86,8 +86,8 @@
    Keeps buttons and card links from gaining an underline on hover. */
 .asap-btn:hover,
 .asap-hero__btn:hover,
-.asap-ecard__link,
-.asap-ecard__link:hover,
+.asap-media-card__link,
+.asap-media-card__link:hover,
 .asap-playlist__item:hover{ text-decoration:none; }
 
 /* Sitewide: h1,h2,h3,h4,h5{color:var(--dark-blue) !important}
@@ -111,12 +111,12 @@
    Are and Latest News, since both sit right after a <p>. Needs !important
    to win; applied to every <p>-based lead/copy element in this file for
    consistency, not just the two reported. */
-.asap-who__p{ margin-bottom:26px !important; }
+.asap-media-text__p{ margin-bottom:26px !important; }
 .asap-news__lead{ margin-bottom:24px !important; }
-.asap-watch__lead{ margin-bottom:22px !important; }
+.asap-video-list__lead{ margin-bottom:22px !important; }
 .asap-cta__box p{ margin-bottom:30px !important; }
-.asap-ecard p{ margin-bottom:16px !important; }
-.asap-feat__head p{ margin-bottom:0 !important; }
+.asap-media-card p{ margin-bottom:16px !important; }
+.asap-icon-cards__head p{ margin-bottom:0 !important; }
 
 /* Template compatibility: full-bleed sections.
    Originally tried the calc(50% - 50vw) breakout asap-custom-styles.css
@@ -132,7 +132,9 @@
    right. That's the CSS approach removed below in favor of a small
    position-measuring script (see asap-fullbleed-fix.html) that corrects
    for whatever nesting a given template happens to use, instead of
-   assuming a specific one. */
+   assuming a specific one. (Measurement noted below against the block that
+   was then called .asap-mission — since renamed to .asap-statement, see
+   section 5 — the measurement and fix themselves are unaffected.) */
 
 /* -------------------------------------------------------------------------
    3. Shared utilities (used across multiple blocks below)
@@ -203,17 +205,21 @@
 .asap-hero__track{ display:flex; height:100%; width:100%; transition:transform .7s cubic-bezier(.65,.02,.28,1); }
 .asap-hero__slide{ position:relative; flex:0 0 100%; height:100%; overflow:hidden; }
 .asap-hero__img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0; }
-.asap-hero__bg{ position:absolute; inset:0; z-index:-1; }
-.asap-hero__slide--ai .asap-hero__bg{ background:radial-gradient(120% 140% at 78% 40%,#1c2b57 0%,#0e1636 55%,#0a1030 100%); }
-.asap-hero__slide--handbook .asap-hero__bg{ background:linear-gradient(120deg,#141c3d 0%,#1a1c40 60%,#20264f 100%); }
-.asap-hero__slide--community .asap-hero__bg{ background:linear-gradient(90deg,#14203f 0%,#22335c 100%); }
-.asap-hero__slide--biopharma .asap-hero__bg{ background:linear-gradient(90deg,#1a2340 0%,#3a3350 55%,#7a5a44 100%); }
-.asap-hero__slide--london .asap-hero__bg{ background:linear-gradient(90deg,#243f5e 0%,#4f7ba3 60%,#9cc3e0 100%); }
+/* One shared look for every slide, on purpose (per Eric) — content and
+   background photos will keep rotating, and slides are pasted/edited
+   directly in HTML, so per-slide modifier classes (--ai, --handbook, etc.)
+   just went stale the moment content changed without someone remembering
+   to also update the class suffix. .asap-hero__bg is a fallback wash shown
+   if a slide's photo 404s (see the img's onerror in the HTML) — it doesn't
+   need to match each photo since it's rarely even visible; one on-brand
+   gradient built from the existing navy tokens works for all five (or any
+   future) slides. Same reasoning for the card: one opacity for every slide
+   instead of two photos getting a specially-tuned .52 that the rest didn't.
+   New slides need nothing beyond .asap-hero__slide — no modifier class. */
+.asap-hero__bg{ position:absolute; inset:0; z-index:-1; background:linear-gradient(120deg,var(--asap-navy-deep) 0%,var(--asap-navy) 60%,#20264f 100%); }
 .asap-hero__scrim{ position:absolute; inset:0; z-index:1; background:linear-gradient(90deg,rgba(10,14,38,.72) 0%,rgba(10,14,38,.45) 42%,rgba(10,14,38,.12) 68%,rgba(10,14,38,0) 100%); }
 .asap-hero__inner{ position:relative; z-index:2; height:100%; max-width:1360px; margin:0 auto; padding:0 clamp(20px,5vw,72px); display:flex; align-items:center; }
 .asap-hero__card{ max-width:560px; background:rgba(18,20,48,.62); backdrop-filter:blur(3px); border:1px solid rgba(255,255,255,.06); border-radius:18px; padding:clamp(22px,3vw,40px); color:#fff; }
-.asap-hero__slide--community .asap-hero__card,
-.asap-hero__slide--ai .asap-hero__card{ background:rgba(14,17,40,.52); }
 .asap-hero__eyebrow{ display:inline-flex; align-items:center; gap:14px; font-family:var(--asap-sans); font-size:clamp(.62rem,1.1vw,.78rem); font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:#ff7a3d; margin-bottom:16px; }
 .asap-hero__eyebrow::before{ content:""; width:40px; height:2px; background:#ff7a3d; flex:0 0 auto; }
 .asap-hero__title{ font-family:var(--asap-sans); font-weight:800; font-size:clamp(1.7rem,4.2vw,3rem); line-height:1.08; letter-spacing:-.01em; margin:0 0 26px; }
@@ -253,84 +259,93 @@
 }
 
 /* -------------------------------------------------------------------------
-   5. Mission
+   5. Statement (short centered pull-statement — was "Mission"; renamed
+      because it won't always hold mission-statement copy specifically)
    ------------------------------------------------------------------------- */
-.asap-mission{ background:var(--asap-light); text-align:center; }
-.asap-mission .asap-wrap{ padding:56px 24px; max-width:1000px; }
-.asap-mission .asap-eyebrow-plain{ margin-bottom:16px; display:inline-block; }
-.asap-mission h2{ font-family:var(--asap-sans); font-weight:700; color:var(--asap-navy); font-size:clamp(1.35rem,2.7vw,2rem); line-height:1.4; margin:0; }
+.asap-statement{ background:var(--asap-light); text-align:center; }
+.asap-statement .asap-wrap{ padding:56px 24px; max-width:1000px; }
+.asap-statement .asap-eyebrow-plain{ margin-bottom:16px; display:inline-block; }
+.asap-statement h2{ font-family:var(--asap-sans); font-weight:700; color:var(--asap-navy); font-size:clamp(1.35rem,2.7vw,2rem); line-height:1.4; margin:0; }
 
 /* -------------------------------------------------------------------------
-   6. Who We Are
+   6. Media + Text (two-column split — was "Who We Are"; renamed since it's
+      really any image/video-plus-copy split, not always an about-us block)
    ------------------------------------------------------------------------- */
-.asap-who .asap-wrap{ padding:72px 24px; display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center; }
-.asap-who__h{ font-family:var(--asap-sans); font-weight:800; color:var(--asap-navy); font-size:clamp(1.9rem,3.6vw,2.7rem); line-height:1.1; margin:16px 0 18px; }
-.asap-who__p{ color:var(--asap-muted); font-size:1rem; line-height:1.7; margin-bottom:26px; max-width:52ch; }
-.asap-who__btns{ display:flex; gap:14px; flex-wrap:wrap; }
-.asap-who__media{ position:relative; border-radius:14px; overflow:hidden; aspect-ratio:4/3; background:linear-gradient(135deg,#16204a,#33507e); }
-.asap-who__media img{ width:100%; height:100%; object-fit:cover; display:block; }
-.asap-who__badge{ position:absolute; right:0; bottom:0; background:#fff; border-radius:14px 0 0 0; padding:16px 22px; display:flex; align-items:center; gap:12px; box-shadow:-8px -8px 26px rgba(0,0,0,.10); }
-.asap-who__badge b{ font-family:var(--asap-sans); font-weight:800; color:var(--asap-navy); font-size:2rem; line-height:1; }
-.asap-who__badge span{ color:var(--asap-muted); font-size:.82rem; line-height:1.25; max-width:10ch; }
+.asap-media-text .asap-wrap{ padding:72px 24px; display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center; }
+.asap-media-text__h{ font-family:var(--asap-sans); font-weight:800; color:var(--asap-navy); font-size:clamp(1.9rem,3.6vw,2.7rem); line-height:1.1; margin:16px 0 18px; }
+.asap-media-text__p{ color:var(--asap-muted); font-size:1rem; line-height:1.7; margin-bottom:26px; max-width:52ch; }
+.asap-media-text__btns{ display:flex; gap:14px; flex-wrap:wrap; }
+.asap-media-text__media{ position:relative; border-radius:14px; overflow:hidden; aspect-ratio:4/3; background:linear-gradient(135deg,#16204a,#33507e); }
+.asap-media-text__media img{ width:100%; height:100%; object-fit:cover; display:block; }
+.asap-media-text__badge{ position:absolute; right:0; bottom:0; background:#fff; border-radius:14px 0 0 0; padding:16px 22px; display:flex; align-items:center; gap:12px; box-shadow:-8px -8px 26px rgba(0,0,0,.10); }
+.asap-media-text__badge b{ font-family:var(--asap-sans); font-weight:800; color:var(--asap-navy); font-size:2rem; line-height:1; }
+.asap-media-text__badge span{ color:var(--asap-muted); font-size:.82rem; line-height:1.25; max-width:10ch; }
 
-@media(max-width:980px){ .asap-who .asap-wrap{ grid-template-columns:1fr; gap:32px; } }
+@media(max-width:980px){ .asap-media-text .asap-wrap{ grid-template-columns:1fr; gap:32px; } }
 
 /* -------------------------------------------------------------------------
-   7. Stats
+   7. Stat Grid (row of number+label callouts — was "Stats"; kept close to
+      the original name since "stats" was already structural, not content-
+      specific, but aligned to the -grid suffix pattern used elsewhere)
    ------------------------------------------------------------------------- */
-.asap-stats{ background:var(--asap-navy); }
-.asap-stats .asap-wrap{ padding:46px 24px; display:grid; grid-template-columns:repeat(4,1fr); gap:24px; text-align:center; }
-.asap-stats b{ display:block; font-family:var(--asap-sans); font-weight:800; color:var(--aqua,#95f1f1); font-size:clamp(1.9rem,4vw,2.7rem); line-height:1; }
-.asap-stats span{ color:#c3c8e0; font-size:.92rem; margin-top:10px; display:block; }
+.asap-stat-grid{ background:var(--asap-navy); }
+.asap-stat-grid .asap-wrap{ padding:46px 24px; display:grid; grid-template-columns:repeat(4,1fr); gap:24px; text-align:center; }
+.asap-stat-grid b{ display:block; font-family:var(--asap-sans); font-weight:800; color:var(--aqua,#95f1f1); font-size:clamp(1.9rem,4vw,2.7rem); line-height:1; }
+.asap-stat-grid span{ color:#c3c8e0; font-size:.92rem; margin-top:10px; display:block; }
 
-@media(max-width:980px){ .asap-stats .asap-wrap{ grid-template-columns:repeat(2,1fr); gap:28px; } }
+@media(max-width:980px){ .asap-stat-grid .asap-wrap{ grid-template-columns:repeat(2,1fr); gap:28px; } }
 
 /* -------------------------------------------------------------------------
-   8. Features
+   8. Icon Cards (grid of cards: icon + heading + bullet list — was
+      "Features"; renamed to describe the card composition itself, and to
+      stay distinct from Media Cards below, which look similar at a glance
+      but are structurally a different card: photo+meta+link, not icon+list)
    ------------------------------------------------------------------------- */
-.asap-feat .asap-wrap{ padding:70px 24px; }
-.asap-feat__head{ text-align:center; max-width:680px; margin:0 auto 46px; }
-.asap-feat__head .asap-sec-title{ margin:0 0 14px; }
-.asap-feat__head p{ color:var(--asap-muted); font-size:1.02rem; line-height:1.6; margin:0; }
-.asap-feat__grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:26px; }
-.asap-fcard{ border:1px solid var(--asap-line); border-radius:14px; padding:30px 28px; transition:transform .25s,box-shadow .25s; background:#fff; }
-.asap-fcard:hover{ transform:translateY(-6px); box-shadow:0 16px 34px rgba(26,28,64,.09); }
-.asap-ficon{ width:54px; height:54px; border-radius:12px; display:grid; place-items:center; margin-bottom:20px; color:#fff; }
-.asap-ficon svg{ width:26px; height:26px; }
-.asap-ficon--teal{ background:var(--teal,#52b5c2); }
-.asap-ficon--orange{ background:var(--asap-orange); }
-.asap-ficon--navy{ background:var(--asap-navy); }
-.asap-fcard h3{ font-family:var(--asap-sans); font-weight:700; color:var(--asap-navy); font-size:1.2rem; margin-bottom:14px; }
-.asap-fcard ul{ list-style:none; margin:0; padding:0; }
-.asap-fcard li{ display:flex; gap:10px; align-items:flex-start; color:var(--asap-muted); font-size:.95rem; line-height:1.45; padding:7px 0; }
-.asap-fcard li svg{ width:17px; height:17px; color:var(--teal,#52b5c2); flex:0 0 auto; margin-top:2px; }
+.asap-icon-cards .asap-wrap{ padding:70px 24px; }
+.asap-icon-cards__head{ text-align:center; max-width:680px; margin:0 auto 46px; }
+.asap-icon-cards__head .asap-sec-title{ margin:0 0 14px; }
+.asap-icon-cards__head p{ color:var(--asap-muted); font-size:1.02rem; line-height:1.6; margin:0; }
+.asap-icon-cards__grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:26px; }
+.asap-icon-card{ border:1px solid var(--asap-line); border-radius:14px; padding:30px 28px; transition:transform .25s,box-shadow .25s; background:#fff; }
+.asap-icon-card:hover{ transform:translateY(-6px); box-shadow:0 16px 34px rgba(26,28,64,.09); }
+.asap-icon-card__icon{ width:54px; height:54px; border-radius:12px; display:grid; place-items:center; margin-bottom:20px; color:#fff; }
+.asap-icon-card__icon svg{ width:26px; height:26px; }
+.asap-icon-card__icon--teal{ background:var(--teal,#52b5c2); }
+.asap-icon-card__icon--orange{ background:var(--asap-orange); }
+.asap-icon-card__icon--navy{ background:var(--asap-navy); }
+.asap-icon-card h3{ font-family:var(--asap-sans); font-weight:700; color:var(--asap-navy); font-size:1.2rem; margin-bottom:14px; }
+.asap-icon-card ul{ list-style:none; margin:0; padding:0; }
+.asap-icon-card li{ display:flex; gap:10px; align-items:flex-start; color:var(--asap-muted); font-size:.95rem; line-height:1.45; padding:7px 0; }
+.asap-icon-card li svg{ width:17px; height:17px; color:var(--teal,#52b5c2); flex:0 0 auto; margin-top:2px; }
 
-@media(max-width:980px){ .asap-feat__grid{ grid-template-columns:1fr; } }
+@media(max-width:980px){ .asap-icon-cards__grid{ grid-template-columns:1fr; } }
 
 /* -------------------------------------------------------------------------
-   9. Events
+   9. Media Cards (grid of cards: photo + meta row + title + link — was
+      "Events"; renamed since the card shape works for any linked content
+      — events, articles, resources — not just events specifically)
    ------------------------------------------------------------------------- */
-.asap-events{ background:var(--asap-light); }
-.asap-events .asap-wrap{ padding:70px 24px; }
-.asap-events .asap-sec-title{ text-align:center; margin:0 0 44px; }
-.asap-events__grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:26px; }
-.asap-ecard{ background:#fff; border-radius:14px; overflow:hidden; display:flex; flex-direction:column; box-shadow:0 4px 16px rgba(26,28,64,.05); transition:transform .25s,box-shadow .25s; }
-.asap-ecard:hover{ transform:translateY(-6px); box-shadow:0 16px 34px rgba(26,28,64,.12); }
-.asap-ecard__media{ position:relative; aspect-ratio:16/10; overflow:hidden; }
-.asap-ecard__fallback{ position:absolute; inset:0; }
-.asap-ecard__media img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; }
-.asap-ecard__chip{ position:absolute; left:14px; bottom:14px; background:rgba(12,16,40,.72); color:#fff; font-family:var(--asap-sans); font-weight:600; font-size:.68rem; letter-spacing:.03em; padding:5px 11px; border-radius:6px; z-index:2; }
-.asap-ecard__body{ padding:20px; display:flex; flex-direction:column; flex:1; }
-.asap-ecard__meta{ display:flex; gap:16px; font-size:.78rem; color:var(--asap-muted); margin-bottom:10px; flex-wrap:wrap; }
-.asap-ecard__meta span{ display:inline-flex; align-items:center; gap:6px; }
-.asap-ecard__meta svg{ width:14px; height:14px; color:var(--asap-tert); }
-.asap-ecard h3{ font-family:var(--asap-sans); font-weight:700; color:var(--asap-navy); font-size:1.08rem; line-height:1.3; margin-bottom:10px; }
-.asap-ecard p{ color:var(--asap-muted); font-size:.9rem; line-height:1.55; margin:0 0 16px; }
-.asap-ecard__link{ margin-top:auto; display:inline-flex; align-items:center; gap:7px; font-family:var(--asap-sans); font-weight:600; font-size:.85rem; color:var(--asap-tert); }
-.asap-ecard__link:hover{ color:var(--asap-tert); } /* explicit, not just coincidentally teal already — see hover-color note above */
-.asap-ecard__link svg{ width:15px; height:15px; }
+.asap-media-cards{ background:var(--asap-light); }
+.asap-media-cards .asap-wrap{ padding:70px 24px; }
+.asap-media-cards .asap-sec-title{ text-align:center; margin:0 0 44px; }
+.asap-media-cards__grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:26px; }
+.asap-media-card{ background:#fff; border-radius:14px; overflow:hidden; display:flex; flex-direction:column; box-shadow:0 4px 16px rgba(26,28,64,.05); transition:transform .25s,box-shadow .25s; }
+.asap-media-card:hover{ transform:translateY(-6px); box-shadow:0 16px 34px rgba(26,28,64,.12); }
+.asap-media-card__media{ position:relative; aspect-ratio:16/10; overflow:hidden; }
+.asap-media-card__fallback{ position:absolute; inset:0; }
+.asap-media-card__media img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; }
+.asap-media-card__chip{ position:absolute; left:14px; bottom:14px; background:rgba(12,16,40,.72); color:#fff; font-family:var(--asap-sans); font-weight:600; font-size:.68rem; letter-spacing:.03em; padding:5px 11px; border-radius:6px; z-index:2; }
+.asap-media-card__body{ padding:20px; display:flex; flex-direction:column; flex:1; }
+.asap-media-card__meta{ display:flex; gap:16px; font-size:.78rem; color:var(--asap-muted); margin-bottom:10px; flex-wrap:wrap; }
+.asap-media-card__meta span{ display:inline-flex; align-items:center; gap:6px; }
+.asap-media-card__meta svg{ width:14px; height:14px; color:var(--asap-tert); }
+.asap-media-card h3{ font-family:var(--asap-sans); font-weight:700; color:var(--asap-navy); font-size:1.08rem; line-height:1.3; margin-bottom:10px; }
+.asap-media-card p{ color:var(--asap-muted); font-size:.9rem; line-height:1.55; margin:0 0 16px; }
+.asap-media-card__link{ margin-top:auto; display:inline-flex; align-items:center; gap:7px; font-family:var(--asap-sans); font-weight:600; font-size:.85rem; color:var(--asap-tert); }
+.asap-media-card__link:hover{ color:var(--asap-tert); } /* explicit, not just coincidentally teal already — see hover-color note above */
+.asap-media-card__link svg{ width:15px; height:15px; }
 
-@media(max-width:980px){ .asap-events__grid{ grid-template-columns:1fr; } }
+@media(max-width:980px){ .asap-media-cards__grid{ grid-template-columns:1fr; } }
 
 /* -------------------------------------------------------------------------
    10. Quote
@@ -380,20 +395,25 @@
 @media (prefers-reduced-motion:reduce){ .asap-news__link, .asap-news__arrow{ transition:none; } }
 
 /* -------------------------------------------------------------------------
-   12. Watch and Listen
+   12. Video List (video thumbnail one side, playlist-style link list the
+      other — was "Watch and Listen"; renamed to describe the layout since
+      it's really a media-plus-list pattern, not tied to that specific
+      section title. .asap-playlist itself is left as-is — already a
+      generic, structural name for a vertical list of linked items, not
+      inherently video-specific)
    ------------------------------------------------------------------------- */
-.asap-watch{ background:var(--asap-light); }
-.asap-watch .asap-wrap{ padding:70px 24px; display:grid; grid-template-columns:1.05fr 1fr; gap:50px; align-items:center; }
-.asap-watch__video{ position:relative; border-radius:14px; overflow:hidden; aspect-ratio:16/9; background:linear-gradient(135deg,#12183a,#243a63 55%,#6f4433); } /* 16/9 to match Vimeo's actual video ratio (confirmed via oEmbed: 426x240) — was 16/10, which left a letterboxed gap around the embedded iframe */
-.asap-watch__play{ position:absolute; inset:0; display:grid; place-items:center; }
-.asap-watch__play span{ width:74px; height:74px; border-radius:50%; background:#fff; display:grid; place-items:center; box-shadow:0 10px 30px rgba(0,0,0,.3); }
-.asap-watch__play svg{ width:26px; height:26px; color:var(--asap-orange); margin-left:5px; }
-.asap-watch__duration{ position:absolute; right:14px; top:14px; background:rgba(12,16,40,.7); color:#fff; font-size:.72rem; padding:3px 8px; border-radius:5px; }
-.asap-watch__caption{ position:absolute; left:18px; bottom:16px; color:#fff; }
-.asap-watch__caption b{ font-family:var(--asap-sans); font-weight:700; font-size:1rem; display:block; }
-.asap-watch__caption span{ font-size:.8rem; color:#c9cde0; }
-.asap-watch__h{ margin:14px 0 14px; }
-.asap-watch__lead{ color:var(--asap-muted); line-height:1.65; margin:0 0 22px; }
+.asap-video-list{ background:var(--asap-light); }
+.asap-video-list .asap-wrap{ padding:70px 24px; display:grid; grid-template-columns:1.05fr 1fr; gap:50px; align-items:center; }
+.asap-video-list__video{ position:relative; border-radius:14px; overflow:hidden; aspect-ratio:16/9; background:linear-gradient(135deg,#12183a,#243a63 55%,#6f4433); } /* 16/9 to match Vimeo's actual video ratio (confirmed via oEmbed: 426x240) — was 16/10, which left a letterboxed gap around the embedded iframe */
+.asap-video-list__play{ position:absolute; inset:0; display:grid; place-items:center; }
+.asap-video-list__play span{ width:74px; height:74px; border-radius:50%; background:#fff; display:grid; place-items:center; box-shadow:0 10px 30px rgba(0,0,0,.3); }
+.asap-video-list__play svg{ width:26px; height:26px; color:var(--asap-orange); margin-left:5px; }
+.asap-video-list__duration{ position:absolute; right:14px; top:14px; background:rgba(12,16,40,.7); color:#fff; font-size:.72rem; padding:3px 8px; border-radius:5px; }
+.asap-video-list__caption{ position:absolute; left:18px; bottom:16px; color:#fff; }
+.asap-video-list__caption b{ font-family:var(--asap-sans); font-weight:700; font-size:1rem; display:block; }
+.asap-video-list__caption span{ font-size:.8rem; color:#c9cde0; }
+.asap-video-list__h{ margin:14px 0 14px; }
+.asap-video-list__lead{ color:var(--asap-muted); line-height:1.65; margin:0 0 22px; }
 .asap-playlist{ display:flex; flex-direction:column; gap:12px; }
 .asap-playlist__item{ display:flex; align-items:center; gap:14px; background:#fff; border:1px solid var(--asap-line); border-radius:10px; padding:12px 14px; text-decoration:none; transition:transform .2s,box-shadow .2s; }
 .asap-playlist__item:hover{ transform:translateX(4px); box-shadow:0 8px 20px rgba(26,28,64,.08); }
@@ -402,7 +422,7 @@
 .asap-playlist__item b{ font-family:var(--asap-sans); font-weight:600; color:var(--asap-navy); font-size:.95rem; display:block; }
 .asap-playlist__item span{ color:var(--asap-muted); font-size:.8rem; }
 
-@media(max-width:980px){ .asap-watch .asap-wrap{ grid-template-columns:1fr; gap:28px; } }
+@media(max-width:980px){ .asap-video-list .asap-wrap{ grid-template-columns:1fr; gap:28px; } }
 
 /* -------------------------------------------------------------------------
    13. Logos
@@ -487,7 +507,7 @@
    instance via a modifier class on the <section> in the HTML, not fixed
    here. Add asap-roadmap--light on pages that need separation from
    adjacent white sections; leave it off on pages that don't. */
-.asap-roadmap--light{ background:var(--asap-light); } /* #eff6f5 — matches the site's --light-gray token, same background .asap-mission/.asap-events/.asap-watch use */
+.asap-roadmap--light{ background:var(--asap-light); } /* #eff6f5 — matches the site's --light-gray token, same background .asap-statement/.asap-media-cards/.asap-video-list use */
 .asap-roadmap .asap-wrap{ padding-top:56px; padding-bottom:56px; }
 .asap-roadmap, .asap-roadmap *{ box-sizing:border-box; }
 
@@ -572,160 +592,73 @@
 }
 .asap-roadmap__m-label .asap-roadmap__ttl{ font-weight:800; letter-spacing:.3px; text-transform:uppercase; line-height:1.22; color:var(--asap-navy); }
 
-/* detail card */
+/* detail card — desktop: inline expanding card (unchanged from before).
+   Mobile client feedback: on the vertical stack, tapping an early item's
+   cube opens the card at the very bottom of the whole stacked list, well
+   below the fold — a user would only see it "if they get lucky and scroll
+   down." Below the same @container breakpoint that switches items to the
+   vertical stack, .detail becomes a fixed, centered, closeable lightbox
+   instead (backdrop + card), so it's visible immediately regardless of
+   scroll position. Desktop keeps the original inline behavior — client
+   confirmed that one's fine as-is.
+   .d-panel is a new wrapper (added around the card content in the JS
+   template) — on desktop it's unstyled passthrough (.detail is already the
+   visible white card, exactly as before); on mobile .detail instead becomes
+   the fixed backdrop and .d-panel becomes the actual visible white card
+   centered inside it. Kept as two elements (rather than restyling .detail
+   itself for both roles) so the backdrop can dim the whole screen behind a
+   card that's independently centered/sized, and so a click on the backdrop
+   (outside the card) can be told apart from a click inside it. */
 .asap-roadmap__detail{ width:100%; max-width:680px; margin:22px auto 0; background:#fff; border-radius:16px; border:1px solid var(--asap-line); box-shadow:0 12px 30px rgba(20,35,70,.10); padding:0 24px; max-height:0; overflow:hidden; opacity:0; transition:max-height .4s ease, opacity .3s ease, padding .4s ease; }
 .asap-roadmap__detail.is-open{ max-height:280px; opacity:1; padding:20px 24px; }
+.asap-roadmap__d-panel{ position:relative; } /* unstyled on desktop — .detail itself is still the visible card */
 .asap-roadmap__d-head{ display:flex; align-items:center; gap:14px; margin-bottom:8px; }
 .asap-roadmap__d-badge{ width:44px; height:44px; border-radius:11px; display:flex; align-items:center; justify-content:center; color:#fff; font-weight:800; font-size:17px; flex:0 0 auto; }
 .asap-roadmap__d-title{ font-size:17px; font-weight:800; letter-spacing:.4px; text-transform:uppercase; }
 .asap-roadmap__d-body{ color:var(--asap-muted); font-size:15px; line-height:1.55; }
-.asap-roadmap__d-close{ float:right; border:none; margin:0; background:#f1f4f8; color:var(--asap-muted); width:30px; height:30px; border-radius:50%; cursor:pointer; font-size:16px; font:inherit; }
+.asap-roadmap__d-close{ float:right; border:none; margin:0; background:#f1f4f8; color:var(--asap-muted); width:30px; height:30px; border-radius:50%; cursor:pointer; font-size:16px; font:inherit; flex:0 0 auto; }
 .asap-roadmap__d-close:hover{ background:#e6ebf1; }
 
-/* -------------------------------------------------------------------------
-   16. Event Hero
-   Richer hero for event/summit landing pages (Biopharma, Summit NYC,
-   Summit London, and — pending a simpler cut, per Eric — ASAP Locals)
-   than header-ribbon's H1 + subtitle fields can reasonably support: two-
-   column layout, a photo card with a location pill, and a 3-up stat row.
-
-   This REPLACES the header-ribbon on the pages that use it, rather than
-   restyling it — hide that page's ribbon in asap-custom-styles.css:
-     .c-body-content__PAGE-SLUG .header-ribbon{ display:none; }
-   (already added there for asap-summit and asap-biopharma-conference;
-   Summit London's slug is inferred but unconfirmed on staging; Summit
-   NYC and ASAP Locals slugs are still unknown — see that file's comment).
-
-   Color: navy is the default (Summit NYC/London). Biopharma keeps its
-   signature teal (#52b5c2 — already var(--teal) sitewide) via the
-   .asap-event-hero--teal modifier below. Both variants are driven
-   entirely by the --aeh-* custom properties declared on .asap-event-hero
-   itself — to add a third variant later (e.g. a simpler Locals cut),
-   override those three-to-five properties on a new modifier class rather
-   than duplicating the block.
-
-   Title is a real <h1> — the header-ribbon it replaces would otherwise
-   own the page's only h1, and an event page's title is exactly what SEO
-   wants that h1 to be. Unlike .asap-hero__title above (which sidesteps
-   the whole h1/.single-region specificity fight by not being a heading
-   tag at all — see the file-level compatibility-fixes note on it), this
-   one pays the doubled-class tax below to stay a real, semantic h1.
-   Eyebrow/date/venue/partner label are plain <div>/<span> rather than
-   h6/p specifically so they DON'T need the same treatment — .single-region
-   only forces color on h1–h6 and p (see asap-custom-styles.css), so
-   anything that isn't one of those tags is unaffected by construction.
-
-   Buttons reuse existing .asap-btn variants as-is, no new button CSS:
-   navy variant → .asap-btn--orange (primary) + .asap-btn--ghost-light
-   (secondary, white outline — reads fine against dark navy).
-   teal variant → .asap-btn--navy (primary) + .asap-btn--ghost (secondary,
-   navy outline — .asap-btn--ghost already exists above and is exactly
-   this; ghost-light's white outline has less definition against the
-   lighter teal, per review). Hover states for all of these are already
-   covered by the file's own compatibility fix (.asap-btn:hover{text-
-   decoration:none}). See asap-event-hero-snippet.html for which class
-   pair goes with which section modifier.
-   ------------------------------------------------------------------------- */
-.asap-event-hero{
-  --aeh-bg: var(--asap-navy);
-  --aeh-card-bg: var(--asap-navy-2);
-  --aeh-stat-bg: var(--asap-navy-deep);
-  --aeh-accent: var(--aqua,#95f1f1);
-  background: var(--aeh-bg);
-  color: #fff;
-  font-family: var(--asap-body);
-  padding: clamp(48px,7vw,84px) 0;
-}
-/* Biopharma only. Card/stat tiles go navy instead of a darker teal so
-   the two brand colors pair directly (navy-on-teal) rather than needing
-   a third, invented shade — same two-color palette the rest of the site
-   already uses for teal contexts (e.g. .asap-playlist__icon is teal
-   against white, never a teal-on-teal tint). Eyebrow stays orange, same
-   as the navy variant — every eyebrow in this file is orange regardless
-   of section background (see .asap-hero__eyebrow, .asap-news__eyebrow),
-   so this doesn't special-case it. */
-.asap-event-hero--teal{
-  --aeh-bg: var(--teal,#52b5c2);
-  --aeh-card-bg: var(--asap-navy);
-  --aeh-stat-bg: var(--asap-navy-deep);
-  --aeh-accent: var(--asap-navy);
-}
-/* Teal's mid-tone background means the light-on-navy text colors used for
-   the eyebrow/lead/partner-label above (chosen for contrast against dark
-   navy) read too low-contrast here — caught in review on the actual
-   rendered page, not guessed. All three flip to navy for this variant.
-   Title/date/venue are left alone (stay white in both variants) — per
-   Eric, bold/large enough to hold contrast against teal without a swap. */
-.asap-event-hero--teal .asap-eyebrow{ color:var(--asap-navy); }
-.asap-event-hero--teal .asap-eyebrow::before{ background:var(--asap-navy); }
-.asap-event-hero--teal .asap-event-hero__lead.asap-event-hero__lead{ color:var(--asap-navy) !important; }
-.asap-event-hero--teal .asap-event-hero__partner-label{ color:var(--asap-navy); }
-
-.asap-event-hero .asap-wrap{ display:grid; grid-template-columns:1fr; gap:clamp(28px,5vw,56px); align-items:center; max-width:1240px; padding:0 clamp(22px,5vw,56px); }
-@media(min-width:900px){ .asap-event-hero .asap-wrap{ grid-template-columns:1.08fr .92fr; } }
-
-.asap-event-hero__eyebrow{ margin-bottom:20px; } /* color/line accent inherited from .asap-eyebrow */
-
-.asap-event-hero__title.asap-event-hero__title{
-  /* Neulis Neue, not Poppins/--asap-sans — matches the H1 everywhere else
-     on the site (see asap-custom-styles.css's sitewide h1-h5 rule and
-     .header-ribbon h1), per Eric. The rest of this block (eyebrow, date,
-     stats, etc.) stays on --asap-sans, consistent with every other block
-     in this file. */
-  font-family: "neulis-neue", var(--font-family) !important;
-  color: #fff !important;
-  font-weight: 800 !important;
-  line-height: 1.05;
-  letter-spacing: -.01em;
-  font-size: clamp(2.2rem,5vw,3.6rem);
-  margin: 0 0 22px !important;
-}
-.asap-event-hero__title .g{ color: var(--aeh-accent); }
-
-.asap-event-hero__lead.asap-event-hero__lead{
-  color: #c9cde6 !important;
-  font-family: var(--asap-body);
-  font-size: clamp(1rem,1.3vw,1.12rem);
-  line-height: 1.6;
-  max-width: 34ch;
-  margin-bottom: 28px !important;
+/* Mobile lightbox override — same breakpoint as the item stack, since
+   that's exactly when the inline card's position becomes a problem. */
+@container asap-roadmap (max-width:804px){
+  .asap-roadmap__detail{
+    position:fixed; inset:0; z-index:1000; width:auto; max-width:none; margin:0;
+    background:rgba(10,16,40,.6); border:none; box-shadow:none; border-radius:0;
+    display:flex; align-items:center; justify-content:center; padding:20px;
+    max-height:none; overflow:visible; /* swap the max-height animation for opacity/visibility below */
+    visibility:hidden; opacity:0; transition:opacity .25s ease, visibility 0s linear .25s;
+  }
+  .asap-roadmap__detail.is-open{
+    /* max-height:none re-declared here (not just on the bare .detail above) —
+       the desktop rule .asap-roadmap__detail.is-open{max-height:280px} (two
+       classes) has higher specificity than a bare .asap-roadmap__detail
+       selector, @container or not, so without this the desktop 280px cap
+       silently won even inside the mobile breakpoint and clipped the
+       lightbox card to a tiny scrollable strip — caught via live testing,
+       not visible from reading the CSS alone. */
+    max-height:none; visibility:visible; opacity:1; padding:20px; transition:opacity .25s ease;
+  }
+  .asap-roadmap__d-panel{
+    width:100%; max-width:420px; max-height:calc(100vh - 40px); overflow-y:auto; overflow-x:hidden;
+    background:#fff; border-radius:16px; box-shadow:0 20px 60px rgba(10,16,40,.35);
+    padding:24px; transform:translateY(10px); transition:transform .25s ease;
+  }
+  /* overflow-x:hidden above (not the auto it'd inherit from matching the
+     overflow-y:auto pattern) — the close button's absolute right:-6px
+     offset below sits just outside the panel's padding box, which
+     overflow:auto on both axes was picking up as real scrollable content
+     and adding a spurious ~6px horizontal scrollbar. Caught via live
+     testing (scrollWidth 426 vs clientWidth 420). Vertical scroll for long
+     descriptions is still needed, horizontal never is. */
+  .asap-roadmap__detail.is-open .asap-roadmap__d-panel{ transform:none; }
+  .asap-roadmap__d-close{ position:absolute; top:-6px; right:-6px; width:34px; height:34px; box-shadow:0 4px 10px rgba(10,16,40,.15); }
 }
 
-/* Venue matched to date's weight/color (was a lighter, non-bold gray) —
-   per review, the lighter treatment read as less legible than intended;
-   both are now the same style, just different spacing below. */
-.asap-event-hero__date,
-.asap-event-hero__venue{ font-family:var(--asap-sans); font-weight:700; color:#fff; font-size:1.15rem; }
-.asap-event-hero__date{ margin-bottom:4px; }
-.asap-event-hero__venue{ margin-bottom:32px; }
-
-.asap-event-hero__btns{ display:flex; gap:14px; flex-wrap:wrap; margin-bottom:40px; }
-
-.asap-event-hero__partner{ display:flex; align-items:center; gap:20px; flex-wrap:wrap; }
-.asap-event-hero__partner-label{ color:#9298b8; font-size:.9rem; }
-/* No background/padding "chip" here anymore — with just placeholder text
-   in it, that read as a third button (caught in review). Sized to hold a
-   real <img> logo instead: capped height so partner logos of different
-   aspect ratios all sit at the same visual scale, width left auto. The
-   "Partner Logo" placeholder text just inherits ordinary text styling
-   until a real image replaces it. */
-.asap-event-hero__plogo{ display:inline-flex; align-items:center; font-family:var(--asap-sans); font-weight:700; font-size:.95rem; color:#fff; }
-.asap-event-hero__plogo img{ display:block; max-height:36px; width:auto; }
-
-.asap-event-hero__card{ background:var(--aeh-card-bg); border:1px solid rgba(255,255,255,.09); border-radius:18px; padding:20px; box-shadow:0 24px 60px rgba(0,0,0,.28); }
-
-.asap-event-hero__photo{ position:relative; border-radius:12px; overflow:hidden; aspect-ratio:16/8.2; background:linear-gradient(160deg,#e9d9c2 0%,#c9a98a 42%,#4a5a74 100%); }
-.asap-event-hero__photo img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; }
-.asap-event-hero__loc{ position:absolute; left:14px; bottom:12px; display:inline-flex; align-items:center; gap:7px; background:rgba(14,18,42,.55); backdrop-filter:blur(3px); color:#fff; font-size:.82rem; padding:6px 12px; border-radius:20px; }
-.asap-event-hero__loc svg{ width:14px; height:14px; }
-
-.asap-event-hero__stats{ display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:16px; }
-.asap-event-hero__stat{ background:var(--aeh-stat-bg); border:1px solid rgba(255,255,255,.05); border-radius:12px; padding:20px 14px; text-align:center; }
-.asap-event-hero__stat b{ display:block; font-family:var(--asap-sans); font-weight:800; font-size:clamp(1.5rem,2.6vw,1.9rem); color:#fff; line-height:1; }
-.asap-event-hero__stat span{ display:block; color:#a9adc9; font-size:.85rem; margin-top:6px; }
-
-@media(max-width:899px){ .asap-event-hero__lead{ max-width:none; } }
-@media(max-width:420px){
-  .asap-event-hero__stats{ gap:10px; }
-  .asap-event-hero__stat{ padding:16px 8px; }
-}
+/* Standard modal pattern: freeze the page behind the lightbox while it's
+   open. Toggled on <html> (not scoped under .asap-roadmap — html isn't a
+   descendant of it) by the init script in asap-fullbleed-fix.html, and
+   only while the card is actually rendered as a fixed lightbox (checked
+   via computed position at open-time, not by re-testing the 804px number
+   here — one source of truth for the breakpoint, in the CSS above). */
+html.asap-roadmap-lock-scroll{ overflow:hidden; }
