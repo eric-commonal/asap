@@ -1,9 +1,7 @@
 /* =========================================================================
    ASAP — New Homepage Content Blocks
-   Add-on stylesheet — load ALONGSIDE the existing asap-custom-styles.css,
-   do not replace it.
 
-   Every selector below is namespaced with "asap-" so nothing here can
+   Every selector below is namespaced with "asap-" so nothing can
    collide with NoviAMS/Bootstrap theme classes or with the existing
    asap-custom-styles.css. See asap-blocks-README.md for the full conflict
    audit.
@@ -645,14 +643,21 @@
     padding:24px; transform:translateY(10px); transition:transform .25s ease;
   }
   /* overflow-x:hidden above (not the auto it'd inherit from matching the
-     overflow-y:auto pattern) — the close button's absolute right:-6px
-     offset below sits just outside the panel's padding box, which
-     overflow:auto on both axes was picking up as real scrollable content
-     and adding a spurious ~6px horizontal scrollbar. Caught via live
-     testing (scrollWidth 426 vs clientWidth 420). Vertical scroll for long
-     descriptions is still needed, horizontal never is. */
+     overflow-y:auto pattern) is a defensive leftover from an earlier
+     negative-offset close button that briefly caused a spurious ~6px
+     horizontal scrollbar; kept since horizontal scroll is never wanted
+     here regardless. Vertical scroll for long descriptions still is. */
   .asap-roadmap__detail.is-open .asap-roadmap__d-panel{ transform:none; }
-  .asap-roadmap__d-close{ position:absolute; top:-6px; right:-6px; width:34px; height:34px; box-shadow:0 4px 10px rgba(10,16,40,.15); }
+  /* Close button sits fully inside the panel's rounded corner (positive
+     top/right, not the negative offset used on desktop's float:right)
+     so it doesn't visually spill past the card edge on mobile — client
+     feedback (screenshot) showed it getting clipped by the rounded
+     corner when it sat partly outside the box. d-head gets matching
+     right padding so the button never overlaps the title text, even
+     on long titles that wrap to two lines (e.g. "Transform, Innovate,
+     or Exit Gracefully"). */
+  .asap-roadmap__d-close{ position:absolute; top:14px; right:14px; width:34px; height:34px; box-shadow:0 4px 10px rgba(10,16,40,.15); }
+  .asap-roadmap__d-head{ padding-right:44px; }
 }
 
 /* Standard modal pattern: freeze the page behind the lightbox while it's
