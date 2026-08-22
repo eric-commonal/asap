@@ -922,21 +922,7 @@ blockquote cite {
   transform: translateX(-50%);
   border: none;
   @media all and (min-width: 768px) {
-    padding: 100px 20px;
-  }
-
-  &::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    height: 100%;
-    width: 30%; /* Reduced width to not overlap too much */
-    background-image: url("https://assets-staging.noviams.com/novi-file-uploads/asap/graphics/asap-hero-pattern.svg");
-    background-repeat: no-repeat;
-    background-position: left center;
-    background-size: cover;
-    z-index: 1;
+    padding: 60px 20px;
   }
 
   h1 {
@@ -984,26 +970,22 @@ blockquote cite {
     margin-bottom: 0;
   }
 
-/* Custom header ribbons */
-.c-body-content__asap-biopharma-conference .header-ribbon {
-  background-color: var(--teal);
-}
-
-@media all and (min-width: 768px) {
-  .c-body-content__asap-biopharma-conference .header-ribbon::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    height: 100%;
-    width: 30%; /* Reduced width to not overlap too much */
-    background-image: url("https://assets-staging.noviams.com/novi-file-uploads/asap/graphics/asap-hero-pattern-teal-bg.svg");
-    background-repeat: no-repeat;
-    background-position: left center;
-    background-size: cover;
-    z-index: 1;
+  /* Novi doesn't omit the subtitle field when it's left blank — it still
+     emits <h2 class="subtitle" role="presentation"><novi-content-wrapper>
+     </novi-content-wrapper></h2>, so h1 is never actually :last-child on
+     those pages and the rule above never fires. Target the empty wrapper
+     directly instead: hide the subtitle so it takes no space, and zero
+     h1's margin-bottom so it centers in the ribbon's symmetric top/bottom
+     padding, same as the truly-no-subtitle case above.
+     Caveat: :empty requires zero whitespace between the wrapper's tags —
+     if Novi ever starts emitting a newline/space in there, this stops
+     matching and needs adjusting. */
+  .header-ribbon .subtitle:has(> novi-content-wrapper:empty) {
+    display: none;
   }
-}
+  .header-ribbon:has(.subtitle > novi-content-wrapper:empty) h1 {
+    margin-bottom: 0;
+  }
 
 /* All ASAP event/summit pages now use the .asap-event-hero Main Content
    block (see asap-new-blocks.css) instead of the header-ribbon — the
@@ -1025,10 +1007,6 @@ blockquote cite {
 
 /* Media query for mobile screens */
 @media (max-width: 768px) {
-  .header-ribbon::after {
-    display: none;
-  }
-
   .header-ribbon h1 {
     max-width: 100%;
     margin: 50px 0; /* Reduced vertical spacing for mobile */
