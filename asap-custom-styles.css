@@ -676,46 +676,11 @@ div.c-nav-centered__search > div {
   }
 }
 
-/* ---------------------------------------------------------------------
-   Upcoming Events (homepage) — 2026 slim refresh
-   Scoped to .upcoming (the homepage widget's own wrapper class, see the
-   HTML: <div class="section upcoming">) so none of this touches the
-   separate /events calendar-listing page, which reuses several of the
-   same class names (.c-event-date-stub__wrapper, .date-stub,
-   .c-event-date-stub__time, .c-event-date-stub__btn — see
-   .event-list-container above) with different, fuller styling that's
-   intentional for that context.
+.upcoming {
+  display: none;
+}
+/* Upcoming Events (homepage) - */
 
-   Live-checked on strategic-alliances.org before writing any of this
-   (not guessed): despite the .col-md-4 class name, these three events
-   are NOT rendering as a 3-column grid — each is computing display:block
-   at ~940px wide, full-width stacked rows. So the fix isn't "give the
-   grid column more room," it's slimming each already-wide row.
-
-   The timezone line-break has a confirmed, specific cause: measured live,
-   .c-event-date-stub__time is computing display:block, not the
-   display:inline-block this file's own rule (above) specifies — something
-   else in the live cascade is winning that isn't visible in what's in this
-   repo, which means the live site's actual CSS has drifted from what's
-   here. !important below is deliberate, to win regardless of what that
-   untraced rule turns out to be. Worth a look at what it is once this
-   goes out, so it doesn't reappear elsewhere.
-
-   The title wrapping to 3 lines is real too, not just a narrow-viewport
-   thing — confirmed on the "Smoother Asset Transitions" event, which is
-   computing exactly 3 lines (94px / 31.2px line-height) at the ~683px
-   width the title column already has today. Root cause there isn't
-   "not enough width" so much as "nothing capping line count," so the
-   fix is a hard 2-line clamp, not just freeing more space (though the
-   smaller date badge and lighter Details treatment below both free some
-   space too, and should mean fewer titles need the clamp's ellipsis to
-   kick in).
-   --------------------------------------------------------------------- */
-
-/* Row padding: was 40px top (#events .event) + 40px bottom
-   (.event.col-md-4) = 80px of padding per row before content even
-   starts. Trimmed to match the tighter spacing scale the new content
-   blocks use (e.g. .asap-ecard's 20px body padding, in asap-new-blocks.css). */
 .upcoming #events .event,
 .upcoming.events .event,
 .upcoming .events .event {
@@ -725,18 +690,6 @@ div.c-nav-centered__search > div {
   padding-bottom: 24px;
 }
 
-/* Date badge: 120x120 fixed square -> a smaller pill. Frees width back
-   to the title column and reads lighter, matching the new blocks'
-   generally smaller-footprint card chrome. */
-/* Fixed height, flexible width — not fixed on both axes. Height fixed
-   because that's what actually drives row-to-row visual consistency
-   (caught live: single-day and multi-day badges were different heights,
-   84px vs ~96px, which is what read as mismatched). Width left flexible
-   on purpose: multi-day content ("Sep 1 / Sep 3") is genuinely wider
-   than single-day ("Aug 20") — forcing one fixed width means either the
-   multi-day date cramps/wraps inside it, or every single-day badge
-   wastes space matching the multi-day one. min-width keeps single-day
-   badges from looking too skinny; height is the one that's truly fixed. */
 .upcoming .c-event-date-stub__wrapper {
   width: auto;
   height: 84px;
@@ -745,40 +698,16 @@ div.c-nav-centered__search > div {
   border-radius: 10px;
 }
 
-/* Gap between title and time/details: was ~33px (visible text bottom to
-   time top), not the 8px the margin-bottom alone would suggest — the
-   title's wrapping <a> has no font-size/line-height of its own, so it
-   inherits the sitewide body value (20px / 1.7 = 34px line-height) as
-   its line-box "strut," which doesn't match the 21px/1.3 the title text
-   itself actually uses (see the event-name rule above) — the mismatch
-   between the two is what was rendering as extra invisible space.
-   :has() (already used elsewhere in this file) targets the title anchor
-   specifically without relying on DOM-order assumptions like :first-child. */
 .upcoming .c-event-date-stub__event-wrapper > a:has(.c-event-date-stub__event-name) {
   line-height: 1.3;
   margin-bottom: 4px;
 }
 
-/* Details link vertical centering: it's position:absolute with a fixed
-   top:40px (base theme, not in this file — confirmed live via
-   getComputedStyle, not visible in any rule here). A fixed pixel offset
-   doesn't adapt to row height, so it only *looks* aligned with the date
-   badge today by coincidence, at this specific badge height — it'll
-   drift out of alignment again the next time row height changes for any
-   reason. Overriding to true 50%/translateY centering so it stays
-   vertically centered on the row regardless of content height. */
 .upcoming .c-event-date-stub__btn {
   top: 50% !important;
   transform: translateY(-50%) !important;
 }
-/* Full ancestor chain repeated here (with .upcoming prepended), not just
-   ".upcoming .c-event-date-stub__wrapper .date-stub" — the original rule
-   this overrides is nested 5 classes deep in SCSS
-   (.event.col-md-4 .event-table .c-event-date-stub__wrapper .date-stub),
-   which a shorter selector doesn't have the specificity to beat. Confirmed
-   live on staging: without this fuller chain, these three still computed
-   at their original 16px/30px/60px despite the rule being "correct" on
-   its own. */
+
 .upcoming .event.col-md-4 .event-table .c-event-date-stub__wrapper .date-stub {
   font-size: 13px;
 }
@@ -789,11 +718,6 @@ div.c-nav-centered__search > div {
   font-size: 40px;
 }
 
-/* Title: hard-capped at 2 lines (same -webkit-line-clamp technique this
-   file already uses for the single-event-page h1 — see
-   ".body-content .main-event .event-info h1.long" above) rather than
-   relying on width alone to keep it to 2 lines. Font size trimmed one
-   notch to fit more of each title before the clamp's ellipsis kicks in. */
 .upcoming .event.col-md-4 .event-table .c-event-date-stub__event-wrapper .c-event-date-stub__event-name {
   font-size: 21px !important;
   line-height: 1.3;
@@ -803,28 +727,10 @@ div.c-nav-centered__search > div {
   overflow: hidden;
 }
 
-/* Time + timezone: two separate boxed chips (each with its own
-   background/padding/radius) is what was breaking onto its own line —
-   see the diagnosis above. Forcing inline-block back (with !important,
-   see above) fixes the break; folding the timezone into plain trailing
-   text instead of a second equal-weight chip also narrows the whole
-   group and reads as secondary info rather than a repeated pill.
-   :has() is already used elsewhere in this file (.grid-item:has(...),
-   body:has(h2:target)), so this isn't a new browser-support floor for
-   the project. */
 .upcoming .c-event-date-stub__time {
   display: inline-block !important;
 }
 .upcoming .c-event-date-stub__time:has(small) {
-  /* Deliberate muted gray, not opacity — opacity on top of the same
-     color (var(--text-color)) read as a stray/inconsistent color rather
-     than an intentional secondary style (caught live: "looks like a
-     different font color" — it wasn't a different color, just faded).
-     margin-right explicitly zeroed too: the base .c-event-date-stub__time
-     rule (above) sets margin-right:5px unconditionally, which was
-     stacking with this element's own margin-left and reads as a bigger
-     gap than intended (caught live: "spaced pretty far from the time"). */
-  background: none;
   padding: 0;
   margin-left: 2px;
   margin-right: 0;
@@ -836,11 +742,6 @@ div.c-nav-centered__search > div {
   font-size: 14px;
 }
 
-/* Details CTA: was a full solid navy button (15px/30px padding, ~60px
-   tall) repeated on every row. Swapped for a lightweight text link,
-   matching how the new content blocks treat in-card secondary actions
-   (see .asap-ecard__link / .asap-news__arrow in asap-new-blocks.css)
-   rather than a heavy button next to every single title. */
 .upcoming .c-event-date-stub__btn {
   background: none !important;
   border: none !important;
@@ -915,6 +816,7 @@ blockquote cite {
 }
 
 .section.featured-slider {
+  display: none;
   padding-top: 50px;
   background: var(--light-gray);
 }
