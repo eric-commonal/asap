@@ -422,6 +422,23 @@ div.c-nav-centered__search > div {
     padding: 10px 5px;
 }
 
+/* Responsive Video Embeds */
+
+.video-embed-responsive {
+  position: relative;
+  width: 70%;
+  height: 0;
+  padding-bottom: 56.25%;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+@media (max-width: 767px) {
+  .video-embed-responsive {
+    width: 100%;
+  }
+}
+
 /* About section */
 #about-association .container {
   background-color: var(--white-color);
