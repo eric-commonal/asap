@@ -847,10 +847,21 @@ html.asap-roadmap-lock-scroll{ overflow:hidden; }
    instead of rounded color.
    ------------------------------------------------------------------------- */
 .asap-partner-grid{
+  /* Same centering/max-width as every other block's .asap-wrap (1200px,
+     24px side padding), folded directly into this class instead of a
+     separate wrapper div — the grid items are its direct children, so
+     there's no other layer that needs its own box. Without this, the
+     grid had no width constraint of its own and fell back to whatever
+     column width the surrounding template happened to provide — fine on
+     the homepage where it's nested inside an already-1200px-constrained
+     section, but far too narrow on /content-block-suite, which has no
+     such wrapping section (caught live, QA'd on that page). */
   display:grid;
   grid-template-columns:repeat(4,1fr);
   gap:32px 24px;
-  padding-bottom:80px;
+  max-width:1200px;
+  margin:0 auto;
+  padding:0 24px 80px;
 }
 @media(max-width:780px){
   .asap-partner-grid{ grid-template-columns:repeat(2,1fr); gap:24px 16px; }
