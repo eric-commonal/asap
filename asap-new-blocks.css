@@ -339,7 +339,7 @@
 .asap-media-card__meta{ display:flex; gap:16px; font-size:.78rem; color:var(--asap-muted); margin-bottom:10px; flex-wrap:wrap; }
 .asap-media-card__meta span{ display:inline-flex; align-items:center; gap:6px; }
 .asap-media-card__meta svg{ width:14px; height:14px; color:var(--asap-tert); }
-.asap-media-card h3{ font-family:var(--asap-sans); font-weight:700; color:var(--asap-navy); font-size:1.08rem; line-height:1.3; margin-bottom:10px; text-align:left; }
+.asap-media-card h3{ font-family:var(--asap-sans); font-weight:700; color:var(--asap-navy); font-size:1.08rem; line-height:1.3; margin-bottom:10px; margin-left:0; margin-right:0; text-align:left; }
 .asap-media-card p{ color:var(--asap-muted); font-size:.9rem; line-height:1.55; margin:0 0 16px; }
 .asap-media-card__link{ margin-top:auto; display:inline-flex; align-items:center; gap:7px; font-family:var(--asap-sans); font-weight:600; font-size:.85rem; color:var(--asap-tert); }
 .asap-media-card__link:hover{ color:var(--asap-tert); } /* explicit, not just coincidentally teal already — see hover-color note above */
@@ -880,3 +880,5 @@ html.asap-roadmap-lock-scroll{ overflow:hidden; }
   line-height:1;
   box-shadow:0 2px 6px rgba(0,0,0,.18);
 }
+#c-hp-double-region,
+#calendar-button{ display:none; }
