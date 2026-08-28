@@ -907,22 +907,12 @@ blockquote cite {
   }
 
 /* All ASAP event/summit pages now use the .asap-event-hero Main Content
-   block (see asap-new-blocks.css) instead of the header-ribbon — the
-   ribbon is hidden per page rather than restyled. The old page-specific
-   ribbon color/pattern overrides (teal for biopharma, orange for summit)
-   are removed since the ribbon they targeted no longer renders on these
-   pages.
-
-   Confirmed page-slug classes: asap-summit, asap-biopharma-conference.
-   asap-european-alliance-summit (Summit London) is inferred from the
-   live strategic-alliances.org DOM, not confirmed against this staging
-   site — verify before relying on it. Summit NYC and ASAP Locals slugs
-   are still unknown; add their display:none rules here once confirmed. */
-.c-body-content__asap-summit .header-ribbon,
+   block (see asap-new-blocks.css) instead of the header-ribbon. */
 .c-body-content__asap-biopharma-conference .header-ribbon,
-.c-body-content__asap-european-alliance-summit .header-ribbon /* unconfirmed on staging */ {
+.c-body-content__asap-european-alliance-summit .header-ribbon {
   display: none;
 }
+/* Copy and add asap-summit when ready */
 
 /* Media query for mobile screens */
 @media (max-width: 768px) {
