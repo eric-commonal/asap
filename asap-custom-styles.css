@@ -881,10 +881,7 @@ blockquote cite {
 
   /* When there's no subtitle, h1 is the ribbon's only/last child and its
      2rem margin-bottom just adds to the page's bottom padding with nothing
-     to justify it — the ribbon looks bottom-heavy/unbalanced (QA'd on
-     /certifications). Zeroing it only when h1 has no following sibling
-     leaves pages with a real subtitle untouched (h1 is no longer
-     :last-child there, so this rule doesn't match). */
+     to justify it */
   .header-ribbon h1:last-child {
     margin-bottom: 0;
   }
@@ -909,10 +906,10 @@ blockquote cite {
 /* All ASAP event/summit pages now use the .asap-event-hero Main Content
    block (see asap-new-blocks.css) instead of the header-ribbon. */
 .c-body-content__asap-biopharma-conference .header-ribbon,
-.c-body-content__asap-european-alliance-summit .header-ribbon {
+.c-body-content__asap-european-alliance-summit .header-ribbon,
+.c-body-content__asap-summit .header-ribbon {
   display: none;
 }
-/* Copy and add asap-summit when ready */
 
 /* Media query for mobile screens */
 @media (max-width: 768px) {
