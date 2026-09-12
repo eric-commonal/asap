@@ -1,26 +1,14 @@
 /* =========================================================================
    ASAP — New Homepage Content Blocks
-   Add-on stylesheet — load ALONGSIDE the existing asap-custom-styles.css,
-   do not replace it.
+   Add-on stylesheet — load with asap-custom-styles.css, do not replace it.
 
-   Every selector below is namespaced with "asap-" so nothing here can
-   collide with NoviAMS/Bootstrap theme classes or with the existing
-   asap-custom-styles.css. See asap-blocks-README.md for the full conflict
-   audit.
+   Every selector below is namespaced with "asap-" so nothing can
+   collide with NoviAMS/Bootstrap theme classes or the existing
+   asap-custom-styles.css.
    ========================================================================= */
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
 
-/* -------------------------------------------------------------------------
-   1. Tokens
-   Reuses the site's existing :root variables where the value already
-   matches 1:1 (--teal, --aqua, --primary-color, --secondary-color,
-   --tertiary-color, --highlight-orange, --light-gray, --white-color), so
-   colors stay in sync with the rest of the site automatically. Anything
-   without a sitewide equivalent gets its own --asap- prefixed token with a
-   hard-coded fallback, so this file also renders correctly on its own
-   (e.g. in preview.html) even without asap-custom-styles.css loaded.
-   ------------------------------------------------------------------------- */
 :root{
   --asap-navy: var(--primary-color, #1a1c40);
   --asap-navy-deep: #0c1230;
@@ -41,100 +29,31 @@
      for the standalone preview. */
 }
 
-/* -------------------------------------------------------------------------
-   2. Compatibility fixes
-   asap-custom-styles.css applies several sitewide, tag-level rules (some
-   !important) that were written for NoviAMS's own theme markup. Left
-   alone, they bleed into these new blocks. Each fix below names the
-   sitewide rule it counteracts — see asap-blocks-README.md for the full
-   explanation.
-   ------------------------------------------------------------------------- */
-
-/* Sitewide: h1,h2,h3,h4,h5{color:var(--dark-blue) !important}
-   The hero title sits on a dark photo/scrim and must stay white. Only an
-   !important of equal-or-higher specificity can beat that rule. */
-/* Doubled class (not a typo) — raises specificity above
-   ".single-region h1,h2,...{color:var(--dark-blue)!important}", which the
-   hero's <h2> title picks up whenever it's placed inside Novi's
-   .single-region wrapper (confirmed on the homepage: #about-association is
-   .section.single-region). A plain single-class rule loses to that
-   ancestor+tag selector since both are !important. */
 .asap-hero__title.asap-hero__title{ color:#fff !important; }
 
-/* Sitewide: h1,h2,h3,h4,h5{margin-top:60px}
-   Not !important, but nothing in the original design set a margin-top on
-   these headings, so the 60px was silently inheriting through. Zeroing it
-   here keeps cards and section headers at their intended spacing. */
 .asap-icon-card h3,
 .asap-media-card h3,
 .asap-sec-title{ margin-top:0; }
 
-/* Sitewide: ul,ol{margin-bottom:14px !important}
-   Adds an unwanted gap under the feature-card list and the news list;
-   needs !important to win against another !important rule. */
 .asap-icon-card ul,
 .asap-news__list{ margin-bottom:0 !important; }
 
-/* Sitewide: blockquote{margin:40px 0;padding:0 0 0 40px;
-   border-left:5px solid var(--secondary-color)}
-   The pull-quote block is centered, white-on-navy, with no border/indent
-   by design — these sitewide defaults must be zeroed back out. */
 .asap-quote blockquote{ margin:0; padding:0; border-left:0; }
 
-/* Sitewide: a:hover{text-decoration:underline} (not !important, but its
-   a:hover specificity still beats a plain .btn/.link class at rest state).
-   Keeps buttons and card links from gaining an underline on hover. */
 .asap-btn:hover,
 .asap-hero__btn:hover,
 .asap-media-card__link,
 .asap-media-card__link:hover,
 .asap-playlist__item:hover{ text-decoration:none; }
 
-/* Sitewide: h1,h2,h3,h4,h5{color:var(--dark-blue) !important}
-   Without this, the news-title hover color-shift (navy -> lighter blue)
-   is silently blocked by the sitewide !important on h3 color. */
 .asap-news__link:hover .asap-news__title{ color:#2E6E9C !important; }
 
-/* Sitewide: a{color:var(--tertiary-color)} / a:hover{color:var(--tertiary-color)}
-   Every button below is an <a>. None of their :hover rules originally set
-   color explicitly, so on hover the sitewide a:hover rule (element+pseudo-
-   class beats a plain single-class rule) won a teal text color nobody
-   wanted — QA'd as "weird teal" on the hero/news buttons, and as an
-   inconsistency in Who We Are where .asap-btn--ghost:hover happened to
-   already set color (no leak) right next to .asap-btn--navy:hover, which
-   didn't (leaked). Fixed by giving every button's :hover state its own
-   explicit color — see each rule below. */
-
-/* Sitewide: p has some margin-bottom rule (from Novi's base theme, not
-   visible in this override file) that silently wins over a plain single-
-   class margin-bottom — QA'd as "no padding above the buttons" in Who We
-   Are and Latest News, since both sit right after a <p>. Needs !important
-   to win; applied to every <p>-based lead/copy element in this file for
-   consistency, not just the two reported. */
 .asap-media-text__p{ margin-bottom:26px !important; }
 .asap-news__lead{ margin-bottom:24px !important; }
 .asap-video-list__lead{ margin-bottom:22px !important; }
 .asap-cta__box p{ margin-bottom:30px !important; }
 .asap-media-card p{ margin-bottom:16px !important; }
 .asap-icon-cards__head p{ margin-bottom:0 !important; }
-
-/* Template compatibility: full-bleed sections.
-   Originally tried the calc(50% - 50vw) breakout asap-custom-styles.css
-   uses elsewhere (.header-ribbon, .secondary-call-out) — but verified live
-   on /content-block-suite that it doesn't hold up here: that trick only
-   works when the element's *immediate* parent is itself centered in the
-   viewport. On this template, Novi wraps injected HTML several levels deep
-   (novi-content-wrapper > .well.box.inner-content > .o-column > .row),
-   each level adding its own Bootstrap-style padding/negative margins, so
-   "50%" no longer lines up with the true viewport center. Measured result:
-   .asap-mission rendered from x:-153.75 to x:1766.25 in a 1920px-wide
-   viewport — overflowing off-screen on the left, short of the edge on the
-   right. That's the CSS approach removed below in favor of a small
-   position-measuring script (see asap-fullbleed-fix.html) that corrects
-   for whatever nesting a given template happens to use, instead of
-   assuming a specific one. (Measurement noted below against the block that
-   was then called .asap-mission — since renamed to .asap-statement, see
-   section 5 — the measurement and fix themselves are unaffected.) */
 
 /* -------------------------------------------------------------------------
    3. Shared utilities (used across multiple blocks below)
@@ -148,16 +67,6 @@
 
 .asap-sec-title{ font-family:var(--asap-sans); font-weight:800; color:var(--asap-navy); font-size:clamp(1.7rem,3.4vw,2.5rem); line-height:1.14; }
 
-/* Hover language, applied consistently across every solid-fill button
-   below (.asap-btn--orange, .asap-btn--navy, .asap-hero__btn,
-   .asap-news__btn): invert to a white body with the button's own color as
-   an outline + text on hover — orange outline/white body/orange text for
-   the orange family, matching what the rest of the site's "secondary"
-   button style does. Outline-at-rest buttons (.asap-btn--ghost*) already
-   do the mirror-image version (invert to filled), so they're left as-is.
-   Every :hover rule below sets color explicitly — without it, the
-   sitewide a:hover{color:var(--tertiary-color)} rule wins instead (teal),
-   which is what QA caught. */
 .asap-btn{ display:inline-flex; align-items:center; gap:10px; font-family:var(--asap-sans); font-weight:600; font-size:.95rem; text-decoration:none; padding:13px 26px; border-radius:10px; transition:background .2s,transform .2s,color .2s,border-color .2s; cursor:pointer; border:2px solid transparent; }
 .asap-btn svg{ width:16px; height:16px; }
 .asap-btn--orange{ background:var(--asap-orange); color:#fff; }
@@ -169,19 +78,6 @@
 .asap-btn--ghost-light{ background:transparent; border-color:rgba(255,255,255,.5); color:#fff; }
 .asap-btn--ghost-light:hover{ background:#fff; color:var(--asap-navy); border-color:#fff; }
 
-/* -------------------------------------------------------------------------
-   Topbar (announcement bar)
-   Not part of Novi's native header — this is new content that must render
-   visually above the header even though it can only be pasted into the
-   body content area, below the header in the DOM. Verified live on
-   /content-block-suite: body already carries a sitewide 40px top padding
-   with nothing rendered in it (header starts at y:40, unchanged), so a
-   position:fixed bar pinned to top:0 slots into that existing reserved
-   band exactly, without covering the header and without needing to touch
-   header/body CSS at all. Side effect: because it's fixed, it stays
-   visible while scrolling (persistent, not a one-time banner) — flag if
-   you'd rather have it scroll away after the first screen.
-   ------------------------------------------------------------------------- */
 .asap-topbar{
   /* Not fixed/sticky by design — scrolls away with the page. It's moved to
      sit directly before <header> in the DOM by a script (see
@@ -317,7 +213,7 @@
 .asap-icon-card ul{ list-style:none; margin:0; padding:0; }
 .asap-icon-card li{ display:flex; gap:10px; align-items:flex-start; color:var(--asap-muted); font-size:.95rem; line-height:1.45; padding:7px 0; }
 .asap-icon-card li svg{ width:17px; height:17px; color:var(--teal,#52b5c2); flex:0 0 auto; margin-top:2px; }
-.asap-icon-card p{ font-family:var(--asap-body); color:var(--asap-muted); font-size:.95rem; line-height:1.5; margin:0 0 16px; }
+.asap-icon-card p{ font-family:var(--asap-sans); color:var(--asap-muted); font-size:.95rem; line-height:1.5; margin:0; padding:7px 0; }
 
 @media(max-width:980px){ .asap-icon-cards__grid{ grid-template-columns:1fr; } }
 
