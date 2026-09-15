@@ -2018,11 +2018,13 @@ body > div.body-content {
       color: var(--dark-blue);
     }
   }
-
+  .paging-scroller .page-numbers {
+    margin-top: 0;
+    margin-bottom: 0 !important;
+  }
   a.next,
   a.prev {
     color: var(--dark-blue);
-
     .title,
     .sub-title {
       color: var(--dark-blue);
