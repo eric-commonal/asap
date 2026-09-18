@@ -672,11 +672,19 @@ html.asap-roadmap-lock-scroll{ overflow:hidden; }
 .asap-event-hero--aqua .asap-event-hero__venue{ color:var(--asap-navy); }
 
 .asap-event-hero--bg-image{
-  --aeh-bg: linear-gradient(rgba(8,14,34,.68),rgba(8,14,34,.68)), url('https://assets.noviams.com/novi-file-uploads/asap/home/asap-ai-summit-bg.jpg') center/cover no-repeat, var(--asap-navy);
+  --aeh-bg: linear-gradient(rgba(149,241,241,.78),rgba(149,241,241,.78)), var(--aeh-photo, none) center/cover no-repeat, var(--asap-light,#f4f6fb);
   --aeh-card-bg: var(--asap-navy);
   --aeh-stat-bg: var(--asap-navy-deep);
-  --aeh-accent: var(--aqua,#95f1f1);
+  --aeh-accent: var(--asap-navy);
 }
+.asap-event-hero--bg-image .asap-eyebrow{ color:var(--asap-navy); }
+.asap-event-hero--bg-image .asap-eyebrow::before{ background:var(--asap-navy); }
+.asap-event-hero--bg-image .asap-event-hero__lead.asap-event-hero__lead{ color:var(--asap-navy) !important; }
+.asap-event-hero--bg-image .asap-event-hero__partner-label{ color:var(--asap-navy); }
+.asap-event-hero--bg-image .asap-event-hero__plogo{ color:var(--asap-navy); }
+.asap-event-hero--bg-image .asap-event-hero__title.asap-event-hero__title{ color:var(--asap-navy) !important; }
+.asap-event-hero--bg-image .asap-event-hero__date,
+.asap-event-hero--bg-image .asap-event-hero__venue{ color:var(--asap-navy); }
 
 .asap-event-hero .asap-wrap{ display:grid; grid-template-columns:1fr; gap:clamp(28px,5vw,56px); align-items:center; max-width:1240px; padding:0 clamp(22px,5vw,56px); }
 @media(min-width:900px){ .asap-event-hero .asap-wrap{ grid-template-columns:1.08fr .92fr; } }
