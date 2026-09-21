@@ -907,7 +907,9 @@ blockquote cite {
    block (see asap-new-blocks.css) instead of the header-ribbon. */
 .c-body-content__asap-biopharma-conference .header-ribbon,
 .c-body-content__asap-european-alliance-summit .header-ribbon,
-.c-body-content__asap-summit .header-ribbon {
+.c-body-content__asap-summit .header-ribbon,
+.c-body-content__asap-leadership-summit .header-ribbon,
+.c-body-content__asap-ai-summit .header-ribbon{
   display: none;
 }
 
